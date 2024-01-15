@@ -10,11 +10,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Produto {
+model Membro {
   id        Int     @id @default(autoincrement())
   name     String
-  tipo   String
-  preco  String
+  cargo   String
+  email  String
   published Boolean
 }
 
