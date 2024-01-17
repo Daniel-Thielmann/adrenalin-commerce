@@ -1,7 +1,9 @@
-import Image from 'next/image'
+import HeroSection from '@/components/hero section'
 
 export default function Home() {
   return (
-   <p className='text-white'> Hello world </p>
+    <div className='w-10/12 mx-auto'>
+      <HeroSection />
+    </div>
   )
 }
