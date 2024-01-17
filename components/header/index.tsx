@@ -43,12 +43,12 @@ export default function Header() {
     return (
         <header className="bg-[#1F1F21] sticky top-0 z-20 w-full py-4 px-4 mb-8 border-b border-gray-300">
 
-            <div className="flex sm:flex-col md:flex-row items-center justify-between">
+            <div className="flex sm:flex-col md:flex-row items-center justify-center gap-8">
 
                 {/* parte esquerda da header */}
                 {/* flex wrap para quebrar as linhas automaticamente */}
                 <nav className="hidden sm:flex">
-                    <div className="flex flex-wrap gap-8">
+                    <div className="flex flex-wrap gap-6">
                         {esqlinks.map((link, index) =>
                             <Link href={link.href} key={index}>
                                 <span className="text-2xl text-white hover:bg-white/20 rounded-xl">{link.label}</span>
@@ -58,7 +58,7 @@ export default function Header() {
                 </nav>
 
                 {/* parte central da logo e nome adrenalin */}
-                <Link href='/' className='flex items-center ml-40'>
+                <Link href='/' className='flex items-center justify-center ml-8'>
                     <Image
                         src={'/logo/logo.png'}
                         alt="logo do blog"
@@ -69,7 +69,6 @@ export default function Header() {
                     <div className={jah.className}>
                         <span className="text-white text-6xl">Adrenalin</span>
                     </div>
-
                 </Link>
 
 
