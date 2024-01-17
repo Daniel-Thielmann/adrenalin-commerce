@@ -35,22 +35,24 @@ export default function Header() {
     }
 
     return (
-        <header className="bg-[#E3FC02] sticky top-0 z-20 mx-auto w-full py-8 px-4 md:p-0 mb-8">
-            <div className="flex items-center justify-between w-full md:w-10/12 mx-auto">
+        <header className="bg-[#E3FC02] sticky top-0 z-20 w-full py-8 px-4 mb-8">
+
+            <div className="flex sm:flex-col md:flex-row items-center justify-between">
 
                 {/* parte esquerda da header */}
-                <nav className="flex justify-end mr-36">
-                    <div className="hidden w-full md:flex justify-end items-center">
+                {/* flex wrap para quebrar as linhas automaticamente */}
+                <nav className="hidden sm:flex">
+                    <div className="flex flex-wrap gap-8">
                         {esqlinks.map((link, index) =>
                             <Link href={link.href} key={index}>
-                                <span className="text-2xl text-black hover:bg-white/20 p-2 rounded-xl">{link.label}</span>
+                                <span className="text-2xl text-black hover:bg-white/20 rounded-xl">{link.label}</span>
                             </Link>
                         )}
                     </div>
                 </nav>
 
-                {/* parte do centro com a logo e nome */}
-                <Link href='/' className='flex items-center'>
+                {/* parte central da logo e nome adrenalin */}
+                <Link href='/' className='flex items-center ml-36'>
                     <Image
                         src={'/logo/logo.png'}
                         alt="logo do blog"
@@ -58,63 +60,36 @@ export default function Header() {
                         height={904}
                         className="h-20 w-20 rounded-xl"
                     />
-                    <span className="text-black md:block text-3xl">Adrenalin</span>
+                    <span className="text-black text-3xl">Adrenalin</span>
                 </Link>
 
-                <nav className="flex justify-end">
-                    <div className="hidden w-full md:flex justify-end items-center">
-                        {dirlinks.map((link, index) =>
-                            <Link href={link.href} key={index}>
-                                <span className="text-2xl text-black hover:bg-white/20 p-2 rounded-xl">{link.label}</span>
-                            </Link>
-                        )}
-
-                        <button onClick={toggleNav}>
-                            {isSearchOpen ?
-                                <X
-                                    onClick={toggleSearch}
-                                    className="w-10 h-10 text-black cursor-pointer hover:bg-white/20 transition-all duration-200 p-1 rounded-xl"
-                                />
-                                :
-                                <SearchIcon
-                                    onClick={toggleSearch}
-                                    className="w-10 h-10 text-black cursor-pointer hover:bg-white/20 transition-all duration-200 p-1 rounded-xl"
-                                />
-                            }
-                        </button>
-                    </div>
-                </nav>
-
-
-                {/* mobile */}
-                <nav className="flex justify-center ml-32">
-                    <div className="md:hidden">
+                {/* menu e searchicon do mobile*/}
+                <nav className="flex">
+                    <div className="sm:hidden">
                         {isNavOpen || isSearchOpen ?
                             <X
                                 onClick={toggleNavSearch}
-                                className="w-10 h-10 text-black cursor-pointer hover:bg-white/20 transition-all duration-200 p-1 rounded-xl"
+                                className="w-8 h-8 text-black cursor-pointer hover:bg-white/20 transition-all duration-200 p-1 rounded-xl"
                             />
                             :
-                            <div className="flex gap-4">
+                            <div className="flex gap-2">
                                 <SearchIcon
                                     onClick={toggleSearch}
-                                    className="w-12 h-12 text-black cursor-pointer"
+                                    className="w-8 h-8 text-black cursor-pointer"
                                 />
                                 <Menu
                                     onClick={toggleNav}
-                                    className="w-12 h-12 text-v cursor-pointer"
+                                    className="w-8 h-8 text-v cursor-pointer"
                                 />
                             </div>
                         }
                     </div>
                 </nav>
-
-                {isSearchOpen && (
+                {isNavOpen && (
                     <Search />
                 )}
-
                 {isNavOpen && (
-                    <div className="md:hidden flex basis-full flex-col items-center gap-2">
+                    <div className="md:hidden flex basis-full flex-col items-center gap-6 mt-10">
                         {esqlinks.map((link, index) =>
                             <Link href={link.href} key={index}>
                                 <span className="text-2xl text-black hover:bg-white/20 rounded-xl">{link.label}</span>
@@ -128,6 +103,31 @@ export default function Header() {
                         )}
                     </div>
                 )}
+
+                {/* parte direita da header */}
+                <nav className="hidden sm:flex">
+                    <div className="flex flex-wrap gap-8">
+                        {dirlinks.map((link, index) =>
+                            <Link href={link.href} key={index}>
+                                <span className="text-2xl text-black hover:bg-white/20 rounded-xl">{link.label}</span>
+                            </Link>
+                        )}
+
+                        <button onClick={toggleNav}>
+                            {isSearchOpen ?
+                                <X
+                                    onClick={toggleSearch}
+                                    className="w-8 h-8 text-black cursor-pointer hover:bg-white/20 transition-all duration-200 p-1 rounded-xl"
+                                />
+                                :
+                                <SearchIcon
+                                    onClick={toggleSearch}
+                                    className="w-8 h-8 text-black cursor-pointer hover:bg-white/20 transition-all duration-200 p-1 rounded-xl"
+                                />
+                            }
+                        </button>
+                    </div>
+                </nav>
             </div>
         </header>
     )
