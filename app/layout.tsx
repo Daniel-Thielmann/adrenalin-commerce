@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import {IBM_Plex_Sans, Just_Another_Hand, Koulen} from 'next/font/google'
 import './globals.css'
+import Header from '../components/header'
 
 const koulen = Koulen({
   weight: ['400'],
@@ -30,7 +31,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={koulen.className}>{children}</body>
+      <body className={koulen.className}>
+        <Header/>
+        {children}
+        </body>
     </html>
   )
 }
