@@ -1,6 +1,12 @@
 import { Boxes, Layers3 } from 'lucide-react';
 import Image from "next/image";
 import Link from "next/link";
+import { IBM_Plex_Sans } from 'next/font/google'
+
+const ibm = IBM_Plex_Sans({
+    subsets: ['latin'],
+    weight: "400"
+})
 
 
 export default function HeroSection() {
@@ -29,9 +35,11 @@ export default function HeroSection() {
 
                             <Layers3 className='w-8 h-8 md:h-10 md:w-10' />
                         </div>
-                        <p className='text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl line-clamp-6'>
-                            Bike, Motocross, UTV, Quadriciclo, Surf, Camping, Pesca, entre outros...
-                        </p>
+                        <div className={ibm.className}>
+                            <p className='text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl line-clamp-6'>
+                                Bike, Motocross, UTV, Quadriciclo, Surf, Camping, Pesca, entre outros...
+                            </p>
+                        </div>
                     </div>
                 </div>
             </Link>
@@ -39,12 +47,14 @@ export default function HeroSection() {
             <div className="flex flex-col justify-center gap-12 lg:col-span-3 p-4 h-auto lg:max-h-[700px] overflow-hidden">
                 <div className="flex flex-col gap-6 leading-relaxed">
                     <h2 className="text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl uppercase">Explore a Adrenalina</h2>
-                    <p className="text-white text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl text-justify">Onde a diversão é séria e a adrenalina e o nosso sobrenome! Desbrave picos de downhill, domine terrenos selvagens no motocross,
-                        explore o desconhecido com UTVs e quadriciclos, deslize pelos mares no wind surf e nas ruas com o skate.</p>
-                    <p className="text-white text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl text-justify">Seja um veterano ou um novato destemido, estamos aqui para garantir que sua jornada seja pura adrenalina! 🤘</p>
+                    <div className={ibm.className}>
+                        <p className="text-white text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl text-justify">Onde a diversão é séria e a adrenalina e o nosso sobrenome! Desbrave picos de downhill, domine terrenos selvagens no motocross,
+                            explore o desconhecido com UTVs e quadriciclos, deslize pelos mares no wind surf e nas ruas com o skate.</p>
+                        <p className="text-white text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl text-justify">Seja um veterano ou um novato destemido, estamos aqui para garantir que sua jornada seja pura adrenalina! 🤘</p>
+                    </div>
                 </div>
                 <button className='bg-[#E3FC02] w-full md:w-10/12 text-black px-6 py-2 rounded-md md:text-lg lg:text-xl xl:text-2xl duration-200
-                font-semibold hover:bg-[#a0ab3c] flex items-center justify-center gap-3'>
+                hover:bg-[#a0ab3c] flex items-center justify-center gap-3'>
                     Veja todos os Produtos!
                     <Boxes className='w-7 h-7' />
                 </button>

@@ -5,6 +5,12 @@ import Link from "next/link"
 import Image from "next/image"
 import { Search as SearchIcon } from "lucide-react"
 import Search from '../search';
+import { Just_Another_Hand } from 'next/font/google'
+
+const jah = Just_Another_Hand({
+    subsets: ['latin'],
+    weight: "400"
+})
 
 const esqlinks = [
     { href: '/posts', label: 'Home' },
@@ -35,7 +41,7 @@ export default function Header() {
     }
 
     return (
-        <header className="bg-[#E3FC02] sticky top-0 z-20 w-full py-8 px-4 mb-8">
+        <header className="bg-[#E3FC02] sticky top-0 z-20 w-full py-6 px-4 mb-8">
 
             <div className="flex sm:flex-col md:flex-row items-center justify-between">
 
@@ -60,7 +66,9 @@ export default function Header() {
                         height={904}
                         className="h-20 w-20 rounded-xl"
                     />
-                    <span className="text-black text-3xl">Adrenalin</span>
+                    <div className={jah.className}>
+                        <span className="text-black text-6xl">Adrenalin</span>
+                    </div>
                 </Link>
 
                 {/* menu e searchicon do mobile*/}
