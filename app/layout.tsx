@@ -34,7 +34,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={koulen.className}>
-        <TopHeader />
         <Header />
         {children}
         <Footer />

@@ -41,7 +41,11 @@ export default function Header() {
     }
 
     return (
-        <header className="bg-[#1F1F21] sticky top-0 z-20 w-full py-4 px-4 mb-8 border-b border-gray-300">
+        <header className="bg-[#1F1F21] sticky top-0 z-20 w-full mb-8 border-b border-gray-300">
+
+            <div className="bg-[#E3FC02] py-1 sticky top-0 z-20 text-black flex items-center justify-center">
+                <span>FRETE GRATIS PARA O BRASIL TODO APROVEITE AS PROMOS!</span>
+            </div>
 
             <div className="flex sm:flex-col md:flex-row items-center justify-center gap-8">
 
