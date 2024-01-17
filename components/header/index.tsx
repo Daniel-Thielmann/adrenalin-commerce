@@ -41,7 +41,7 @@ export default function Header() {
     }
 
     return (
-        <header className="bg-[#E3FC02] sticky top-0 z-20 w-full py-6 px-4 mb-8">
+        <header className="bg-[#1F1F21] sticky top-0 z-20 w-full py-4 px-4 mb-8 border-b border-gray-300">
 
             <div className="flex sm:flex-col md:flex-row items-center justify-between">
 
@@ -51,7 +51,7 @@ export default function Header() {
                     <div className="flex flex-wrap gap-8">
                         {esqlinks.map((link, index) =>
                             <Link href={link.href} key={index}>
-                                <span className="text-2xl text-black hover:bg-white/20 rounded-xl">{link.label}</span>
+                                <span className="text-2xl text-white hover:bg-white/20 rounded-xl">{link.label}</span>
                             </Link>
                         )}
                     </div>
@@ -67,9 +67,11 @@ export default function Header() {
                         className="h-20 w-20 rounded-xl"
                     />
                     <div className={jah.className}>
-                        <span className="text-black text-6xl">Adrenalin</span>
+                        <span className="text-white text-6xl">Adrenalin</span>
                     </div>
+
                 </Link>
+
 
                 {/* menu e searchicon do mobile*/}
                 <nav className="flex">
@@ -77,17 +79,17 @@ export default function Header() {
                         {isNavOpen || isSearchOpen ?
                             <X
                                 onClick={toggleNavSearch}
-                                className="w-8 h-8 text-black cursor-pointer hover:bg-white/20 transition-all duration-200 p-1 rounded-xl"
+                                className="w-8 h-8 text-white cursor-pointer hover:bg-white/20 transition-all duration-200 p-1 rounded-xl"
                             />
                             :
                             <div className="flex gap-2">
                                 <SearchIcon
                                     onClick={toggleSearch}
-                                    className="w-8 h-8 text-black cursor-pointer"
+                                    className="w-8 h-8 text-white cursor-pointer"
                                 />
                                 <Menu
                                     onClick={toggleNav}
-                                    className="w-8 h-8 text-v cursor-pointer"
+                                    className="w-8 h-8 text-white text-v cursor-pointer"
                                 />
                             </div>
                         }
@@ -100,13 +102,13 @@ export default function Header() {
                     <div className="md:hidden flex basis-full flex-col items-center gap-6 mt-10">
                         {esqlinks.map((link, index) =>
                             <Link href={link.href} key={index}>
-                                <span className="text-2xl text-black hover:bg-white/20 rounded-xl">{link.label}</span>
+                                <span className="text-2xl text-white hover:bg-white/20 rounded-xl">{link.label}</span>
                             </Link>
                         )}
 
                         {dirlinks.map((link, index) =>
                             <Link href={link.href} key={index}>
-                                <span className="text-2xl text-black hover:bg-white/20 rounded-xl">{link.label}</span>
+                                <span className="text-2xl text-white hover:bg-white/20 rounded-xl">{link.label}</span>
                             </Link>
                         )}
                     </div>
@@ -117,7 +119,7 @@ export default function Header() {
                     <div className="flex flex-wrap gap-8">
                         {dirlinks.map((link, index) =>
                             <Link href={link.href} key={index}>
-                                <span className="text-2xl text-black hover:bg-white/20 rounded-xl">{link.label}</span>
+                                <span className="text-2xl text-white hover:bg-white/20 rounded-xl">{link.label}</span>
                             </Link>
                         )}
 
@@ -125,12 +127,12 @@ export default function Header() {
                             {isSearchOpen ?
                                 <X
                                     onClick={toggleSearch}
-                                    className="w-8 h-8 text-black cursor-pointer hover:bg-white/20 transition-all duration-200 p-1 rounded-xl"
+                                    className="w-8 h-8 text-white cursor-pointer hover:bg-white/20 transition-all duration-200 p-1 rounded-xl"
                                 />
                                 :
                                 <SearchIcon
                                     onClick={toggleSearch}
-                                    className="w-8 h-8 text-black cursor-pointer hover:bg-white/20 transition-all duration-200 p-1 rounded-xl"
+                                    className="w-8 h-8 text-white cursor-pointer hover:bg-white/20 transition-all duration-200 p-1 rounded-xl"
                                 />
                             }
                         </button>
