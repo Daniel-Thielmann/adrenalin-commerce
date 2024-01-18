@@ -1,5 +1,5 @@
 'use client'
-import { Menu, X } from "lucide-react"
+import { Menu, X, ShoppingCart } from "lucide-react"
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
@@ -50,7 +50,6 @@ export default function Header() {
             <div className="flex sm:flex-col md:flex-row items-center justify-center gap-8">
 
                 {/* parte esquerda da header */}
-                {/* flex wrap para quebrar as linhas automaticamente */}
                 <nav className="hidden sm:flex">
                     <div className="flex flex-wrap gap-6">
                         {esqlinks.map((link, index) =>
@@ -130,14 +129,18 @@ export default function Header() {
                             {isSearchOpen ?
                                 <X
                                     onClick={toggleSearch}
-                                    className="w-8 h-8 text-white cursor-pointer hover:bg-white/20 transition-all duration-200 p-1 rounded-xl"
+                                    className="w-7 h-7 text-white cursor-pointer hover:bg-white/20 transition-all duration-200 rounded-xl"
                                 />
                                 :
                                 <SearchIcon
                                     onClick={toggleSearch}
-                                    className="w-8 h-8 text-white cursor-pointer hover:bg-white/20 transition-all duration-200 p-1 rounded-xl"
+                                    className="w-7 h-7 text-white cursor-pointer hover:bg-white/20 transition-all duration-200 rounded-xl"
                                 />
                             }
+                        </button>
+
+                        <button className="w-8 h-8 text-white cursor-pointer hover:bg-white/20 transition-all duration-200 rounded-xl">
+                            <ShoppingCart />
                         </button>
                     </div>
                 </nav>
