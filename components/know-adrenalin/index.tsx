@@ -11,7 +11,7 @@ export default function KnowAdrenalin() {
     return (
         <div className="w-full space-y-12 py-8 border-b border-t border-gray-300">
             <div className={ibm.className}>
-                <div className="text-gray-300">
+                <div className="">
                     <Title title="Conheça a Adrenalin" subtitle="Sobre" />
                     <div className="flex justify-center">
                         <KnowAdrenalinCard src="/icons/camping.png" title="Para todos os esportes" description="Confira a variedade de
