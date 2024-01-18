@@ -17,10 +17,10 @@ export default function HeroSection() {
                 <div className='relative rounded-3xl overflow-hidden'>
                     <Image
                         src='/home/placeholder/placeholder.jpg'
-                        width={1920}
-                        height={1080}
+                        width={1600}
+                        height={1082}
                         alt="imagem em destaque"
-                        className='object-cover h-[500px] lg:h-[700px]'
+                        className='object-cover h-[500px] lg:h-[500px]'
                     />
                     <div className='absolute inset-0 bg-gradient-to-b from-transparent to-black lg:opacity-0 lg:group-hover:opacity-100 transition-opacity
                 duration-300' />
