@@ -31,7 +31,7 @@ export default function HeroSection() {
                     <div className='flex flex-col gap-4'>
                         <div className='flex gap-4 items-center lg:p-4 lg:bg-white/70 lg:w-fit lg:rounded-lg lg:text-black'>
                             <h3 className='text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl 
-                            uppercase text-black'>Produtos mais vendidos por categoria</h3>
+                            uppercase text-white lg:text-black'>Produtos mais vendidos por categoria</h3>
 
                             <Layers3 className='w-8 h-8 md:h-10 md:w-10' />
                         </div>
