@@ -25,20 +25,33 @@ const dirlinks = [
 ]
 
 export default function Header() {
-    const [isNavOpen, setIsNavOpen] = useState(false)
-    const [isSearchOpen, setIsSearchOpen] = useState(false)
+    const [navbarAberta, setNavbarAberta] = useState(false)
+    const [buscaAberta, setBuscaAberta] = useState(false)
 
-    const toggleNav = () => setIsNavOpen(!isNavOpen)
-    const toggleSearch = () => setIsSearchOpen(!isSearchOpen)
 
-    const toggleNavSearch = () => {
-        if (isSearchOpen) {
-            toggleSearch()
-        }
-        else {
-            toggleNav()
+    const abrirBusca = () => {
+        setBuscaAberta(true);
+    }
+
+    const fecharBusca = () => {
+        setBuscaAberta(false);
+    }
+
+    const abrirNavbar = () => {
+        setNavbarAberta(true);
+    }
+
+    const verificarNavbar = () => {
+        if (navbarAberta) {
+            setNavbarAberta(false);
+        } else {
+            setNavbarAberta(true);
         }
     }
+
+
+
+
 
     return (
         <header className="bg-[#1F1F21] sticky top-0 z-20 w-full mb-8 border-b border-gray-300">
@@ -47,7 +60,7 @@ export default function Header() {
                 <span>FRETE GRATIS PARA O BRASIL TODO APROVEITE AS PROMOS!</span>
             </div>
 
-            <div className="flex sm:flex-col md:flex-row items-center justify-center gap-8">
+            <div className="flex flex-wrap sm:flex-col lg:flex-row items-center justify-around sm:my-6 mt-4">
 
                 {/* parte esquerda da header */}
                 <nav className="hidden sm:flex">
@@ -61,7 +74,7 @@ export default function Header() {
                 </nav>
 
                 {/* parte central da logo e nome adrenalin */}
-                <Link href='/' className='flex items-center justify-center ml-8'>
+                <Link href='/' className='flex items-center justify-center'>
                     <Image
                         src={'/logo/logo.png'}
                         alt="logo do blog"
@@ -74,34 +87,43 @@ export default function Header() {
                     </div>
                 </Link>
 
+                {
+                    buscaAberta && (
+                        <div className="flex items-center px-8 gap-4">
+                            <Search />
+                            <X
+                                onClick={fecharBusca}
+                                className="w-8 h-8 text-white cursor-pointer hover:bg-white/20 transition-all duration-200 p-1 rounded-xl"
+                            />
+                            <Menu
+                                onClick={verificarNavbar}
+                                className="w-8 h-8 text-white text-v cursor-pointer"
+                            />
+                        </div>
+                    )
+                }
+
 
                 {/* menu e searchicon do mobile*/}
                 <nav className="flex">
                     <div className="sm:hidden">
-                        {isNavOpen || isSearchOpen ?
-                            <X
-                                onClick={toggleNavSearch}
-                                className="w-8 h-8 text-white cursor-pointer hover:bg-white/20 transition-all duration-200 p-1 rounded-xl"
-                            />
-                            :
+                        {!buscaAberta &&
                             <div className="flex gap-2">
                                 <SearchIcon
-                                    onClick={toggleSearch}
+                                    onClick={abrirBusca}
                                     className="w-8 h-8 text-white cursor-pointer"
                                 />
                                 <Menu
-                                    onClick={toggleNav}
+                                    onClick={verificarNavbar}
                                     className="w-8 h-8 text-white text-v cursor-pointer"
                                 />
                             </div>
                         }
                     </div>
                 </nav>
-                {isNavOpen && (
-                    <Search />
-                )}
-                {isNavOpen && (
-                    <div className="md:hidden flex basis-full flex-col items-center gap-6 mt-10">
+
+                {navbarAberta && (
+                    <div className="md:hidden flex basis-full flex-col items-center gap-6 my-6">
                         {esqlinks.map((link, index) =>
                             <Link href={link.href} key={index}>
                                 <span className="text-2xl text-white hover:bg-white/20 rounded-xl">{link.label}</span>
@@ -125,15 +147,15 @@ export default function Header() {
                             </Link>
                         )}
 
-                        <button onClick={toggleNav}>
-                            {isSearchOpen ?
+                        <button onClick={verificarNavbar}>
+                            {buscaAberta ?
                                 <X
-                                    onClick={toggleSearch}
+                                    onClick={fecharBusca}
                                     className="w-7 h-7 text-white cursor-pointer hover:bg-white/20 transition-all duration-200 rounded-xl"
                                 />
                                 :
                                 <SearchIcon
-                                    onClick={toggleSearch}
+                                    onClick={abrirBusca}
                                     className="w-7 h-7 text-white cursor-pointer hover:bg-white/20 transition-all duration-200 rounded-xl"
                                 />
                             }

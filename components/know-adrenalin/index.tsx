@@ -13,7 +13,7 @@ export default function KnowAdrenalin() {
             <div className={ibm.className}>
                 <div className="">
                     <Title title="Conheça a Adrenalin" subtitle="Sobre" />
-                    <div className="flex justify-center text-gray-300">
+                    <div className="flex justify-center text-gray-300 flex-wrap">
                         <KnowAdrenalinCard src="/icons/camping.png" title="Para todos os esportes" description="Confira a variedade de
                         categorias, seja você um piloto competitivo ou um hiker amador, temos todos os produtos que 
                         você precisa."/>

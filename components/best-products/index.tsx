@@ -16,7 +16,7 @@ export default function BestProducts() {
     return (
         <div>
             <div className="mb-12">
-                <Title title="Produtos mais vendidos" subtitle="Em destaque" />
+                <Title title="Em destaque" subtitle="Produtos mais vendidos" />
             </div>
 
             <div className="w-full flex gap-4">
