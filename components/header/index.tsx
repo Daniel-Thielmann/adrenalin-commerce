@@ -60,10 +60,11 @@ export default function Header() {
                 <span>FRETE GRATIS PARA O BRASIL TODO APROVEITE AS PROMOS!</span>
             </div>
 
+            {/* flex flex-wrap sm:flex-col lg:flex-row items-center justify-around sm:my-6 mt-4 */}
             <div className="flex flex-wrap sm:flex-col lg:flex-row items-center justify-around sm:my-6 mt-4">
 
                 {/* parte esquerda da header */}
-                <nav className="hidden sm:flex">
+                <nav className="hidden sm:flex items-center justify-center">
                     <div className="flex flex-wrap gap-6">
                         {esqlinks.map((link, index) =>
                             <Link href={link.href} key={index}>
@@ -105,21 +106,19 @@ export default function Header() {
 
 
                 {/* menu e searchicon do mobile*/}
-                <nav className="flex">
-                    <div className="sm:hidden">
-                        {!buscaAberta &&
-                            <div className="flex gap-2">
-                                <SearchIcon
-                                    onClick={abrirBusca}
-                                    className="w-8 h-8 text-white cursor-pointer"
-                                />
-                                <Menu
-                                    onClick={verificarNavbar}
-                                    className="w-8 h-8 text-white text-v cursor-pointer"
-                                />
-                            </div>
-                        }
-                    </div>
+                <nav className="flex sm:hidden">
+                    {!buscaAberta &&
+                        <div className="flex gap-2">
+                            <SearchIcon
+                                onClick={abrirBusca}
+                                className="w-8 h-8 text-white cursor-pointer"
+                            />
+                            <Menu
+                                onClick={verificarNavbar}
+                                className="w-8 h-8 text-white text-v cursor-pointer"
+                            />
+                        </div>
+                    }
                 </nav>
 
                 {navbarAberta && (
@@ -139,7 +138,7 @@ export default function Header() {
                 )}
 
                 {/* parte direita da header */}
-                <nav className="hidden sm:flex">
+                <nav className="hidden sm:flex items-center">
                     <div className="flex flex-wrap gap-8">
                         {dirlinks.map((link, index) =>
                             <Link href={link.href} key={index}>
