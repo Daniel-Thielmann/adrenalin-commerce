@@ -16,14 +16,14 @@ export default function BestProductsCard() {
                             className=""
                         />
                     </div>
-                    <div className="p-6 flex flex-col gap-4 justify-between">
-                        <h1 className="text-xl 2xl:text-2xl 3xl:text-3xl text-black line-clamp-2">PlaceHolder</h1>
+                    <div className="p-6 flex flex-col gap-4 justify-center items-center">
+                        <h1 className="text-xl 2xl:text-2xl 3xl:text-3xl text-gray-200 line-clamp-2">Specialized Kenevo</h1>
                         <div className="flex gap-2 items-center text-lg text-green-600">
                             <CircleDollarSign className="h-7 w-7" />
                             <span className="text-lg 2xl:text-xl 3xl:text-2xl">20k</span>
                         </div>
 
-                        <div className="flex gap-2 items-center text-lg text-white">
+                        <div className="flex items-center text-lg text-white">
                             <ShoppingBasket className="h-7 w-7" />
                         </div>
                     </div>

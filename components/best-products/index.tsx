@@ -15,7 +15,7 @@ const ibm = IBM_Plex_Sans({
 export default function BestProducts() {
     return (
         <div>
-            <div className="mb-10">
+            <div className="mb-12">
                 <Title title="Produtos mais vendidos" subtitle="Em destaque" />
             </div>
 
