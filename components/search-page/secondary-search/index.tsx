@@ -15,7 +15,7 @@ type SecondarySearchProps = {
 export default function SecondarySearch({ count }: SecondarySearchProps) {
     return (
         <form
-            className="flex w-full lg:w-10/12"
+            className="flex w-full lg:w-full"
             id="secondary-search"
             autoComplete="off"
         >
