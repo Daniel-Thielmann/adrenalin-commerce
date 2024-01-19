@@ -32,8 +32,8 @@ export default function BestProducts() {
                         <Image
                             src='/home/best-products-side-image/trek.jpg'
                             alt="imagem em destaque"
-                            width={800}
-                            height={800}
+                            width={840}
+                            height={840}
                             className="cursor-pointer "
                         />
                         <div className='absolute inset-0 bg-gradient-to-b from-transparent to-black lg:opacity-0 lg:group-hover:opacity-100 transition-opacity
