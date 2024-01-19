@@ -12,7 +12,7 @@ export default function Home() {
       <div className='flex flex-col gap-20 w-full md:w-10/12 py-8 px-4 md:p-0 min-h-screen mx-auto'>
         <HeroSection />
         <KnowAdrenalin />
-        <Title title="Destaques por categoria" />
+        <Title title="Destaques por categoria" subtitle='' />
         <BestProducts />
         <BestProductsReverse />
         <BestProducts />
