@@ -10,7 +10,7 @@ const jah = Just_Another_Hand({
 
 export default function Footer() {
     return (
-        <div className="bg-[#E3FC02] text-center w-full mt-24 py-8 min-h-[250px] flex flex-col gap-12 items-center justify-center">
+        <div className="bg-[#E3FC02] text-center w-full mt-24 py-4 min-h-[250px] flex flex-col gap-8 items-center justify-center">
             <div className="flex flex-col gap-4 px-4">
                 <div className={jah.className}>
                     <span className="text-6xl text-center">Adrenalin</span>
