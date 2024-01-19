@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { CircleDollarSign, ShoppingBasket } from "lucide-react";
 
-export default function BestProductsCard() {
+export default function BestProductsCardReverse() {
     return (
         <Link href={'/'} className="group">
             <div className="flex group-hover:shadow-2xl rounded-xl duration-300">

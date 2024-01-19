@@ -10,24 +10,16 @@ const ibm = IBM_Plex_Sans({
     weight: "400"
 })
 
-
-
-export default function BestProducts() {
+export default function BestProductsReverse() {
     return (
         <div className="w-full flex gap-4">
-
-            <div className="grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-2 w-4/6">
-                <BestProductsCard />
-                <BestProductsCard />
-            </div>
-
 
             <Link href='/' className='lg:col-span-3 relative group'>
                 <div className='relative overflow-hidden'>
                     <Image
                         src='/home/best-products-side-image/trek.jpg'
                         alt="imagem em destaque"
-                        width={950}
+                        width={910}
                         height={950}
                         className="cursor-pointer "
                     />
@@ -46,6 +38,12 @@ export default function BestProducts() {
                     </div>
                 </div>
             </Link>
+
+
+            <div className="grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 w-4/6 gap-2">
+                <BestProductsCard />
+                <BestProductsCard />
+            </div>
         </div>
     )
 }
