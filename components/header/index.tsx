@@ -15,11 +15,11 @@ const jah = Just_Another_Hand({
 const esqlinks = [
     { href: '/posts', label: 'Home' },
     { href: '/admin', label: 'Contato' },
-    { href: '/admin', label: 'Membros' },
+    { href: '/admin', label: 'Gerenciamento' },
 ]
 
 const dirlinks = [
-    { href: '/admin', label: 'Gerenciamento' },
+    { href: '/admin', label: 'Membros' },
     { href: '/admin', label: 'Login' },
     { href: '/admin', label: 'FAQ' },
 ]
@@ -48,10 +48,6 @@ export default function Header() {
             setNavbarAberta(true);
         }
     }
-
-
-
-
 
     return (
         <header className="bg-[#1F1F21] sticky top-0 z-20 w-full mb-8 border-b border-gray-300">
