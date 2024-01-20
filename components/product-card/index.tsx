@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { CircleDollarSign } from "lucide-react";
 
-export default function PostCard() {
+export default function ProductCard() {
     return (
         <Link href={"/"} className="flex flex-wrap">
             <div className="flex flex-col text-gray-300 shadow-lg rounded-xl group-hover:shadow-2xl duration-300 overflow-hidden w-full lg:flex-col">

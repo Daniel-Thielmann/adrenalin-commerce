@@ -1,6 +1,4 @@
 import Categories from "@/components/categories";
-import ProductsPage from "@/components/all-products-page";
-import PostCard from "@/components/product-card";
 import Link from "next/link";
 
 export default function Page() {

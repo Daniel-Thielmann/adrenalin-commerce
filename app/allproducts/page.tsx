@@ -1,5 +1,3 @@
-import Categories from "@/components/categories";
-import ProductsPage from "@/components/all-products-page";
 import ProductCard from "@/components/product-card";
 
 export default function Page() {
