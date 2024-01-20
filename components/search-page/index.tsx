@@ -1,4 +1,4 @@
-import PostCard from "../post-card";
+import PostCard from "../product-card";
 import SecondarySearch from "./secondary-search";
 import Link from "next/link";
 

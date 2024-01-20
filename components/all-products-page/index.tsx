@@ -1,5 +1,5 @@
 import Categories from "../categories";
-import PostCard from "../post-card";
+import PostCard from "../product-card";
 import Title from "../title";
 
 export default function ProductsPage() {
