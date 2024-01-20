@@ -13,15 +13,15 @@ const jah = Just_Another_Hand({
 })
 
 const esqlinks = [
-    { href: '/posts', label: 'Home' },
-    { href: '/admin', label: 'Contato' },
+    { href: '/', label: 'Home' },
+    { href: '/categories', label: 'Categorias' },
     { href: '/admin', label: 'Gerenciamento' },
 ]
 
 const dirlinks = [
     { href: '/admin', label: 'Membros' },
     { href: '/admin', label: 'Login' },
-    { href: '/admin', label: 'FAQ' },
+    { href: '/contact', label: 'Contato' },
 ]
 
 export default function Header() {

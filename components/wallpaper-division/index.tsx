@@ -5,7 +5,7 @@ import Link from "next/link"
 export default function WallpaperDivision() {
     return (
         <div className="mt-20">
-            <Link href='/' className='lg:col-span-3 relative group'>
+            <Link href='/categories' className='lg:col-span-3 relative group'>
                 <div className='relative overflow-hidden'>
                     <Image
                         src='/home/placeholder/kite.jpg'
@@ -22,7 +22,7 @@ export default function WallpaperDivision() {
                     <div className='flex flex-col gap-4'>
                         <div className='flex items-center justify-center w-screen lg:bg-white/70 lg:rounded-lg lg:text-black'>
                             <h3 className='text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl uppercase text-white lg:text-black'>
-                                Todas as Categorias
+                                Escolha seu esporte por categoria!
                             </h3>
                         </div>
                     </div>

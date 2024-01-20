@@ -13,7 +13,7 @@ export default function HeroSection() {
     return (
         <div className="w-full flex flex-col lg:grid lg:grid-flow-col lg:grid-cols-6 items-center gap-6">
 
-            <Link href='/' className='lg:col-span-3 relative group'>
+            <Link href='/categories' className='lg:col-span-3 relative group'>
                 <div className='relative rounded-3xl overflow-hidden'>
                     <Image
                         src='/home/placeholder/placeholder.jpg'
@@ -57,11 +57,13 @@ export default function HeroSection() {
 
                     </div>
                 </div>
-                <button className='bg-[#E3FC02] w-full md:w-10/12 text-black px-6 py-2 rounded-md md:text-lg lg:text-xl xl:text-2xl duration-200
-                hover:bg-[#a0ab3c] flex items-center justify-center gap-3'>
-                    Veja todos os Produtos!
-                    <Boxes className='w-7 h-7' />
-                </button>
+                <Link href='/allproducts'>
+                    <button className='bg-[#E3FC02] w-full md:w-10/12 text-black px-6 py-2 rounded-md md:text-lg lg:text-xl xl:text-2xl duration-200
+                    hover:bg-[#a0ab3c] flex items-center justify-center gap-3'>
+                        Veja todos os Produtos!
+                        <Boxes className='w-7 h-7' />
+                    </button>
+                </Link>
             </div>
         </div >
     )
