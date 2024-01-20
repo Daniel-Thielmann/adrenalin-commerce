@@ -1,4 +1,4 @@
-import { Boxes, Layers3, HandMetal, Flame } from 'lucide-react';
+import { Boxes, Layers3 } from 'lucide-react';
 import Image from "next/image";
 import Link from "next/link";
 import { IBM_Plex_Sans } from 'next/font/google'

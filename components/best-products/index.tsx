@@ -1,5 +1,4 @@
-import { Bike, Layers3, Zap } from "lucide-react";
-import Title from "../title";
+import { Zap } from "lucide-react";
 import BestProductsCard from "./card";
 import Image from "next/image";
 import Link from "next/link";
