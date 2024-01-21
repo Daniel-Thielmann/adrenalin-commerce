@@ -1,6 +1,6 @@
 'use client'
 
-import { FlameKindling, Home, Layers, LayoutDashboard, Menu, ScrollText, X } from "lucide-react"
+import { Home, Layers, LayoutDashboard, Menu, ScrollText, X } from "lucide-react"
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
@@ -8,9 +8,8 @@ import Link from "next/link"
 const LinksSidebar = [
     { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
     { href: '/admin/manage/categories', label: 'Categorias', icon: Layers },
-    { href: '/admin/manage/localizations', label: 'Localizações', icon: FlameKindling },
     { href: '/admin/manage/products', label: 'Produtos', icon: ScrollText },
-    { href: '/', label: 'Página Inicial', icon: Home },
+    { href: '/', label: 'Pagina Inicial', icon: Home },
 ]
 
 export default function AdminSidebar() {
@@ -19,7 +18,7 @@ export default function AdminSidebar() {
     const toggleAdminSidebar = () => setIsAdminSidebarOpen(!isAdminSideBarOpen)
     return (
         <div>
-            <div className="bg-[#E3FC02] sm:hidden flex flex-wrap items-center justify-between px-3 py-4">
+            <div className="bg-green-600 sm:hidden flex flex-wrap items-center justify-between px-3 py-4">
                 <div className="flex items-center gap-2 cursor-default">
                     <Image
                         src={'/logo/logo.png'}
@@ -39,7 +38,7 @@ export default function AdminSidebar() {
             </div>
             <aside className={`fixed top-0 left-0 z-40 w-full sm:w-72 h-screen transition-transform ${isAdminSideBarOpen ? ''
                 : '-translate-x-full'} sm:translate-x-0`}>
-                <div className="bg-[#E3FC02] h-full px-3 py-4 overflow-y-auto">
+                <div className="bg-green-600 h-full px-3 py-4 overflow-y-auto">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2 cursor-default">
                             <Image
