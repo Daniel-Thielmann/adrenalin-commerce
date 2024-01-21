@@ -1,7 +1,7 @@
 export default function Page() {
     return (
         <div>
-            <h1>Pagina admin</h1>
+            <h1 className="text-white">Pagina admin</h1>
         </div>
     )
 }
