@@ -1,9 +1,9 @@
 import Footer from '@/components/footer'
 import Header from '@/components/header'
-import Title from '@/components/title'
 import React from 'react'
-import { IBM_Plex_Sans } from 'next/font/google'
+import { IBM_Plex_Sans, Koulen } from 'next/font/google'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const ibm = IBM_Plex_Sans({
   subsets: ['latin'],
@@ -11,10 +11,16 @@ const ibm = IBM_Plex_Sans({
 })
 
 
+const kl = Koulen({
+  subsets: ['latin'],
+  weight: "400"
+})
+
+
 function ContatoPage() {
   return (
-
     <div className=''>
+
       <Header />
 
       <div className='flex flex-items justify-center items-center'>
@@ -74,10 +80,49 @@ function ContatoPage() {
           </button>
         </div>
 
-        <Footer />
+        <div className={kl.className}>
+          <div className='flex flex-col justify-center items-center'>
+            <h1 className="flex justify-center items-center text-gray-400 text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl mt-12">
+              Links Uteis</h1>
+            <h2 className="flex justify-center items-center text-gray-300 text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl mb-12">
+              Clique para Acessar</h2>
+
+            <Link href={'https://api.whatsapp.com/send?phone=5532991468218&text=Boa%20noite!%20Vim%20pela%20Adrenalin'} target='_blank'>
+              <h3 className="flex justify-center items-center text-gray-300 text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl mb-12">
+                Whatsapp</h3>
+            </Link>
+            <Link href={'https://api.whatsapp.com/send?phone=5532991468218&text=Boa%20noite!%20Vim%20pela%20Adrenalin'} target='_blank'>
+              <Image
+                src='/logo/zapzap.png'
+                alt="imagem em destaque"
+                width={300}
+                height={300}
+                className="cursor-pointer mb-16 text-white"
+              />
+            </Link>
+
+            <Link href={'https://www.instagram.com/daniel_thielmann/'} target='_blank'>
+              <h3 className="flex justify-center items-center text-gray-300 text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl mb-12">
+                Instagram</h3>
+            </Link>
+            <Link href={'https://www.instagram.com/daniel_thielmann/'} target='_blank'>
+              <Image
+                src='/logo/insta.png'
+                alt="imagem em destaque"
+                width={300}
+                height={300}
+                className="cursor-pointer"
+              />
+            </Link>
+
+          </div>
+          <Footer />
+        </div>
+
       </div>
     </div>
   )
+
 }
 
 export default ContatoPage
