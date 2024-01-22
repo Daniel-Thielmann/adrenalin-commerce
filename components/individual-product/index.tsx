@@ -1,4 +1,13 @@
 import Image from "next/image";
+import { IBM_Plex_Sans } from 'next/font/google'
+import Link from "next/link";
+import { DollarSign } from "lucide-react";
+
+const ibm = IBM_Plex_Sans({
+    subsets: ['latin'],
+    weight: "400"
+})
+
 
 export default function IndividualProduct() {
     return (
@@ -17,17 +26,26 @@ export default function IndividualProduct() {
                     <h1 className="text-2xl md:text-3xl 2xl:text-4xl 3xl:text-5xl line-clamp-2">
                         Placeholder
                     </h1>
-                    <div className="flex items-center gap-1">
-
+                    <div className="flex flex-items justify-center items-center gap-1 text-green-400">
+                        <DollarSign /> Valor
                     </div>
                 </div>
-                <p className="text-base 2xl:text-lg 3xl:text-xl text-justify text-gray-300">
-                    Experimente o poder sem limites da Specialized Kenevo, a bicicleta elétrica todo-o-terreno que redefine o conceito
-                    de aventura. Com um motor potente, design robusto e bateria de longa duração, a Kenevo é a escolha
-                    perfeita para explorar trilhas desafiadoras. Controle personalizado, conectividade inteligente e durabilidade
-                    excepcional fazem dela a companheira ideal para ciclistas ávidos. Liberte sua paixão pela aventura - adquira a
-                    Specialized Kenevo e eleve suas pedaladas a um novo patamar!
-                </p>
+                <div className={ibm.className}>
+                    <div className="flex flex-wrap justify-center items-center">
+                        <p className="text-base 2xl:text-lg 3xl:text-xl text-justify text-gray-300 mb-8">
+                            Experimente o poder sem limites da Specialized Kenevo, a bicicleta elétrica todo-o-terreno que redefine o conceito
+                            de aventura. Com um motor potente, design robusto e bateria de longa duração, a Kenevo é a escolha
+                            perfeita para explorar trilhas desafiadoras. Controle personalizado, conectividade inteligente e durabilidade
+                            excepcional fazem dela a companheira ideal para ciclistas ávidos. Liberte sua paixão pela aventura - adquira a
+                            Specialized Kenevo e eleve suas pedaladas a um novo patamar!
+                        </p>
+                        <button className="bg-green-300 p-4 rounded-lg flex flex-items justify-center items-center w-4/5 hover:bg-green-600">
+                            <Link href={'/'}>
+                                Comprar
+                            </Link>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     )
