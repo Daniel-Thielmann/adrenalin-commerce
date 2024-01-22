@@ -84,7 +84,7 @@ function ContatoPage() {
           <div className='flex flex-col justify-center items-center'>
             <h1 className="flex justify-center items-center text-gray-400 text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl mt-12">
               Links Uteis</h1>
-            <h2 className="flex justify-center items-center text-gray-300 text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl mb-12">
+            <h2 className="flex justify-center items-center text-gray-300 text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl mb-16">
               Clique para Acessar</h2>
 
             <Link href={'https://api.whatsapp.com/send?phone=5532991468218&text=Boa%20noite!%20Vim%20pela%20Adrenalin'} target='_blank'>
@@ -95,8 +95,8 @@ function ContatoPage() {
               <Image
                 src='/logo/zapzap.png'
                 alt="imagem em destaque"
-                width={300}
-                height={300}
+                width={250}
+                height={250}
                 className="cursor-pointer mb-16 text-white"
               />
             </Link>
@@ -109,11 +109,28 @@ function ContatoPage() {
               <Image
                 src='/logo/insta.png'
                 alt="imagem em destaque"
-                width={300}
-                height={300}
+                width={250}
+                height={250}
                 className="cursor-pointer"
               />
             </Link>
+            <div className={ibm.className}>
+              <div className='my-12 flex text-2xl flex-col p-12 text-white space-y-12 text-center'>
+                <p>
+                  Você é um aventureiro que busca emoções fortes e diversão sem limites? Então você veio ao lugar certo!
+                </p>
+                <p>
+                  Aqui você encontra tudo o que precisa para viver experiências incríveis e inesquecíveis no esporte radical.
+                </p>
+                <p>
+                  Entre em contato conosco e descubra as melhores opções de equipamentos, acessórios, roteiros e dicas para praticar downhill,
+                  motocross, UTVs, quadriciclos, wind surf, camping e muito mais. Não importa se você é um profissional ou um iniciante, nós temos o que
+                  você precisa para sentir a adrenalina correr nas suas veias!</p>
+                <p>
+                  Preencha o formulário acima, ou se preferir, fale conosco pelo whatsapp ou instagram. Estamos ansiosos para atender você!
+                </p>
+              </div>
+            </div>
 
           </div>
           <Footer />
