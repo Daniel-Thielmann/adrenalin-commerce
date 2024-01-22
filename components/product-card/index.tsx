@@ -4,7 +4,7 @@ import { CircleDollarSign } from "lucide-react";
 
 export default function ProductCard() {
     return (
-        <Link href={"/"} className="flex flex-wrap">
+        <Link href={"/product/1"} className="flex flex-wrap">
             <div className="flex flex-col text-gray-300 shadow-lg rounded-xl group-hover:shadow-2xl duration-300 overflow-hidden w-full lg:flex-col">
                 <Image
                     src={"/home/placeholder/placeholder.jpg"}

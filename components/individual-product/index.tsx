@@ -39,7 +39,7 @@ export default function IndividualProduct() {
                             excepcional fazem dela a companheira ideal para ciclistas ávidos. Liberte sua paixão pela aventura - adquira a
                             Specialized Kenevo e eleve suas pedaladas a um novo patamar!
                         </p>
-                        <button className="bg-green-300 p-4 rounded-lg flex flex-items justify-center items-center w-4/5 hover:bg-green-600">
+                        <button className="bg-[#E3FC02] p-4 rounded-lg flex flex-items justify-center items-center w-4/5 hover:bg-green-500">
                             <Link href={'/'}>
                                 Comprar
                             </Link>
