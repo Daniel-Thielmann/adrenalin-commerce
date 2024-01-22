@@ -8,7 +8,7 @@ import Link from "next/link"
 const LinksSidebar = [
     { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
     { href: '/admin/manage/categories', label: 'Categorias', icon: Layers },
-    { href: '/admin/manage/products', label: 'Produtos', icon: ScrollText },
+    { href: '/admin/manage/allproducts', label: 'Produtos', icon: ScrollText },
     { href: '/', label: 'Pagina Inicial', icon: Home },
 ]
 
