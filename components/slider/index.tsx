@@ -46,7 +46,7 @@ const Slider: FC = () => {
     }
 
     return (
-        <div className="grid grid-cols-2">
+        <div className="grid xl:grid-cols-2">
             <div className="max-w-[1000px] h-[700px] w-full m-auto py-16 px-4 relative group">
 
                 <div className="w-full h-full relative overflow-hidden transition-opacity duration-500">
