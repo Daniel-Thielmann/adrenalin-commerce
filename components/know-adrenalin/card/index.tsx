@@ -9,7 +9,7 @@ type KnowAdrenalinCardProps = {
 export default function KnowAdrenalinCard({ title, description, src }: KnowAdrenalinCardProps) {
     return (
         <div className="flex flex-col items-center justify-center max-w-sm 2xl:max-w-md 3xl:max-w-lg p-8 
-        transition-shadow transition-shadow-color duration-200 rounded-md hover:shadow-2xl gap-4">
+        transition-shadow transition-shadow-color duration-200 rounded-md hover:shadow-2xl gap-4" style={{ userSelect: 'none' }}>
             <Image
                 src={src}
                 alt={title}

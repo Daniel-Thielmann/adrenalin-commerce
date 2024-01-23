@@ -9,7 +9,7 @@ const ibm = IBM_Plex_Sans({
 
 export default function KnowAdrenalin() {
     return (
-        <div className="w-full py-7 border-b border-t border-gray-300">
+        <div className="w-full py-7 border-b border-t border-gray-300" style={{ userSelect: 'none' }}>
             <div className={ibm.className}>
                 <Title title="Conheça a Adrenalin" subtitle="Sobre" />
                 <div className="flex justify-center text-gray-300 flex-wrap">

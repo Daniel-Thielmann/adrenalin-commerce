@@ -9,14 +9,14 @@ const jah = Just_Another_Hand({
 
 export default function Footer() {
     return (
-        <div className="bg-[#E3FC02] text-center w-full mt-20 pt-4 min-h-[250px] gap-8 items-center justify-center">
+        <div className="bg-[#E3FC02] text-center w-full mt-20 pt-4 min-h-[250px] gap-8 items-center justify-center" style={{ userSelect: 'none' }}>
             <div className="flex flex-col">
                 <div className="flex flex-col gap-0">
                     <div className={jah.className}>
                         <span className="text-6xl text-center">Adrenalin</span>
                     </div>
-                    <span className="text-sm text-center">2024 Adrenalin Todos os direitos reservados.</span>
-                    <span className="text-sm text-center">Desenvolvedor: Daniel Thielmann</span>
+                    <span className="text-lg text-center">2024 Adrenalin Todos os direitos reservados.</span>
+                    <span className="text-lg text-center">Desenvolvedor: Daniel Thielmann</span>
                 </div>
             </div>
 
