@@ -10,11 +10,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Membro {
-  id        Int     @id @default(autoincrement())
-  name     String
-  cargo   String
-  email  String
-  published Boolean
+model Category {
+  id    Int       @id @default(autoincrement())
+  name  String    @unique
+  posts Product[]
 }
 
+model Product {
+  id         Int        @id @default(autoincrement())
+  title      String     @unique
+  content    String
+  image      String
+  days       Int
+  published  Boolean    @default(false)
+  categories Category[]
+  price      Float
+}
