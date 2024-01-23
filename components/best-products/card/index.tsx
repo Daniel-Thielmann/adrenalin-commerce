@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { CircleDollarSign, ShoppingBasket } from "lucide-react";
-import { BestProducts } from "@/types/home/home";
+import { Product } from "@/types/data";
 
 type BestProductsCardProps = {
-    product: BestProducts
+    product: Product
 }
 
 export default function BestProductsCard({ product }: BestProductsCardProps) {
@@ -14,7 +14,7 @@ export default function BestProductsCard({ product }: BestProductsCardProps) {
                 <div className="flex w-full flex-col rounded-xl shadow-lg">
                     <div className="rounded-xl cursor-pointer">
                         <Image
-                            src={product.image}
+                            src={product.image || 'home/placeholder/placeholder.jpg'}
                             alt="placeholder"
                             width={500}
                             height={500}

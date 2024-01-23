@@ -1,16 +1,20 @@
-import { Bike, Layers3, Zap } from "lucide-react";
-import Title from "../title";
+import { Zap } from "lucide-react";
 import BestProductsCard from "./card";
 import Image from "next/image";
 import Link from "next/link";
 import { IBM_Plex_Sans } from 'next/font/google'
+import { Product } from "@/types/data";
+
+type BestProductsProps = {
+    products: Product[]
+}
 
 const ibm = IBM_Plex_Sans({
     subsets: ['latin'],
     weight: "400"
 })
 
-export default function BestProductsReverse() {
+export default function BestProductsReverse({ products }: BestProductsProps) {
     return (
         <div className="w-full flex gap-4">
 
@@ -41,8 +45,9 @@ export default function BestProductsReverse() {
 
 
             <div className="grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 w-4/6 gap-2">
-                <BestProductsCard />
-                <BestProductsCard />
+                {products.map((product, index) => (
+                    <BestProductsCard key={index} product={product} />
+                ))}
             </div>
         </div>
     )

@@ -17,7 +17,7 @@ export default async function Home() {
         <KnowAdrenalin />
         <Title title="Destaques por categoria" subtitle='' />
         <BestProducts products={products} />
-        <BestProductsReverse />
+        <BestProductsReverse products={products} />
         <BestProducts products={products} />
       </div>
       <WallpaperDivision />

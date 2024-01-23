@@ -3,10 +3,10 @@ import BestProductsCard from "./card";
 import Image from "next/image";
 import Link from "next/link";
 import { IBM_Plex_Sans } from 'next/font/google'
-import { BestProducts } from "@/types/home/home";
+import { Product } from "@/types/data";
 
 type BestProductsProps = {
-    products: BestProducts[]
+    products: Product[]
 }
 
 const ibm = IBM_Plex_Sans({
