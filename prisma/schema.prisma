@@ -21,7 +21,6 @@ model Product {
   title      String     @unique
   content    String
   image      String
-  days       Int
   published  Boolean    @default(false)
   categories Category[]
   price      Float

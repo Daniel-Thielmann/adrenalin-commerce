@@ -3,6 +3,11 @@ import BestProductsCard from "./card";
 import Image from "next/image";
 import Link from "next/link";
 import { IBM_Plex_Sans } from 'next/font/google'
+import { BestProducts } from "@/types/home/home";
+
+type BestProductsProps = {
+    products: BestProducts[]
+}
 
 const ibm = IBM_Plex_Sans({
     subsets: ['latin'],
@@ -11,13 +16,14 @@ const ibm = IBM_Plex_Sans({
 
 
 
-export default function BestProducts() {
+export default function BestProducts({ products }: BestProductsProps) {
     return (
         <div className="w-full flex gap-4">
 
             <div className="grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-2 w-4/6">
-                <BestProductsCard />
-                <BestProductsCard />
+                {products.map((product, index) => (
+                    <BestProductsCard key={index} product={product} />
+                ))}
             </div>
 
 
