@@ -5,7 +5,7 @@ type TitleProps = {
 
 export default function Title({ title, subtitle }: TitleProps) {
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center" style={{ userSelect: 'none' }}>
             <span className="text-3xl xl:text-2xl 2xl:text-3xl 3xl:text-4xl text-gray-200 uppercase leading-relaxed tracking-[0.01em] text-center">
                 {title}
             </span>
