@@ -1,11 +1,12 @@
 'use client'
 import { Menu, X, ShoppingCart } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Search as SearchIcon } from "lucide-react"
 import Search from '../search';
 import { Just_Another_Hand } from 'next/font/google'
+import { usePathname, useSearchParams } from "next/navigation"
 
 const jah = Just_Another_Hand({
     subsets: ['latin'],
@@ -28,6 +29,9 @@ export default function Header() {
     const [navbarAberta, setNavbarAberta] = useState(false)
     const [buscaAberta, setBuscaAberta] = useState(false)
 
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
+
 
     const abrirBusca = () => {
         setBuscaAberta(true);
@@ -48,6 +52,11 @@ export default function Header() {
             setNavbarAberta(true);
         }
     }
+
+    useEffect(() => {
+        setBuscaAberta(false)
+        setNavbarAberta(false)
+    }, [pathname, searchParams])
 
     return (
         <header className="bg-[#1F1F21] sticky top-0 z-20 w-full mb-8 border-b border-gray-300" style={{ userSelect: 'none' }}>
