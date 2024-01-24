@@ -1,15 +1,14 @@
+"use server";
+
 import prisma from "@/lib/db";
 import { itemsPerPage } from "../utils/actions";
+import { off } from "process";
 
-export async function fetchFilteredProducts(
-  query: string,
-  currentPage: number
-) {
+export async function fetchProducts(currentPage: number) {
   const offset = (currentPage - 1) * itemsPerPage;
-
   const products = await prisma.product.findMany({
     where: {
-      OR: [{ title: { contains: query, mode: "insensitive" } }],
+      published: true,
     },
     include: {
       categories: {
@@ -26,13 +25,9 @@ export async function fetchFilteredProducts(
     skip: offset,
   });
 
-  const count = await prisma.product.count({
-    where: {
-      OR: [{ title: { contains: query, mode: "insensitive" } }],
-    },
-  });
+  const count = await prisma.product.count();
 
   const totalPages = Math.ceil(count / itemsPerPage);
 
-  return { products, count, totalPages };
+  return { products, totalPages };
 }
