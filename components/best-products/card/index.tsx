@@ -9,7 +9,7 @@ type BestProductsCardProps = {
 
 export default function BestProductsCard({ product }: BestProductsCardProps) {
     return (
-        <Link href={`/post/${product.id}`} className="group">
+        <Link href={`/product/${product.id}`} className="group">
             <div className="flex group-hover:shadow-2xl rounded-xl duration-300">
                 <div className="flex w-full flex-col rounded-xl shadow-lg">
                     <div className="rounded-xl cursor-pointer">

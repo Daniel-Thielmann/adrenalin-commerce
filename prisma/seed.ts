@@ -51,8 +51,8 @@ async function main() {
     },
   });
 
-  // Seed para o modelo Post, usando as categorias e localizações criadas anteriormente
-  const post1 = await prisma.product.create({
+  // Seed para o modelo product, usando as categorias e localizações criadas anteriormente
+  const product1 = await prisma.product.create({
     data: {
       title: "Explorando as Maravilhas de Paris",
       content: `
@@ -83,7 +83,7 @@ async function main() {
     },
   });
 
-  const post2 = await prisma.product.create({
+  const product2 = await prisma.product.create({
     data: {
       title: "Descobrindo Tokyo",
       content: `Bem-vindo a Tóquio, a cidade que harmoniza tradição e modernidade de maneira única. 
@@ -120,7 +120,7 @@ async function main() {
     },
   });
 
-  const post3 = await prisma.product.create({
+  const product3 = await prisma.product.create({
     data: {
       title: "Inovações Tecnológicas em Nova Iorque",
       content: `Bem-vindo à cidade que nunca dorme, Nova Iorque, onde a energia pulsante e a 
@@ -154,7 +154,7 @@ async function main() {
     },
   });
 
-  const post4 = await prisma.product.create({
+  const product4 = await prisma.product.create({
     data: {
       title: "A Magia de Sydney",
       content: `Bem-vindo à deslumbrante Sydney, onde a elegância urbana encontra o esplendor natural, 
@@ -187,7 +187,7 @@ async function main() {
     },
   });
 
-  const post5 = await prisma.product.create({
+  const product5 = await prisma.product.create({
     data: {
       title: "Natureza Exuberante em Ushuaia",
       content: `Bem-vindo a Ushuaia, a cidade do fim do mundo, onde a natureza imponente se encontra 
@@ -219,7 +219,7 @@ async function main() {
     },
   });
 
-  const post6 = await prisma.product.create({
+  const product6 = await prisma.product.create({
     data: {
       title: "Cultura e História em Berlim",
       content: `Bem-vindo a Berlim, uma cidade que pulsa com história, arte e uma vibrante cena cultural, 
@@ -253,7 +253,7 @@ async function main() {
     },
   });
 
-  const post7 = await prisma.product.create({
+  const product7 = await prisma.product.create({
     data: {
       title: "Encantos de Bali: Natureza e Espiritualidade",
       content: `Bem-vindo a Bali, a ilha dos deuses, onde a espiritualidade, a natureza 
@@ -287,7 +287,7 @@ async function main() {
     },
   });
 
-  const post8 = await prisma.product.create({
+  const product8 = await prisma.product.create({
     data: {
       title: "A Vibrante Cidade do México",
       content: `Bem-vindo à Cidade do México, uma metrópole pulsante que combina uma rica herança 
@@ -320,7 +320,7 @@ async function main() {
     },
   });
 
-  const post9 = await prisma.product.create({
+  const product9 = await prisma.product.create({
     data: {
       title: "A Magia do Nepal: Vilas e Montanhas",
       content: `Bem-vindo ao Nepal, um país encantador situado no coração do Himalaia, 
@@ -354,7 +354,7 @@ async function main() {
     },
   });
 
-  const post10 = await prisma.product.create({
+  const product10 = await prisma.product.create({
     data: {
       title: "Descobrindo a Riqueza Cultural de Machu Picchu, Peru",
       content: `Bem-vindo a Machu Picchu, a joia arqueológica dos Andes peruanos, onde a 
@@ -388,7 +388,7 @@ async function main() {
     },
   });
 
-  const post11 = await prisma.product.create({
+  const product11 = await prisma.product.create({
     data: {
       title: "Bangalore: O Hub Tecnológico da Índia",
       content: `Bem-vindo a Bangalore, a "Cidade Jardim da Índia", onde a tradição se encontra 
@@ -420,7 +420,7 @@ async function main() {
     },
   });
 
-  const post12 = await prisma.product.create({
+  const product12 = await prisma.product.create({
     data: {
       title: "Mendoza: Vinhedos e Paisagens Andinas",
       content: `Bem-vindo a Mendoza, a pérola dos Andes argentinos, onde vinhedos exuberantes, 
@@ -451,7 +451,7 @@ async function main() {
     },
   });
 
-  const post13 = await prisma.product.create({
+  const product13 = await prisma.product.create({
     data: {
       title: "Copenhague: Encanto Escandinavo",
       content: `Bem-vindo a Copenhague, a encantadora capital da Dinamarca, onde a arquitetura 
@@ -485,7 +485,7 @@ async function main() {
     },
   });
 
-  const post16 = await prisma.product.create({
+  const product16 = await prisma.product.create({
     data: {
       title: "A Fascinante História de Atenas",
       content: `Bem-vindo a Atenas, o berço da civilização ocidental, onde a história antiga se 
@@ -520,7 +520,7 @@ async function main() {
     },
   });
 
-  const post17 = await prisma.product.create({
+  const product17 = await prisma.product.create({
     data: {
       title: "Riquezas Históricas de Roma",
       content: `Bem-vindo a Roma, a "Cidade Eterna", onde a história se desenrola em meio 

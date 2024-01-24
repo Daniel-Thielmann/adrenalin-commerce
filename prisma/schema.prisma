@@ -11,9 +11,9 @@ datasource db {
 }
 
 model Category {
-  id    Int       @id @default(autoincrement())
-  name  String    @unique
-  posts Product[]
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
+  products Product[]
 }
 
 model Product {
