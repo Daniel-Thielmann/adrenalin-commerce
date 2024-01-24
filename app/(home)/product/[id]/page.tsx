@@ -1,4 +1,4 @@
-import { fetchProductById } from "@/actions/individual/actions";
+import { fetchProductById } from "@/actions/product-individual/actions";
 import IndividualProduct from "@/components/individual-product";
 
 export default async function Page({ params }: { params: { id: string } }) {
