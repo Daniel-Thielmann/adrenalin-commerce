@@ -26,7 +26,6 @@ export default function BestProducts({ products }: BestProductsProps) {
                 ))}
             </div>
 
-
             <Link href='/' className='lg:col-span-3 relative group'>
                 <div className='relative overflow-hidden'>
                     <Image

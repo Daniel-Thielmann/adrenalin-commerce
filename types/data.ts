@@ -13,3 +13,13 @@ export type Product = {
   categories?: Category[];
   price?: number;
 };
+
+export type IndividualProduct = {
+  id?: number;
+  title?: string;
+  content?: string;
+  image?: string;
+  published?: boolean;
+  categories?: Category[];
+  price?: number;
+} | null;
