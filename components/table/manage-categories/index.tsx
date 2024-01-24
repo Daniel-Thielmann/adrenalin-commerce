@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { DeleteButton, EditButton } from "../buttons";
+import { Category } from "@/types/data";
 
-export default function ManageCategoriesTable() {
+
+export default function ManageCategoriesTable({ categories, count }: { categories: Category[], count: number }) {
+
+    console.log(categories)
+
     return (
         <div className="w-full p-4 border-2 rounded-md flex flex-col gap-4">
             <div className="flex flex-wrap items-center w-full justify-between">
@@ -35,23 +40,38 @@ export default function ManageCategoriesTable() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="bg-white border-b hover:bg-gray-50">
-                            <th className="px-6 py-6 font-medium">
-                                1
-                            </th>
-                            <th className="px-6 py-6 font-medium">
-                                Nome
-                            </th>
-                            <th className="px-6 py-6 font-medium">
-                                <span className="hover:underline">
-                                    Produto 1, Produto2, Produto 3...
-                                </span>
-                            </th>
-                            <th className="px-6 py-6 flex items-center gap-4">
-                                <EditButton id={1} />
-                                <DeleteButton id={1} />
-                            </th>
-                        </tr>
+                        {categories.map((category: Category, index: number) => (
+                            <tr key={index} className="bg-white border-b hover:bg-gray-50">
+                                <th className="px-6 py-6 font-medium">
+                                    {category?.id}
+                                </th>
+                                <th className="px-6 py-6 font-medium">
+                                    {category?.name}
+                                </th>
+                                <th className="px-6 py-6 font-medium">
+                                    {category?.products?.map((product, index: number) => (
+                                        <>
+                                            <Link href={product ? `/product/${product?.id}` : '/admin/manage/categories'}>
+                                                <span className="hover:underline">
+                                                    {product?.title
+                                                        ? product.title.length > 25 ? product.title.slice(0, 15) + '...'
+                                                            : product.title
+                                                        : 'Título não existente'}
+                                                </span>
+                                                {index < (category?.products?.length || 0) - 1 ? '|' : ''}
+                                            </Link>
+                                            {(index + 1) % 4 === 0 && index !== (category.products?.length || 0) - 1 && <br />}
+                                        </>
+                                    ))}
+
+                                </th >
+                                <th className="px-6 py-6 flex items-center gap-4">
+                                    <EditButton id={category?.id} />
+                                    <DeleteButton id={category?.id} />
+                                </th>
+                            </tr>
+                        ))}
+
                     </tbody>
                 </table>
             </div>
