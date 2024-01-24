@@ -1,9 +1,11 @@
+'use client'
 import { Product } from "@/types/data";
 import SecondarySearch from "./secondary-search";
 import Link from "next/link";
 import ProductCard from "../product-card";
+import Pagination from "../pagination";
 
-export default function SearchPage({ products, count }: { products: Product[], count: number }) {
+export default function SearchPage({ products, count, totalPages }: { products: Product[], count: number, totalPages: number }) {
     return (
         <div className="w-full">
             <SecondarySearch count={count} />
@@ -21,6 +23,9 @@ export default function SearchPage({ products, count }: { products: Product[], c
                     {products.map((product, index) => (
                         <ProductCard key={index} product={product} />
                     ))}
+                    {totalPages > 1 && (
+                        <Pagination totalPages={totalPages} />
+                    )}
                 </div>
             )}
         </div>

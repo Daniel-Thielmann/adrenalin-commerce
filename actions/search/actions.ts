@@ -6,6 +6,8 @@ export async function fetchFilteredProducts(
   query: string,
   currentPage: number
 ) {
+  const offset = (currentPage - 1) * itemsPerPage;
+
   const products = await prisma.product.findMany({
     where: {
       OR: [{ title: { contains: query, mode: "insensitive" } }],
@@ -22,6 +24,7 @@ export async function fetchFilteredProducts(
       title: "asc",
     },
     take: itemsPerPage,
+    skip: offset,
   });
 
   const count = await prisma.product.count({
@@ -30,5 +33,7 @@ export async function fetchFilteredProducts(
     },
   });
 
-  return { products, count };
+  const totalPages = Math.ceil(count / itemsPerPage);
+
+  return { products, count, totalPages };
 }
