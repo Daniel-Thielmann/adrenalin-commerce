@@ -1,7 +1,7 @@
 import getBestProducts from '@/actions/home/actions'
-import BestProducts from '@/components/best-products'
-import BestProductsReverse from '@/components/best-products-reverse'
-import HeroSection from '@/components/hero-section'
+import BestProducts1 from '@/components/best-products-section/best-products(1)'
+import BestProducts3 from '@/components/best-products-section/best-products(3)'
+import BestProductsReverse2 from '@/components/best-products-section/best-products-reverse(2)'
 import KnowAdrenalin from '@/components/know-adrenalin'
 import Slider from '@/components/slider'
 import Title from '@/components/title'
@@ -16,9 +16,9 @@ export default async function Home() {
         <Slider />
         <KnowAdrenalin />
         <Title title="Destaques por categoria" subtitle='' />
-        <BestProducts products={products} />
-        <BestProductsReverse products={products} />
-        <BestProducts products={products} />
+        <BestProducts1 products={products} />
+        <BestProductsReverse2 products={products} />
+        <BestProducts3 products={products} />
       </div>
       <WallpaperDivision />
     </div>

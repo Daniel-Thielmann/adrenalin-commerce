@@ -1,4 +1,4 @@
-import { Zap } from "lucide-react";
+import { Gauge, Zap } from "lucide-react";
 import BestProductsCard from "./card";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,7 +14,7 @@ const ibm = IBM_Plex_Sans({
     weight: "400"
 })
 
-export default function BestProductsReverse({ products }: BestProductsProps) {
+export default function BestProductsReverse2({ products }: BestProductsProps) {
     return (
         <div className="w-full flex gap-4">
 
@@ -36,8 +36,8 @@ export default function BestProductsReverse({ products }: BestProductsProps) {
                     <div className='flex flex-col gap-4'>
                         <div className='flex gap-4 items-center lg:p-4 lg:bg-white/70 lg:w-fit lg:rounded-lg lg:text-black'>
                             <h3 className='text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl 
-                            uppercase text-white lg:text-black '>Downhill / E-MTB</h3>
-                            <Zap className='w-8 h-8 md:h-10 md:w-10' />
+                            uppercase text-white lg:text-black '>Motocross / UTV / Quad</h3>
+                            <Gauge className='w-8 h-8 md:h-10 md:w-10 mb-1' />
                         </div>
                     </div>
                 </div>
