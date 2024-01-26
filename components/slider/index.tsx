@@ -24,6 +24,8 @@ const slides: Slide[] = [
     { src: '/home/best-products-side-image/bs.jpg', alt: 'Imagem em destaque 4', title: 'A sua seguranca', text: 'Site blindado para manter suas informações protegidas' },
     { src: '/home/best-products-side-image/friends.jpg', alt: 'Imagem em destaque 5', title: 'As melhores marcas', text: 'Temos as melhores marcas do mercado, qualidade padrão' },
     { src: '/home/best-products-side-image/brandon.jpg', alt: 'Imagem em destaque 6', title: 'A adrenalina te espera', text: 'Viva a sensação de liberdade que só a adrenalina proporciona' },
+    { src: '/home/best-products-side-image/chama.jpg', alt: 'Imagem em destaque 7', title: 'Para sua aventura', text: 'Viaje pelo mundo e aproveite as melhores paisagens' },
+
 ];
 
 const Slider: FC = () => {

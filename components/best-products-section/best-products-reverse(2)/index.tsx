@@ -21,7 +21,7 @@ export default function BestProductsReverse2({ products }: BestProductsProps) {
             <Link href='/' className='lg:col-span-3 relative group'>
                 <div className='relative overflow-hidden'>
                     <Image
-                        src='/home/best-products-side-image/trek.jpg'
+                        src='/home/best-products-side-image/quad.jpg'
                         alt="imagem em destaque"
                         width={910}
                         height={950}

@@ -28,10 +28,10 @@ export default function BestProducts3({ products }: BestProductsProps) {
             <Link href='/' className='lg:col-span-3 relative group'>
                 <div className='relative overflow-hidden'>
                     <Image
-                        src='/home/best-products-side-image/trek.jpg'
+                        src='/home/best-products-side-image/camp.jpg'
                         alt="imagem em destaque"
                         width={950}
-                        height={950}
+                        height={800}
                         className="cursor-pointer "
                     />
                     <div className='absolute inset-0 bg-gradient-to-b from-transparent to-black lg:opacity-0 lg:group-hover:opacity-100 transition-opacity
