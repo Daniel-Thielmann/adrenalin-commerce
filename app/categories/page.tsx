@@ -18,7 +18,7 @@ export default async function Page({
     const { categories, totalPages } = await fetchCategories(currentPage)
 
     return (
-        <div className="w-10/12">
+        <div className="">
             <CategoriesPage categories={categories} totalPages={totalPages} />
         </div>
     )
