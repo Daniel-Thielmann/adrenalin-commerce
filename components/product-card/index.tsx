@@ -6,7 +6,8 @@ import { Product } from "@/types/data";
 export default function ProductCard({ product }: { product: Product }) {
 
     return (
-        <Link href={'/'} className="flex flex-wrap">
+        <Link href={`/product/${product?.id}`} className="flex flex-wrap">
+
             <div className="flex flex-col text-gray-300 shadow-lg rounded-xl group-hover:shadow-2xl duration-300 overflow-hidden w-full lg:flex-col">
                 <Image
                     src={product?.image || "/home/placeholder/placeholder.jpg"}
