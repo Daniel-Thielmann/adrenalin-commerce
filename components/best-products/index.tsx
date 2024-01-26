@@ -4,17 +4,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { IBM_Plex_Sans } from 'next/font/google'
 import { Product } from "@/types/data";
+import CategoriesCard from "../categories-card";
+import { Category } from "@prisma/client";
 
 type BestProductsProps = {
-    products: Product[]
+    products: Product[];
 }
 
 const ibm = IBM_Plex_Sans({
     subsets: ['latin'],
     weight: "400"
 })
-
-
 
 export default function BestProducts({ products }: BestProductsProps) {
     return (
