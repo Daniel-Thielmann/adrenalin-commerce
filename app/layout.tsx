@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className='scroll-smooth scrollbar-thumb-[#E3FC02] scrollbar-track-slate-800 scrollbar-thin'>
       <body className={koulen.className}>
         {children}
       </body>
