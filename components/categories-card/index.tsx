@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Category } from "@prisma/client";
 
-export default function Categories() {
+export default function CategoriesCard({ category }: { category: Category }) {
     return (
-        <div className="mb-10">
+        <div className="my-8">
             <Link href="/" className="lg:col-span-3 relative group">
                 <div className="relative overflow-hidden">
                     <Image
@@ -21,7 +22,7 @@ export default function Categories() {
                         <div className='flex items-center justify-center lg:bg-white/70 lg:rounded-lg lg:text-black py-2 px-4'>
                             <h3 className='text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl uppercase 
                             text-white lg:text-black'>
-                                Pesca
+                                {category?.name}
                             </h3>
                         </div>
                     </div>
@@ -31,3 +32,4 @@ export default function Categories() {
         </div>
     );
 }
+
