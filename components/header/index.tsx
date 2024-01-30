@@ -82,11 +82,11 @@ export default function Header() {
                 {/* parte central da logo e nome adrenalin */}
                 <Link href='/' className='flex items-center justify-center'>
                     <Image
-                        src={'/logo/logo.png'}
+                        src={'/logo/adrenalin1.png'}
                         alt="logo do blog"
-                        width={904}
-                        height={904}
-                        className="h-20 w-20 rounded-xl"
+                        width={150}
+                        height={150}
+                        className="h-21 w-21 rounded-xl"
                     />
                     <div className={jah.className}>
                         <span className="text-white text-6xl">Adrenalin</span>

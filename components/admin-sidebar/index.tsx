@@ -21,11 +21,11 @@ export default function AdminSidebar() {
             <div className="bg-green-600 sm:hidden flex flex-wrap items-center justify-between px-3 py-4">
                 <div className="flex items-center gap-2 cursor-default">
                     <Image
-                        src={'/logo/logo.png'}
-                        alt="logo da loja"
-                        width={48}
-                        height={48}
-                        className="w-12 h-12"
+                        src={'/logo/adrenalin1.png'}
+                        alt="logo do blog"
+                        width={150}
+                        height={150}
+                        className="h-21 w-21 rounded-xl"
                     />
                     <span className="text-2xl text-black">
                         Adrenalin
@@ -42,11 +42,11 @@ export default function AdminSidebar() {
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2 cursor-default">
                             <Image
-                                src={'/logo/logo.png'}
-                                alt="logo da loja"
-                                width={48}
-                                height={48}
-                                className="w-12 h-12"
+                                src={'/logo/adrenalin1.png'}
+                                alt="logo do blog"
+                                width={150}
+                                height={150}
+                                className="h-21 w-21 rounded-xl"
                             />
                             <span className="text-2xl text-black">
                                 Adrenalin
