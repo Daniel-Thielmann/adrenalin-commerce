@@ -23,7 +23,6 @@ CREATE TABLE "Product" (
     "title" TEXT NOT NULL,
     "content" TEXT NOT NULL,
     "image" TEXT NOT NULL,
-    "days" INTEGER NOT NULL,
     "published" BOOLEAN NOT NULL DEFAULT false,
     "price" DOUBLE PRECISION NOT NULL,
 

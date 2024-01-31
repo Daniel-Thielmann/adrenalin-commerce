@@ -72,7 +72,6 @@ async function main() {
       da cidade a partir do topo da Torre Montparnasse ou da Torre Eiffel, especialmente mágicas à noite.
       Paris é uma cidade de romance e sofisticação, onde a tradição e a modernidade coexistem de maneira fascinante. Sinta-se à vontade 
       para explorar suas charmosas ruas, descobrir pequenos cafés e criar suas próprias memórias nesta cidade cativante.`,
-      days: 12,
       published: true,
       categories: {
         connect: [{ id: category1.id }, { id: category2.id }],
@@ -108,7 +107,6 @@ async function main() {
          tradição e inovação coexistem de maneira fascinante. Sinta-se à vontade para se perder 
          nas ruas, descobrir pequenos tesouros escondidos e criar suas próprias memórias nesta 
          metrópole cativante.`,
-      days: 14,
       published: true,
       categories: {
         connect: [{ id: category2.id }],
@@ -142,7 +140,6 @@ async function main() {
         possibilidades, onde cada esquina revela uma nova e emocionante descoberta.Perca-se 
         nas ruas movimentadas, inspire-se nos arranha-céus imponentes e crie memórias inesquecíveis
          nesta cidade que cativa corações do mundo inteiro.`,
-      days: 9,
       published: true,
       categories: {
         connect: [{ id: category3.id }, { id: category4.id }],
@@ -175,7 +172,6 @@ async function main() {
         conhecido por sua cena artística e vida noturna eclética. Sydney é uma cidade de 
         contrastes emocionantes, onde a sofisticação urbana se mistura harmoniosamente com 
         a beleza natural.`,
-      days: 7,
       published: true,
       categories: {
         connect: [{ id: category1.id }, { id: category5.id }],
@@ -207,7 +203,6 @@ async function main() {
          verdadeiramente especial.Ushuaia, com sua beleza natural extraordinária e 
          sua atmosfera única, é um convite para exploradores e amantes da natureza. 
          Prepare-se para se encantar no extremo sul do planeta! `,
-      days: 21,
       published: true,
       categories: {
         connect: [{ id: category6.id }, { id: category1.id }],
@@ -241,7 +236,6 @@ async function main() {
          de contrastes, onde a criatividade floresce em meio à história. Sinta a energia 
          pulsante da capital alemã, onde cada esquina conta uma história e cada visita é uma 
          jornada única. `,
-      days: 12,
       published: true,
       categories: {
         connect: [{ id: category4.id }, { id: category7.id }],
@@ -275,7 +269,6 @@ async function main() {
       artesanato autêntico e lembranças únicas.Bali é mais do que uma ilha; é uma experiência 
       para os sentidos. De templos sagrados a praias paradisíacas, cada momento em Bali é uma
       celebração da beleza e espiritualidade que permeiam essa joia tropical.`,
-      days: 14,
       published: true,
       categories: {
         connect: [{ id: category6.id }, { id: category1.id }],
@@ -308,7 +301,6 @@ async function main() {
       cativa com sua fusão única de passado e presente, onde cada esquina conta uma história e 
       cada experiência é enriquecedora. Prepare-se para se apaixonar pela energia vibrante dessa 
       cidade extraordinária. `,
-      days: 7,
       published: true,
       categories: {
         connect: [{ id: category4.id }, { id: category7.id }],
@@ -342,7 +334,6 @@ async function main() {
       natural e cultural, onde cada trilha, vila e montanha conta uma história única. Sinta a 
       espiritualidade, admire as paisagens de tirar o fôlego e descubra a autenticidade nas 
       aldeias do Himalaia.`,
-      days: 28,
       published: true,
       categories: {
         connect: [{ id: category6.id }, { id: category7.id }],
@@ -376,7 +367,6 @@ async function main() {
       não é apenas um sítio arqueológico, mas uma experiência transcendental. Sinta a energia 
       das montanhas, absorva a história que ecoa nas pedras e permita-se ser transportado para 
       o passado, onde a grandeza dos incas se revela em cada detalhe. `,
-      days: 7,
       published: true,
       categories: {
         connect: [{ id: category4.id }, { id: category8.id }],
@@ -408,7 +398,6 @@ async function main() {
       Bangalore é uma cidade de contrastes, onde os antigos templos coexistem com arranha-céus 
       modernos, criando uma atmosfera única. Explore os parques, participe de eventos culturais e 
       mergulhe na vibrante energia desta cidade em constante evolução. `,
-      days: 7,
       published: true,
       categories: {
         connect: [{ id: category3.id }],
@@ -439,7 +428,6 @@ async function main() {
       ciclismo pelas vinícolas ou esqui nas proximidades durante a temporada de inverno.Seja explorando a natureza exuberante, 
       degustando vinhos premiados ou simplesmente relaxando sob o sol argentino, Mendoza oferece uma jornada inesquecível para os 
       amantes da boa vida.`,
-      days: 7,
       published: true,
       categories: {
         connect: [{ id: category2.id }, { id: category8.id }],
@@ -473,7 +461,6 @@ async function main() {
       beira-mar.Copenhague é uma cidade que combina tradição e modernidade, criando uma 
       atmosfera cativante para visitantes de todas as partes do mundo. Sinta a energia 
       descontraída, absorva a cultura rica e deixe-se encantar por esta pérola nórdica.`,
-      days: 14,
       published: true,
       categories: {
         connect: [{ id: category2.id }, { id: category8.id }],
@@ -508,7 +495,6 @@ async function main() {
       antigo e o contemporâneo se entrelaçam, criando uma atmosfera única e cativante. Sinta 
       a energia da história viva, aprecie a hospitalidade grega e deixe-se envolver pelo 
       encanto desta cidade milenar.`,
-      days: 14,
       published: true,
       categories: {
         connect: [{ id: category4.id }, { id: category7.id }],
@@ -543,7 +529,6 @@ async function main() {
       cidade que transcende o tempo, oferecendo uma experiência única que combina o antigo e o 
       contemporâneo. Sinta a grandeza da história, a beleza da arte e a paixão da cultura italiana 
       nesta cidade eternamente fascinante.`,
-      days: 14,
       published: true,
       categories: {
         connect: [{ id: category4.id }, { id: category7.id }],
