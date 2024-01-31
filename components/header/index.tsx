@@ -20,7 +20,7 @@ const esqlinks = [
 ]
 
 const dirlinks = [
-    { href: '/admin', label: 'Membros' },
+    { href: '/members', label: 'Membros' },
     { href: '/login', label: 'Login' },
     { href: '/contact', label: 'Contato' },
 ]
