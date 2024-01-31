@@ -1,6 +1,5 @@
 "use server";
 import prisma from "@/lib/db";
-import { Category } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -22,8 +21,12 @@ export async function fetchAllProducts() {
 export async function fetchProductById(id: number | undefined) {
   const product = await prisma.product.findUnique({
     where: { id },
-    include: {
+    select: {
+      id: true,
+      title: true,
+      content: true,
       categories: true,
+      price: true,
     },
   });
 
@@ -45,7 +48,6 @@ export async function createProduct(formData: FormData) {
   const categories = formData.getAll("categories") as string[];
   const price = parseFloat(formData.get("price") as string);
 
-  // Primeiro, crie ou encontre as categorias
   const categoryRecords = await Promise.all(
     categories.map((categoryName) =>
       prisma.category.upsert({
@@ -56,7 +58,6 @@ export async function createProduct(formData: FormData) {
     )
   );
 
-  // Em seguida, crie o produto e conecte-o às categorias
   await prisma.product.create({
     data: {
       title,

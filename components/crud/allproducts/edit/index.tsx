@@ -14,18 +14,21 @@ export default function EditProduct({ product }: { product: Product }) {
                         className="border-2 p-2 rounded-md"
                         name="title"
                         placeholder="Titulo"
+                        defaultValue={product?.title}
                     />
                     <label className="text-white">Conteúdo do Produto</label>
                     <input
                         className="border-2 p-2 rounded-md"
                         name="content"
                         placeholder="Conteúdo"
+                        defaultValue={product?.content}
                     />
                     <label className="text-white">Imagem do Produto</label>
                     <input
                         className="border-2 p-2 rounded-md"
                         name="image"
                         placeholder="Imagem"
+                        defaultValue={product?.image}
                     />
                     <label className="text-white">Categorias associadas ao Produto</label>
                     <input
@@ -36,8 +39,9 @@ export default function EditProduct({ product }: { product: Product }) {
                     <label className="text-white">Preço do Produto</label>
                     <input
                         className="border-2 p-2 rounded-md"
-                        name="categories"
+                        name="price"
                         placeholder="Preço"
+                        defaultValue={product?.price}
                     />
                 </div>
                 <div className="w-full flex justify-end">

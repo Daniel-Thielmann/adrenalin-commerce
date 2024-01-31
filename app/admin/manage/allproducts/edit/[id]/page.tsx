@@ -28,7 +28,7 @@ export default async function Page(
         <div className="w-full space-y-12">
             <div className={ibmplex.className}>
                 <DashboardTitle title={`Editar Produto ${product?.title}`} description="Edite um produto por aqui" />
-                <EditProduct category={product} />
+                <EditProduct product={product} />
             </div>
         </div>
     )
