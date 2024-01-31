@@ -1,18 +1,13 @@
-"use server";
-
+// Importações necessárias
 import prisma from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
+// Função para buscar todos os produtos
 export async function fetchAllProducts() {
   const products = await prisma.product.findMany({
     include: {
-      categories: {
-        select: {
-          id: true,
-          name: true,
-        },
-      },
+      categories: true,
     },
     orderBy: {
       id: "asc",
@@ -20,24 +15,23 @@ export async function fetchAllProducts() {
   });
 
   const count = await prisma.product.count();
+
   return { products, count };
 }
 
+// Função para buscar um produto pelo id
 export async function fetchProductById(id: number | undefined) {
   const product = await prisma.product.findUnique({
     where: { id },
     include: {
-      categories: {
-        select: {
-          id: true,
-          name: true,
-        },
-      },
+      categories: true,
     },
   });
 
   return product;
 }
+
+// Função para deletar um produto
 export async function deleteProduct(id: number | undefined) {
   await prisma.product.delete({
     where: { id },
@@ -46,8 +40,12 @@ export async function deleteProduct(id: number | undefined) {
   revalidatePath("/admin/manage/allproducts");
 }
 
+// Função para criar um produto
 export async function createProduct(formData: FormData) {
   const title = formData.get("title") as string;
+  const content = formData.get("content") as string;
+  const image = formData.get("image") as string;
+  const price = parseFloat(formData.get("price") as string);
 
   await prisma.product.create({
     data: {
@@ -61,11 +59,15 @@ export async function createProduct(formData: FormData) {
   redirect("/admin/manage/allproducts");
 }
 
+// Função para atualizar um produto
 export async function updateProduct(
   id: number | undefined,
   formData: FormData
 ) {
-  const name = formData.get("name") as string;
+  const title = formData.get("title") as string;
+  const content = formData.get("content") as string;
+  const image = formData.get("image") as string;
+  const price = parseFloat(formData.get("price") as string);
 
   await prisma.product.update({
     where: { id },

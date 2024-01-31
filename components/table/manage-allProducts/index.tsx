@@ -3,7 +3,7 @@ import { DeleteButtonProduct, EditButtonProduct } from "../buttons";
 import { Product, Category } from "@/types/data";
 
 
-export default function ManageAllProductsTable({ products, count }: { products: Product[], count: number }) {
+export default function ManageAllProductsTable({ products, count }: { products: Product[], count: number, }) {
 
     return (
         <div className="w-full p-4 border-2 rounded-md flex flex-col gap-4">
@@ -49,12 +49,12 @@ export default function ManageAllProductsTable({ products, count }: { products: 
                                 <th className="px-6 py-6 font-medium">
                                     {product?.categories?.map((category: Category, index: number) => (
                                         <>
-                                            <Link href={product ? `/product/${product.id}` : '/admin/manage/categories'}>
+                                            <Link href={product ? `/category/${category.id}` : '/admin/manage/categories'}>
                                                 <span className="hover:underline">
-                                                    {product?.title
-                                                        ? product.title.length > 25 ? product.title.slice(0, 15) + '...'
-                                                            : product.title
-                                                        : 'Título não existente'}
+                                                    {category?.name
+                                                        ? category.name.length > 25 ? category.name.slice(0, 15) + '...'
+                                                            : category.name
+                                                        : 'Categoria não existente'}
                                                 </span>
                                                 {index < (product?.categories?.length || 0) - 1 ? '|' : ''}
                                             </Link>
