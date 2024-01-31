@@ -32,7 +32,7 @@ export default function CreateProduct() {
                     <label className="text-white">Preço do Produto</label>
                     <input
                         className="border-2 p-2 rounded-md"
-                        name="categories"
+                        name="price"
                         placeholder="Preço"
                     />
                 </div>

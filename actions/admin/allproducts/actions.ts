@@ -1,9 +1,9 @@
-// Importações necessárias
+"use server";
 import prisma from "@/lib/db";
+import { Category } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-// Função para buscar todos os produtos
 export async function fetchAllProducts() {
   const products = await prisma.product.findMany({
     include: {
@@ -19,7 +19,6 @@ export async function fetchAllProducts() {
   return { products, count };
 }
 
-// Função para buscar um produto pelo id
 export async function fetchProductById(id: number | undefined) {
   const product = await prisma.product.findUnique({
     where: { id },
@@ -31,7 +30,6 @@ export async function fetchProductById(id: number | undefined) {
   return product;
 }
 
-// Função para deletar um produto
 export async function deleteProduct(id: number | undefined) {
   await prisma.product.delete({
     where: { id },
@@ -40,26 +38,40 @@ export async function deleteProduct(id: number | undefined) {
   revalidatePath("/admin/manage/allproducts");
 }
 
-// Função para criar um produto
 export async function createProduct(formData: FormData) {
   const title = formData.get("title") as string;
   const content = formData.get("content") as string;
   const image = formData.get("image") as string;
+  const categories = formData.getAll("categories") as string[];
   const price = parseFloat(formData.get("price") as string);
 
+  // Primeiro, crie ou encontre as categorias
+  const categoryRecords = await Promise.all(
+    categories.map((categoryName) =>
+      prisma.category.upsert({
+        where: { name: categoryName },
+        update: {},
+        create: { name: categoryName },
+      })
+    )
+  );
+
+  // Em seguida, crie o produto e conecte-o às categorias
   await prisma.product.create({
     data: {
       title,
       content,
       image,
       price,
+      categories: {
+        connect: categoryRecords.map((category) => ({ id: category.id })),
+      },
     },
   });
 
   redirect("/admin/manage/allproducts");
 }
 
-// Função para atualizar um produto
 export async function updateProduct(
   id: number | undefined,
   formData: FormData
