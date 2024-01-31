@@ -10,13 +10,15 @@ const jah = Just_Another_Hand({
 export default function Footer() {
     return (
         <div className="bg-[#E3FC02] flex text-center w-full mt-20 min-h-[250px] gap-8 items-center justify-center" style={{ userSelect: 'none' }}>
-            <Image
-                src={'/logo/adrenalin1.png'}
-                alt="logo do blog"
-                width={180}
-                height={180}
-                className="flex items-center h-25 w-25 rounded-xl hover: object-cover opacity-80 hover:opacity-100 transition-all"
-            />
+            <Link href={"/"}>
+                <Image
+                    src={'/logo/adrenalin1.png'}
+                    alt="logo do blog"
+                    width={180}
+                    height={180}
+                    className="flex items-center h-25 w-25 rounded-xl hover: object-cover opacity-80 hover:opacity-100 transition-all cursor-pointer"
+                />
+            </Link>
 
             <div className="flex flex-col">
                 <div className="flex flex-col">
@@ -25,6 +27,45 @@ export default function Footer() {
                     </div>
                     <span className="text-lg text-center">Desenvolvedor: Daniel Thielmann</span>
                     <span className="text- text-center">2024 Adrenalin Todos os direitos reservados.</span>
+                </div>
+
+                <div className="mt-2 flex flex-wrap space-x-4 items-center justify-center">
+                    <Link href={"/"}>
+                        <Image
+                            src={'/footer/fb.png'}
+                            alt="logo do blog"
+                            width={150}
+                            height={150}
+                            className="h-12 w-12 rounded-xl"
+                        />
+                    </Link>
+                    <Link href={"/"}>
+                        <Image
+                            src={'/footer/zap.png'}
+                            alt="logo do blog"
+                            width={150}
+                            height={150}
+                            className="h-12 w-12 rounded-xl"
+                        />
+                    </Link>
+                    <Link href={"/"}>
+                        <Image
+                            src={'/footer/insta.png'}
+                            alt="logo do blog"
+                            width={150}
+                            height={150}
+                            className="h-12 w-12 rounded-xl"
+                        />
+                    </Link>
+                    <Link href={"/"}>
+                        <Image
+                            src={'/footer/tw.png'}
+                            alt="logo do blog"
+                            width={150}
+                            height={150}
+                            className="h-12 w-12 rounded-xl"
+                        />
+                    </Link>
                 </div>
             </div>
 
