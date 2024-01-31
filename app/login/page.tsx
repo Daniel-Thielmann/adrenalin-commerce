@@ -33,12 +33,14 @@ export default function LoginPage() {
                         <input type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
                         <label className="text-sm text-black pb-1 block">Senha</label>
                         <input type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
-                        <button type="button" className="transition duration-200 bg-[#E3FC02] hover:bg-green-400 focus:bg-green-300 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md text-center inline-block">
-                            <span className="inline-block mr-2 text-black">Login</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4 inline-block text-black">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </button>
+                        <Link href={"/admin"}>
+                            <button type="button" className="transition duration-200 bg-[#E3FC02] hover:bg-green-400 focus:bg-green-300 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md text-center inline-block">
+                                <span className="inline-block mr-2 text-black">Login</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4 inline-block text-black">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </button>
+                        </Link>
                     </div>
 
                     <div className="p-5">
@@ -88,7 +90,3 @@ export default function LoginPage() {
         </div>
     )
 }
-
-
-
-
