@@ -16,7 +16,7 @@ const jah = Just_Another_Hand({
 const esqlinks = [
     { href: '/', label: 'Home' },
     { href: '/categories', label: 'Categorias' },
-    { href: '/admin', label: 'Gerenciamento' },
+    { href: '/login', label: 'Gerenciamento' },
 ]
 
 const dirlinks = [
