@@ -3,6 +3,7 @@ import { IBM_Plex_Sans } from 'next/font/google'
 import Link from "next/link";
 import { DollarSign } from "lucide-react";
 import { IndividualProduct } from "@/types/data";
+import React from "react";
 
 const ibm = IBM_Plex_Sans({
     subsets: ['latin'],
@@ -11,6 +12,10 @@ const ibm = IBM_Plex_Sans({
 
 
 export default function IndividualProduct({ product }: { product: IndividualProduct }) {
+
+    console.log(product);
+
+
     return (
         <div className="w-full flex flex-col lg:grid lg:grid-cols-8 gap-8">
             <div className="lg:col-span-4">
@@ -31,6 +36,14 @@ export default function IndividualProduct({ product }: { product: IndividualProd
                         <DollarSign /> {product?.price}
                     </div>
                 </div>
+                <p className="text-base 2xl:text-lg 3xl:text-xl text-justify text-gray-300">
+                    {product?.categories?.map((category, index) => (
+                        <React.Fragment key={index}>
+                            <span>{category.name}</span>
+                            <br />
+                        </React.Fragment>
+                    ))}
+                </p>
                 <div className={ibm.className}>
                     <div className="flex flex-wrap justify-center items-center">
                         <p className="text-base 2xl:text-lg 3xl:text-xl text-justify text-gray-300 mb-8">

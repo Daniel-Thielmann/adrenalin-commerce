@@ -1,6 +1,8 @@
+'use client'
 import Link from "next/link";
 import { DeleteButtonProduct, EditButtonProduct } from "../buttons";
 import { Product, Category } from "@/types/data";
+
 
 
 export default function ManageAllProductsTable({ products, count }: { products: Product[], count: number, }) {

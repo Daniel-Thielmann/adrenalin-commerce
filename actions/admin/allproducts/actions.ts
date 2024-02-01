@@ -81,16 +81,44 @@ export async function updateProduct(
   const content = formData.get("content") as string;
   const image = formData.get("image") as string;
   const price = parseFloat(formData.get("price") as string);
+  const categoryNames = formData.getAll("categories") as string[];
+
+  const categoryRecords = await Promise.all(
+    categoryNames.map((categoryName) =>
+      prisma.category.upsert({
+        where: { name: categoryName },
+        update: {},
+        create: { name: categoryName },
+      })
+    )
+  );
 
   await prisma.product.update({
-    where: { id },
+    where: { id: id },
     data: {
       title,
       content,
       image,
       price,
+      categories: {
+        set: categoryRecords.map((category) => ({ id: category.id })),
+      },
     },
   });
 
   redirect("/admin/manage/allproducts");
+}
+
+export async function fetchAllCategories() {
+  const categories = await prisma.category.findMany({
+    select: {
+      id: true,
+      name: true,
+    },
+    orderBy: {
+      id: "asc",
+    },
+  });
+
+  return categories;
 }
