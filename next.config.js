@@ -9,6 +9,10 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'assets.specialized.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'banner2.cleanpng.com'
             }
         ]
     }
