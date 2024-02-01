@@ -97,7 +97,7 @@ const Slider: FC = () => {
                     <div className='space-y-12'>
                         <p className="text-white text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl text-justify">Onde a diversão é séria e a adrenalina é o nosso sobrenome! 🔥</p>
                         <p className="text-white text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl text-justify">Desbrave picos de downhill, domine terrenos selvagens no motocross,
-                            explore o desconhecido com UTVs e quadriciclos, deslize pelos mares no wind surf e desbrave aventuras no camping. 🏕️</p>
+                            explore o desconhecido com UTVs e quadriciclos, voe pelos mares no kite surf e aventure-se no camping. 🏕️</p>
                         <p className="text-white text-lg lg:text-xl 2xl:text-2xl 3xl:text-3xl text-justify">Seja um veterano ou um novato destemido, estamos aqui para garantir que sua jornada seja pura adrenalina! 🤘</p>
                     </div>
                 </div>
