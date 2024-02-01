@@ -1,8 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['res.cloudinary.com', 'assets.specialized.com', 'img2.gratispng.com', 'hondacavalcantiprimo.com.br'],
-    },
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'res.cloudinary.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'assets.specialized.com'
+            }
+        ]
+    }
 }
 
-module.exports = nextConfig
+module.exports = nextConfig;
