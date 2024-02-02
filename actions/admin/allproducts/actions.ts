@@ -2,6 +2,9 @@
 import prisma from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import fs from "fs";
+import path from "path";
+import { promisify } from "util";
 
 export async function fetchAllProducts() {
   const products = await prisma.product.findMany({
@@ -49,9 +52,14 @@ type Category = {
 export async function createProduct(formData: FormData) {
   const title = formData.get("title") as string;
   const content = formData.get("content") as string;
-  const image = formData.get("image") as string;
   const categories = formData.getAll("categories") as string[];
   const price = parseFloat(formData.get("price") as string);
+
+  // Get the File object from the form data
+  const imageFile = formData.get("image") as File;
+
+  // Upload the file and get the URL
+  const imageUrl = await uploadImage(imageFile);
 
   const categoryRecords: (Category | null)[] = await Promise.all(
     categories.map(async (categoryName) => {
@@ -70,7 +78,7 @@ export async function createProduct(formData: FormData) {
     data: {
       title,
       content,
-      image,
+      image: imageUrl,
       price,
       published: true,
       categories: {
@@ -88,9 +96,14 @@ export async function updateProduct(
 ) {
   const title = formData.get("title") as string;
   const content = formData.get("content") as string;
-  const image = formData.get("image") as string;
   const price = parseFloat(formData.get("price") as string);
   const categoryNames = formData.getAll("categories") as string[];
+
+  // Get the File object from the form data
+  const imageFile = formData.get("image") as File;
+
+  // Upload the file and get the URL
+  const imageUrl = await uploadImage(imageFile);
 
   const categoryRecords: (Category | null)[] = await Promise.all(
     categoryNames.map(async (categoryName) => {
@@ -110,7 +123,7 @@ export async function updateProduct(
     data: {
       title,
       content,
-      image,
+      image: imageUrl, // Use the uploaded image URL
       price,
       categories: {
         set: validCategories.map((category) => ({ id: category.id })),
@@ -119,6 +132,35 @@ export async function updateProduct(
   });
 
   redirect("/admin/manage/allproducts");
+}
+
+async function uploadImage(file: File): Promise<string> {
+  const uploadDir = path.join(process.cwd(), "public", "products");
+  const uploadPath = path.join(uploadDir, file.name);
+
+  try {
+    // Ensure the upload directory exists
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+
+    // Read the file content as ArrayBuffer
+    const arrayBuffer = await file.arrayBuffer();
+
+    // Convert the ArrayBuffer to a Buffer
+    const buffer = Buffer.from(arrayBuffer);
+
+    // Write the file to the specified path
+    fs.writeFileSync(uploadPath, buffer);
+
+    // Return the relative URL of the uploaded image
+    const relativeUrl = path.join("/products", file.name).replace(/\\/g, "/");
+    return relativeUrl;
+  } catch (error) {
+    console.error("Error uploading image:", error);
+    // Handle the error appropriately (throw, log, etc.)
+    throw new Error("Failed to upload image");
+  }
 }
 
 export async function fetchAllCategories() {

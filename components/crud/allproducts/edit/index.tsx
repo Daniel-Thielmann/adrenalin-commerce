@@ -66,7 +66,8 @@ export default function EditProduct({ product }: { product: Product }) {
                         className="border-2 p-2 rounded-md"
                         name="image"
                         placeholder="Imagem"
-                        defaultValue={product?.image}
+                        type="file"
+                        accept="image/*"
                     />
                     <label className="text-white">Categorias associadas ao Produto</label>
                     <Select

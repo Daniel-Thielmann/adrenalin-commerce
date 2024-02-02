@@ -15,7 +15,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <Link href={`/product/${product?.id}`} className="flex flex-wrap">
             <div className="flex text-gray-300 shadow-lg rounded-xl group-hover:shadow-2xl duration-300 overflow-hidden lg:flex-col">
                 <Image
-                    src={product?.image || "/home/placeholder/placeholder.jpg"}
+                    src={product?.image ? product.image : "/home/placeholder/placeholder.jpg"}
                     width={1920}
                     height={1080}
                     className="max-w-full lg:max-w-[320px] 2xl:max-w[320px]"
