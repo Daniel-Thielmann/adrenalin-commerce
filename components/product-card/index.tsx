@@ -12,13 +12,13 @@ function truncate(str: string, num: number): string {
 
 export default function ProductCard({ product }: { product: Product }) {
     return (
-        <Link href={`/product/${product?.id}`} className="flex flex-wrap">
-            <div className="flex text-gray-300 shadow-lg rounded-xl group-hover:shadow-2xl duration-300 overflow-hidden lg:flex-col">
+        <Link href={`/product/${product?.id}`} className="">
+            <div className="text-gray-300 shadow-lg rounded-xl group-hover:shadow-2xl duration-300 overflow-hidden" style={{ width: '320px', height: '500px' }}>
                 <Image
                     src={product?.image ? product.image : "/home/placeholder/placeholder.jpg"}
                     width={1920}
                     height={1080}
-                    className="max-w-full lg:max-w-[320px] 2xl:max-w[320px]"
+                    className="max-w-full lg:max-w-[320px] 2xl:max-w[320px] object-cover"
                     alt={"placeholder"}
                 />
                 <div className="flex flex-col justify-between p-6 w-full">
