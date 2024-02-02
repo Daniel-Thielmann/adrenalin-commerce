@@ -4,7 +4,7 @@ import Pagination from "../pagination";
 
 export default function ProductsPage({ products, totalPages }: { products: Product[], totalPages: number }) {
     return (
-        <div className="w-full flex flex-col gap-12">
+        <div className="w-full flex gap-12">
             {products.map((product, index) => (
                 <ProductCard key={index} product={product} />
             ))}

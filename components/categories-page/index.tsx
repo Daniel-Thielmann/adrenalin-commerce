@@ -10,9 +10,8 @@ export default function CategoriesPage({ categories, totalPages }: { categories:
         <div>
             <Header />
             <div className="flex flex-col gap-12 space-y-8">
-                {categories.map((category, index) => (
+                {categories && categories.map((category, index) => (
                     <CategoriesCard key={index} category={category} />
-
                 ))}
 
                 <div className="flex items-center justify-center m-4">

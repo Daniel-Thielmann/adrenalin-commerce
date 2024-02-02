@@ -3,11 +3,16 @@ import Image from "next/image";
 import { CircleDollarSign } from "lucide-react";
 import { Product } from "@/types/data";
 
-export default function ProductCard({ product }: { product: Product }) {
+function truncate(str: string, num: number): string {
+    if (str.length <= num) {
+        return str;
+    }
+    return str.slice(0, num) + '...';
+}
 
+export default function ProductCard({ product }: { product: Product }) {
     return (
         <Link href={`/product/${product?.id}`} className="flex flex-wrap">
-
             <div className="flex flex-col text-gray-300 shadow-lg rounded-xl group-hover:shadow-2xl duration-300 overflow-hidden w-full lg:flex-col">
                 <Image
                     src={product?.image || "/home/placeholder/placeholder.jpg"}
@@ -33,8 +38,8 @@ export default function ProductCard({ product }: { product: Product }) {
                             </div>
                         </div>
                     </div>
-                    <p className="flex justify-center line-clamp-3 text-base 2xl:text-xl 3xl:text-2xl">
-                        {product?.content}
+                    <p className="flex justify-center text-base 2xl:text-xl 3xl:text-2xl">
+                        {product?.content ? truncate(product.content, 100) : ''}
                     </p>
                     <div className="flex justify-center flex-wrap items-center gap-2">
                         {product?.categories?.map((category, index) => (
@@ -43,7 +48,6 @@ export default function ProductCard({ product }: { product: Product }) {
                                 {index < product.categories?.length! - 1 && ', '}
                             </span>
                         ))}
-
                     </div>
                 </div>
             </div>
