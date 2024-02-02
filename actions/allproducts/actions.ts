@@ -2,7 +2,6 @@
 
 import prisma from "@/lib/db";
 import { itemsPerPage } from "../utils/actions";
-import { off } from "process";
 
 export async function fetchProducts(currentPage: number) {
   const offset = (currentPage - 1) * itemsPerPage;
