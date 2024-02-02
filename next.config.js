@@ -21,6 +21,10 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'phoenix-fly.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'cyclingmagazine.ca'
             }
         ]
     }

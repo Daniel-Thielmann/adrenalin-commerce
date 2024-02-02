@@ -52,8 +52,8 @@ export async function createProduct(formData: FormData) {
     categories.map((categoryName) =>
       prisma.category.upsert({
         where: { name: categoryName },
-        update: {},
-        create: { name: categoryName },
+        update: { image }, // Adicione esta linha
+        create: { name: categoryName, image }, // Adicione esta linha
       })
     )
   );
@@ -88,8 +88,8 @@ export async function updateProduct(
     categoryNames.map((categoryName) =>
       prisma.category.upsert({
         where: { name: categoryName },
-        update: {},
-        create: { name: categoryName },
+        update: { image }, // Adicione esta linha
+        create: { name: categoryName, image }, // Adicione esta linha
       })
     )
   );
@@ -115,6 +115,7 @@ export async function fetchAllCategories() {
     select: {
       id: true,
       name: true,
+      image: true, // Adicione esta linha
     },
     orderBy: {
       id: "asc",
