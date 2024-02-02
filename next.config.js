@@ -12,7 +12,7 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
-                hostname: 'banner2.cleanpng.com'
+                hostname: 'e7.pngegg.com'
             }
         ]
     }
