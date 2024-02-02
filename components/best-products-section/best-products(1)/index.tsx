@@ -24,7 +24,7 @@ export default function BestProducts1({ products }: BestProductsProps) {
                 ))}
             </div>
 
-            <Link href='/' className='lg:col-span-3 relative group'>
+            <Link href='/categories/1' className='lg:col-span-3 relative group'>
                 <div className='relative overflow-hidden'>
                     <Image
                         src='/home/best-products-side-image/trek.jpg'
