@@ -21,7 +21,7 @@ export default async function Page({
             <h2 className="flex justify-center items-center text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl mb-20">
                 Todos os Produtos</h2>
 
-            <div className="grid grid-cols-5">
+            <div className="">
                 <ProductsPage products={products} totalPages={totalPages} />
             </div>
 

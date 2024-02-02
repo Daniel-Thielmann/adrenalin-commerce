@@ -64,6 +64,7 @@ export async function createProduct(formData: FormData) {
       content,
       image,
       price,
+      published: true,
       categories: {
         connect: categoryRecords.map((category) => ({ id: category.id })),
       },

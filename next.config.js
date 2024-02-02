@@ -13,6 +13,14 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'e7.pngegg.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'hondacavalcantiprimo.com.br'
+            },
+            {
+                protocol: 'https',
+                hostname: 'phoenix-fly.com'
             }
         ]
     }
