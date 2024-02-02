@@ -50,6 +50,14 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 't4.ftcdn.net'
             },
+            {
+                protocol: 'https',
+                hostname: 'w7.pngwing.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'cdn.imgbin.com'
+            },
         ]
     }
 }

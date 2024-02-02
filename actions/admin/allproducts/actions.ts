@@ -41,6 +41,11 @@ export async function deleteProduct(id: number | undefined) {
   revalidatePath("/admin/manage/allproducts");
 }
 
+type Category = {
+  id: number;
+  name: string;
+};
+
 export async function createProduct(formData: FormData) {
   const title = formData.get("title") as string;
   const content = formData.get("content") as string;
@@ -48,14 +53,17 @@ export async function createProduct(formData: FormData) {
   const categories = formData.getAll("categories") as string[];
   const price = parseFloat(formData.get("price") as string);
 
-  const categoryRecords = await Promise.all(
-    categories.map((categoryName) =>
-      prisma.category.upsert({
+  const categoryRecords: (Category | null)[] = await Promise.all(
+    categories.map(async (categoryName) => {
+      const category = await prisma.category.findUnique({
         where: { name: categoryName },
-        update: { image }, // Adicione esta linha
-        create: { name: categoryName, image }, // Adicione esta linha
-      })
-    )
+      });
+      return category;
+    })
+  );
+
+  const validCategories = categoryRecords.filter(
+    (category): category is Category => category !== null
   );
 
   await prisma.product.create({
@@ -66,7 +74,7 @@ export async function createProduct(formData: FormData) {
       price,
       published: true,
       categories: {
-        connect: categoryRecords.map((category) => ({ id: category.id })),
+        connect: validCategories.map((category) => ({ id: category.id })),
       },
     },
   });
@@ -84,14 +92,17 @@ export async function updateProduct(
   const price = parseFloat(formData.get("price") as string);
   const categoryNames = formData.getAll("categories") as string[];
 
-  const categoryRecords = await Promise.all(
-    categoryNames.map((categoryName) =>
-      prisma.category.upsert({
+  const categoryRecords: (Category | null)[] = await Promise.all(
+    categoryNames.map(async (categoryName) => {
+      const category = await prisma.category.findUnique({
         where: { name: categoryName },
-        update: { image }, // Adicione esta linha
-        create: { name: categoryName, image }, // Adicione esta linha
-      })
-    )
+      });
+      return category;
+    })
+  );
+
+  const validCategories = categoryRecords.filter(
+    (category): category is Category => category !== null
   );
 
   await prisma.product.update({
@@ -102,7 +113,7 @@ export async function updateProduct(
       image,
       price,
       categories: {
-        set: categoryRecords.map((category) => ({ id: category.id })),
+        set: validCategories.map((category) => ({ id: category.id })),
       },
     },
   });
