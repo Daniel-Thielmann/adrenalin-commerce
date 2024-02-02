@@ -25,7 +25,31 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'cyclingmagazine.ca'
-            }
+            },
+            {
+                protocol: 'https',
+                hostname: 'dirtwheelsmag.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'theindianface.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'c4.wallpaperflare.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'e1.pxfuel.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'storage.googleapis.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 't4.ftcdn.net'
+            },
         ]
     }
 }
