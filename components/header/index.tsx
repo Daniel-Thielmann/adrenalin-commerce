@@ -62,7 +62,7 @@ export default function Header() {
             className="bg-[#1F1F21] sticky top-0 z-20 w-full mb-8 border-b border-gray-300"
             style={{ userSelect: "none" }}
         >
-            <div className="bg-[#E3FC02] py-1 sticky top-0 z-20 text-black flex items-center justify-center">
+            <div className="bg-[#E3FC02] py-1.5 sticky top-0 z-20 text-black flex items-center justify-center">
                 <span>FRETE GRATIS PARA O BRASIL TODO APROVEITE AS PROMOS!</span>
             </div>
 
