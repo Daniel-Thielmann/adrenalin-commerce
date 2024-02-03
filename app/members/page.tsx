@@ -17,7 +17,7 @@ const kl = Koulen({
 })
 
 
-function ContatoPage() {
+function MemberPage() {
     return (
         <div className=''>
 
@@ -36,4 +36,4 @@ function ContatoPage() {
 
 }
 
-export default ContatoPage
+export default MemberPage
