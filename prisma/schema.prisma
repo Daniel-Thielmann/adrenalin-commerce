@@ -25,3 +25,10 @@ model Category {
   name     String    @unique
   products Product[]
 }
+
+model Member {
+  id    Int    @id @default(autoincrement())
+  name  String
+  role  String
+  email String @unique
+}
