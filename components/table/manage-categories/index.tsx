@@ -8,7 +8,7 @@ export default function ManageCategoriesTable({ categories, count }: { categorie
         <div className="w-full p-4 border-2 rounded-md flex flex-col gap-4">
             <div className="flex flex-wrap items-center w-full justify-between">
                 <span className="text-base self-end text-gray-100">
-                    27 categorias encontradas...
+                    {count} categorias encontradas...
                 </span>
                 <Link
                     href={'/admin/manage/categories/create'}

@@ -30,6 +30,7 @@ export async function fetchCategoryById(id: number | undefined) {
     select: {
       id: true,
       name: true,
+      image: true,
     },
   });
 
@@ -46,10 +47,12 @@ export async function deleteCategory(id: number | undefined) {
 
 export async function createCategory(formData: FormData) {
   const name = formData.get("name") as string;
+  const image = formData.get("image") as string;
 
   await prisma.category.create({
     data: {
       name,
+      image,
     },
   });
 
@@ -61,11 +64,13 @@ export async function updateCategory(
   formData: FormData
 ) {
   const name = formData.get("name") as string;
+  const image = formData.get("image") as string;
 
   await prisma.category.update({
     where: { id },
     data: {
       name,
+      image,
     },
   });
 

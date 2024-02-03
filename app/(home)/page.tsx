@@ -1,4 +1,4 @@
-import getBestProducts from '@/actions/home/actions'
+import { getBestProducts1, getBestProducts2, getBestProducts3 } from '@/actions/home/actions'
 import BestProducts1 from '@/components/best-products-section/best-products(1)'
 import BestProducts3 from '@/components/best-products-section/best-products(3)'
 import BestProductsReverse2 from '@/components/best-products-section/best-products-reverse(2)'
@@ -8,7 +8,10 @@ import Title from '@/components/title'
 import WallpaperDivision from '@/components/wallpaper-division'
 
 export default async function Home() {
-  const products = await getBestProducts()
+  const products1 = await getBestProducts1()
+  const products2 = await getBestProducts2()
+  const products3 = await getBestProducts3()
+
 
   return (
     <div>
@@ -16,9 +19,9 @@ export default async function Home() {
         <Slider />
         <KnowAdrenalin />
         <Title title="Destaques por categoria" subtitle='' />
-        <BestProducts1 products={products} />
-        <BestProductsReverse2 products={products} />
-        <BestProducts3 products={products} />
+        <BestProducts1 products={products1} />
+        <BestProductsReverse2 products={products2} />
+        <BestProducts3 products={products3} />
       </div>
       <WallpaperDivision />
     </div>

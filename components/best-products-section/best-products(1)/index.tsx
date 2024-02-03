@@ -16,16 +16,16 @@ const ibm = IBM_Plex_Sans({
 
 export default function BestProducts1({ products }: BestProductsProps) {
     return (
-        <div className="w-full flex gap-4">
+        <div className="w-full flex gap-4 flex-wrap md:flex-nowrap">
 
-            <div className="grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-2 w-4/6">
+            <div className="grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-2 w-full md:w-4/6">
                 {products.map((product, index) => (
                     <BestProductsCard key={index} product={product} />
                 ))}
             </div>
 
-            <Link href='/' className='lg:col-span-3 relative group'>
-                <div className='relative overflow-hidden'>
+            <Link href='/categories/1' className='lg:col-span-3 relative group'>
+                <div className='relative overflow-hidden' >
                     <Image
                         src='/home/best-products-side-image/trek.jpg'
                         alt="imagem em destaque"

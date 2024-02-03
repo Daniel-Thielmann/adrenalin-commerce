@@ -12,6 +12,7 @@ export default async function fetchCategories(currentPage: number) {
     select: {
       id: true,
       name: true,
+      image: true,
     },
   });
 

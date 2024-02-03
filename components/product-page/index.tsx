@@ -4,10 +4,12 @@ import Pagination from "../pagination";
 
 export default function ProductsPage({ products, totalPages }: { products: Product[], totalPages: number }) {
     return (
-        <div className="w-full flex flex-col gap-12">
-            {products.map((product, index) => (
-                <ProductCard key={index} product={product} />
-            ))}
+        <div>
+            <div className="grid grid-cols-4 space-y-6 gap-24 ">
+                {products.map((product, index) => (
+                    <ProductCard key={index} product={product} />
+                ))}
+            </div>
             {totalPages > 1 && (
                 <Pagination totalPages={totalPages} />
             )}

@@ -16,7 +16,13 @@ const ibm = IBM_Plex_Sans({
 
 export default function BestProductsReverse2({ products }: BestProductsProps) {
     return (
-        <div className="w-full flex gap-4">
+        <div className="w-full flex gap-4 flex-wrap md:flex-nowrap">
+
+            <div className="sm:hidden grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-2 w-full md:w-4/6">
+                {products.map((product, index) => (
+                    <BestProductsCard key={index} product={product} />
+                ))}
+            </div>
 
             <Link href='/' className='lg:col-span-3 relative group'>
                 <div className='relative overflow-hidden'>
@@ -44,7 +50,7 @@ export default function BestProductsReverse2({ products }: BestProductsProps) {
             </Link>
 
 
-            <div className="grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 w-4/6 gap-2">
+            <div className="hidden md:grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 w-4/6 gap-2">
                 {products.map((product, index) => (
                     <BestProductsCard key={index} product={product} />
                 ))}

@@ -1,9 +1,5 @@
 import fetchCategories from "@/actions/categories/actions";
 import CategoriesPage from "@/components/categories-page";
-import Categories from "@/components/categories-page";
-import Footer from "@/components/footer";
-import Header from "@/components/header";
-import Link from "next/link";
 
 
 export default async function Page({

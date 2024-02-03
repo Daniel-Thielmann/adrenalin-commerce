@@ -5,11 +5,10 @@ import { Category } from "@prisma/client";
 export default function CategoriesCard({ category }: { category: Category }) {
     return (
         <div className="my-8">
-            <Link href="/" className="lg:col-span-3 relative group">
+            <Link href={`/categories/${category.id}`} className="lg:col-span-3 relative group">
                 <div className="relative overflow-hidden">
                     <Image
-                        src="/home/best-products-side-image/trek.jpg"
-                        alt="imagem em destaque"
+                        src={category?.image || '/home/placeholder/placeholder.jpg'} alt="imagem em destaque"
                         width={500}
                         height={500}
                         className="cursor-pointer"
@@ -32,4 +31,3 @@ export default function CategoriesCard({ category }: { category: Category }) {
         </div>
     );
 }
-
