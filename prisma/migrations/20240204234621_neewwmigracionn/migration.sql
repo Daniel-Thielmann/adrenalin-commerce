@@ -20,6 +20,16 @@ CREATE TABLE "Category" (
 );
 
 -- CreateTable
+CREATE TABLE "Member" (
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+    "role" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+
+    CONSTRAINT "Member_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "_CategoryToProduct" (
     "A" INTEGER NOT NULL,
     "B" INTEGER NOT NULL
@@ -30,6 +40,9 @@ CREATE UNIQUE INDEX "Product_title_key" ON "Product"("title");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Category_name_key" ON "Category"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Member_email_key" ON "Member"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_CategoryToProduct_AB_unique" ON "_CategoryToProduct"("A", "B");
