@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+
+    webpack(config){
+        return config;
+    },
+    output:"standalone",
     images: {
         remotePatterns: [
             {
@@ -59,7 +64,8 @@ const nextConfig = {
                 hostname: 'cdn.imgbin.com'
             },
         ]
-    }
+    },
+
 }
 
 module.exports = nextConfig;
