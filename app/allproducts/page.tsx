@@ -1,7 +1,6 @@
 import { fetchProducts } from "@/actions/allproducts/actions";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
-import ProductCard from "@/components/product-card";
 import ProductsPage from "@/components/product-page";
 
 export default async function Page({

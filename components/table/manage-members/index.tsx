@@ -1,6 +1,5 @@
 import React from 'react'
 import { Member } from '@prisma/client'
-import Pagination from '@/components/pagination';
 import { DeleteButtonMember, EditButtonMember } from '../buttons';
 import Link from 'next/link';
 
