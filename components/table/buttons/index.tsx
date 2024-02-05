@@ -1,6 +1,7 @@
 'use client'
 import { deleteProduct } from "@/actions/admin/allproducts/actions"
 import { deleteCategory } from "@/actions/admin/categories/actions"
+import { deleteMember } from "@/actions/admin/members/actions"
 import Link from "next/link"
 
 export function EditButton({ id }: { id: number | undefined }) {
@@ -36,5 +37,23 @@ export function EditButtonProduct({ id }: { id: number | undefined }) {
                 Editar
             </button>
         </Link>
+    )
+}
+
+export function EditButtonMember({ id }: { id: number | undefined }) {
+    return (
+        <Link href={`/admin/manage/members/edit/${id}`}>
+            <button className="font-medium text-indigo-600 hover:underline">
+                Editar
+            </button>
+        </Link>
+    )
+}
+
+export function DeleteButtonMember({ id }: { id: number | undefined }) {
+    return (
+        <button onClick={() => deleteMember(id)} className="font-medium text-red-600 hover:underline">
+            Deletar
+        </button>
     )
 }
