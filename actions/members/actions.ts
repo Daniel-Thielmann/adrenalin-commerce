@@ -29,9 +29,7 @@ export async function searchMembers(query: string, currentPage: number) {
     where: {
       OR: [{ name: { contains: query, mode: "insensitive" } }],
     },
-    orderBy: {
-      name: "asc",
-    },
+
     take: itemsPerPage,
     skip: offset,
   });
