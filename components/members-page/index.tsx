@@ -11,8 +11,6 @@ const ibm = IBM_Plex_Sans({
 export default function MemberPage({ members, count, totalPages }: { members: Member[], count: number, totalPages: number }) {
     return (
         <div className={ibm.className}>
-            <h2 className="flex justify-center items-center text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl mb-20">
-                Todos os Membros</h2>
 
             <div className="w-full p-4 border-2 rounded-md flex flex-col gap-4">
                 <div className="flex flex-wrap items-center w-full justify-between">
