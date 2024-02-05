@@ -24,7 +24,7 @@ export async function getBestProducts2() {
   const products = await prisma.product.findMany({
     where: {
       id: {
-        in: [5, 12],
+        in: [7, 4],
       },
       published: true,
     },
@@ -42,7 +42,7 @@ export async function getBestProducts3() {
   const products = await prisma.product.findMany({
     where: {
       id: {
-        in: [19, 20],
+        in: [14, 15],
       },
       published: true,
     },

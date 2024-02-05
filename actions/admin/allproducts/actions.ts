@@ -4,7 +4,6 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import fs from "fs";
 import path from "path";
-import { promisify } from "util";
 
 export async function fetchAllProducts() {
   const products = await prisma.product.findMany({
@@ -54,11 +53,7 @@ export async function createProduct(formData: FormData) {
   const content = formData.get("content") as string;
   const categories = formData.getAll("categories") as string[];
   const price = parseFloat(formData.get("price") as string);
-
-  // Get the File object from the form data
   const imageFile = formData.get("image") as File;
-
-  // Upload the file and get the URL
   const imageUrl = await uploadImage(imageFile);
 
   const categoryRecords: (Category | null)[] = await Promise.all(
@@ -98,11 +93,7 @@ export async function updateProduct(
   const content = formData.get("content") as string;
   const price = parseFloat(formData.get("price") as string);
   const categoryNames = formData.getAll("categories") as string[];
-
-  // Get the File object from the form data
   const imageFile = formData.get("image") as File;
-
-  // Upload the file and get the URL
   const imageUrl = await uploadImage(imageFile);
 
   const categoryRecords: (Category | null)[] = await Promise.all(
@@ -123,7 +114,7 @@ export async function updateProduct(
     data: {
       title,
       content,
-      image: imageUrl, // Use the uploaded image URL
+      image: imageUrl,
       price,
       categories: {
         set: validCategories.map((category) => ({ id: category.id })),
@@ -139,26 +130,20 @@ async function uploadImage(file: File): Promise<string> {
   const uploadPath = path.join(uploadDir, file.name);
 
   try {
-    // Ensure the upload directory exists
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir, { recursive: true });
     }
 
-    // Read the file content as ArrayBuffer
     const arrayBuffer = await file.arrayBuffer();
 
-    // Convert the ArrayBuffer to a Buffer
     const buffer = Buffer.from(arrayBuffer);
 
-    // Write the file to the specified path
     fs.writeFileSync(uploadPath, buffer);
 
-    // Return the relative URL of the uploaded image
     const relativeUrl = path.join("/products", file.name).replace(/\\/g, "/");
     return relativeUrl;
   } catch (error) {
     console.error("Error uploading image:", error);
-    // Handle the error appropriately (throw, log, etc.)
     throw new Error("Failed to upload image");
   }
 }
@@ -168,7 +153,7 @@ export async function fetchAllCategories() {
     select: {
       id: true,
       name: true,
-      image: true, // Adicione esta linha
+      image: true,
     },
     orderBy: {
       id: "asc",
