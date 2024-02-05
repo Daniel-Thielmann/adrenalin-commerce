@@ -161,15 +161,6 @@ export default function Header() {
                             ))
                         }
 
-                        {/* {!buscaAberta &&
-                            dirlinks.map((link, index) => (
-                                <Link href={link.href} key={index}>
-                                    <span className="text-2xl text-white hover:bg-white/20 rounded-xl">
-                                        {link.label}
-                                    </span>
-                                </Link>
-                            ))} */}
-
                         <button>
                             <SearchIcon
                                 onClick={abrirBusca}
@@ -177,13 +168,9 @@ export default function Header() {
                             />
                         </button>
 
-
-
-                        {/* {!buscaAberta && (
-                            <button className="w-8 h-8 text-white cursor-pointer hover:bg-white/20 transition-all duration-200 rounded-xl">
-                                <ShoppingCart />
-                            </button>
-                        )} */}
+                        <button className="w-8 h-8 text-white cursor-pointer hover:bg-white/20 transition-all duration-200 rounded-xl">
+                            <ShoppingCart />
+                        </button>
                     </div>
                 </nav>
             </div>
