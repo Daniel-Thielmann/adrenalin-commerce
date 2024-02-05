@@ -10,6 +10,7 @@ const LinksSidebar = [
     { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
     { href: '/admin/manage/categories', label: 'Categorias', icon: Layers },
     { href: '/admin/manage/allproducts', label: 'Produtos', icon: ScrollText },
+    { href: '/admin/manage/members', label: 'Membros', icon: ScrollText },
 ]
 
 export default function AdminSidebar() {

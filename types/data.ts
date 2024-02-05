@@ -23,3 +23,10 @@ export type IndividualProduct = {
   categories?: Category[];
   price?: number;
 } | null;
+
+export type Member = {
+  id?: number;
+  name?: string;
+  email?: string;
+  role?: string;
+};
