@@ -85,7 +85,7 @@ export default function Header() {
                 </nav>
 
                 {/* parte central da logo e nome adrenalin */}
-                <Link href="/" className="flex items-center justify-center">
+                <Link href="/" className="flex items-center justify-center xl:ml-16 2xl:ml-20">
                     <Image
                         src={"/logo/adrenalin1.png"}
                         alt="logo do blog"
