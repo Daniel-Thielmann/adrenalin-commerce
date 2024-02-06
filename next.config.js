@@ -63,6 +63,10 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'cdn.imgbin.com'
             },
+            {
+                protocol: 'https',
+                hostname: 'i.postimg.cc'
+            },
         ]
     },
 
