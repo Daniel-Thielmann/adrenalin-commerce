@@ -1,7 +1,8 @@
-FROM node:20-alpine AS base
+FROM node:20-slim AS base
+
+RUN apt-get update && apt-get install -y openssl curl && rm -rf /var/lib/apt/lists/*
 
 FROM base AS deps
-RUN apk add --no-cache libc6-compat openssl
 WORKDIR /app
 COPY package.json package-lock.json* prisma/schema.prisma ./
 RUN npm ci --ignore-scripts
@@ -20,17 +21,21 @@ FROM base AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV HOME=/tmp
 
-RUN apk add --no-cache openssl curl
+RUN npm install sharp
+
 RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+RUN adduser --system --uid 1001 --ingroup nodejs nextjs
 
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/node_modules/@prisma/client ./node_modules/@prisma/client
 COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=builder /app/node_modules/prisma ./node_modules/prisma
+COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
+COPY --from=builder /app/node_modules/.bin ./node_modules/.bin
 
 COPY --from=builder /app/package.json ./package.json
 
@@ -40,11 +45,11 @@ npx prisma migrate deploy\n\
 echo "Database ready!"\n\
 exec node server.js' > /entrypoint.sh && chmod +x /entrypoint.sh
 
-USER nextjs
-
 EXPOSE 3000
 
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
+
+USER nextjs
 
 ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
