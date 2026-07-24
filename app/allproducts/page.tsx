@@ -21,7 +21,7 @@ export default async function Page({
                     Todos os Produtos
                 </h1>
                 <p className="font-body text-sm text-adrenalin-light text-center max-w-lg mx-auto mb-12">
-                    Equipamentos premium para sua próxima aventura
+                    Performance, proteção e aventura em um só lugar
                 </p>
                 <ProductsPage products={products} totalPages={totalPages} />
             </main>

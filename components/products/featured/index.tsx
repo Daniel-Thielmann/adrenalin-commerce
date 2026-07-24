@@ -11,7 +11,7 @@ export default async function FeaturedProducts() {
       <div className="container-premium">
         <SectionTitle
           title="Produtos em Destaque"
-          subtitle="O que há de melhor para sua próxima aventura"
+          subtitle="Equipamentos para quem vive além dos limites"
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-12">
