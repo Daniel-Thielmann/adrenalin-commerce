@@ -141,11 +141,11 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/5 py-6">
-        <div className="container-premium flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-body text-xs text-adrenalin-light/60">
-            2024 Adrenalin. Todos os direitos reservados........
+        <div className="container-premium flex flex-col md:flex-row items-center justify-between gap-4 text-xl">
+          <p className="font-body text-adrenalin-light/60">
+            2024 Adrenalin. Todos os direitos reservados.
           </p>
-          <p className="font-body text-xs text-adrenalin-light/60">
+          <p className="font-body text-adrenalin-light/60">
             Desenvolvido por Daniel Thielmann
           </p>
         </div>

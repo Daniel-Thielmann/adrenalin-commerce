@@ -6,7 +6,6 @@ import Image from "next/image"
 import { usePathname, useSearchParams } from "next/navigation"
 import SearchComponent from "../search"
 import { useCart } from "@/contexts/cart-context"
-import CartModal from "@/components/cart-modal"
 
 const mainLinks = [
   { href: "/", label: "Início" },
@@ -26,16 +25,14 @@ export default function Header() {
 function HeaderContent() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
-  const [cartOpen, setCartOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
   const searchParams = useSearchParams()
-  const { totalItems } = useCart()
+  const { totalItems, openCart } = useCart()
 
   useEffect(() => {
     setSearchOpen(false)
     setMenuOpen(false)
-    setCartOpen(false)
   }, [pathname, searchParams])
 
   useEffect(() => {
@@ -118,7 +115,7 @@ function HeaderContent() {
                 <User className="w-5 h-5" />
               </Link>
 
-              <button onClick={() => setCartOpen(true)} className="relative w-10 h-10 flex items-center justify-center text-white/70 hover:text-adrenalin-yellow transition-colors" aria-label="Carrinho">
+              <button onClick={openCart} className="relative w-10 h-10 flex items-center justify-center text-white/70 hover:text-adrenalin-yellow transition-colors" aria-label="Carrinho">
                 <ShoppingCart className="w-5 h-5" />
                 {totalItems > 0 && (
                   <span className="absolute -top-0.5 -right-0.5 min-w-[16px] h-4 px-1 flex items-center justify-center bg-adrenalin-yellow text-adrenalin-black text-[9px] font-bold rounded-full">
@@ -165,8 +162,7 @@ function HeaderContent() {
           </div>
         )}
 
-        <CartModal open={cartOpen} onClose={() => setCartOpen(false)} />
-      </header>
+        </header>
     </>
   )
 }

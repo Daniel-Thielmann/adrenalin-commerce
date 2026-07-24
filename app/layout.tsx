@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import NextTopLoader from 'nextjs-toploader'
 import CartProviderWrapper from '@/components/cart-provider-wrapper'
+import CartDrawer from '@/components/cart-modal'
 
 export const metadata: Metadata = {
   title: 'ADRENALIN | Extreme Sports Equipment',
@@ -36,6 +37,7 @@ export default function RootLayout({
         />
         <CartProviderWrapper>
           {children}
+          <CartDrawer />
         </CartProviderWrapper>
       </body>
     </html>

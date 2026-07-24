@@ -1,32 +1,48 @@
 "use client";
 
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { X, Plus, Minus, Trash2, ShoppingBag } from "lucide-react";
 import { useCart } from "@/contexts/cart-context";
 import { formatCurrency } from "@/lib/formatters";
 
-export default function CartModal({
-  open,
-  onClose,
-}: {
-  open: boolean;
-  onClose: () => void;
-}) {
-  const { items, removeItem, updateQuantity, totalPrice } = useCart();
+export default function CartDrawer() {
+  const { items, removeItem, updateQuantity, totalPrice, isOpen, closeCart } = useCart();
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") closeCart();
+    }
+    if (isOpen) {
+      document.addEventListener("keydown", handleKeyDown);
+    }
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, closeCart]);
 
   return (
     <>
-      {open && (
+      {isOpen && (
         <div
           className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-sm"
-          onClick={onClose}
+          onClick={closeCart}
         />
       )}
 
       <div
-        className={`fixed top-0 right-0 z-[70] h-full w-full max-w-md bg-adrenalin-black border-l border-white/10 shadow-2xl transition-transform duration-300 ${
-          open ? "translate-x-0" : "translate-x-full"
+        className={`fixed right-0 top-0 z-[70] h-dvh w-full sm:w-[420px] bg-adrenalin-black border-l border-white/10 shadow-2xl transition-transform duration-300 ${
+          isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex items-center justify-between p-4 border-b border-white/10">
@@ -34,7 +50,7 @@ export default function CartModal({
             Carrinho ({items.length})
           </h2>
           <button
-            onClick={onClose}
+            onClick={closeCart}
             className="w-10 h-10 flex items-center justify-center text-white/60 hover:text-white transition-colors"
           >
             <X className="w-5 h-5" />
@@ -47,7 +63,7 @@ export default function CartModal({
             <p className="font-body text-white/40">Carrinho vazio</p>
             <Link
               href="/allproducts"
-              onClick={onClose}
+              onClick={closeCart}
               className="btn-primary text-sm"
             >
               Ver Produtos
@@ -77,7 +93,7 @@ export default function CartModal({
                   <div className="flex-1 min-w-0">
                     <Link
                       href={`/product/${item.id}`}
-                      onClick={onClose}
+                      onClick={closeCart}
                       className="font-body text-sm text-white hover:text-adrenalin-yellow transition-colors line-clamp-1"
                     >
                       {item.title}
@@ -129,7 +145,7 @@ export default function CartModal({
               </div>
               <Link
                 href="/cart"
-                onClick={onClose}
+                onClick={closeCart}
                 className="btn-primary w-full justify-center"
               >
                 Ver Carrinho
