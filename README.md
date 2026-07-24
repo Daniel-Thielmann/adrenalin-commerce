@@ -1,9 +1,12 @@
 <div align="center">
   <br/>
-  <h1 ADRENALIN ECOMMERCE</h1>
+  <img src="/home/dash.png" alt="Adrenalin Ecommerce Dashboard" width="800" style="border-radius: 8px;"/>
+  <br/><br/>
+  <h1>ADRENALIN ECOMMERCE</h1>
   <p><strong>Extreme Sports E-Commerce Platform</strong></p>
   <p>
     <img src="https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js" alt="Next.js 14"/>
+    <img src="https://img.shields.io/badge/Express-4.18-000000?style=flat-square&logo=express" alt="Express"/>
     <img src="https://img.shields.io/badge/TypeScript-5.3-3178C6?style=flat-square&logo=typescript" alt="TypeScript"/>
     <img src="https://img.shields.io/badge/Prisma-5.7-2D3748?style=flat-square&logo=prisma" alt="Prisma"/>
     <img src="https://img.shields.io/badge/Tailwind_CSS-3.3-06B6D4?style=flat-square&logo=tailwindcss" alt="Tailwind CSS"/>
@@ -18,8 +21,10 @@
 
 - [About](#-about)
 - [Tech Stack](#-tech-stack)
+- [Architecture](#-architecture)
 - [Features](#-features)
 - [Database Schema](#-database-schema)
+- [API Endpoints](#-api-endpoints)
 - [Pages & Routes](#-pages--routes)
 - [Project Structure](#-project-structure)
 - [Getting Started](#-getting-started)
@@ -30,26 +35,42 @@
 
 ## About
 
-**Adrenalin Ecommerce** is a full-featured extreme sports e-commerce platform built with cutting-edge web technologies. The platform showcases products across various extreme sports categories including mountain biking, skydiving, motocross, rock climbing, and more.
+**Adrenalin Ecommerce** is a full-featured extreme sports e-commerce platform built with a decoupled architecture. The frontend (Next.js 14) communicates with a REST API (Express + Prisma) over HTTP, replacing the previous Server Actions approach for better separation of concerns and scalability.
 
-This project serves as a robust starting point for developers who want to build a modern e-commerce application with a complete administrative backend, product management system, and a polished user interface.
+The platform showcases products across various extreme sports categories including mountain biking, motocross, surfing, camping, trekking, snow sports, skydiving, and water sports.
 
 ---
 
 ## Tech Stack
 
-| Category          | Technology                                                              |
-| ----------------- | ----------------------------------------------------------------------- |
-| **Framework**     | [Next.js 14](https://nextjs.org/) (App Router)                          |
-| **Language**      | [TypeScript](https://www.typescriptlang.org/)                           |
-| **Styling**       | [Tailwind CSS 3](https://tailwindcss.com/)                              |
-| **Database ORM**  | [Prisma 5](https://www.prisma.io/)                                      |
-| **Database**      | [PostgreSQL](https://www.postgresql.org/)                               |
-| **Fonts**         | Koulen, Just Another Hand, IBM Plex Sans                                |
-| **Icons**         | [Lucide React](https://lucide.dev/)                                     |
-| **UI Components** | [React Select](https://react-select.com/)                               |
-| **Loader**        | [nextjs-toploader](https://github.com/TheDanniCraft/nextjs-toploader)   |
-| **Scrollbar**     | [tailwind-scrollbar](https://github.com/adoxography/tailwind-scrollbar) |
+| Category            | Technology                                                              |
+| ------------------- | ----------------------------------------------------------------------- |
+| **Frontend**        | [Next.js 14](https://nextjs.org/) (App Router)                          |
+| **Backend**         | [Express 4](https://expressjs.com/) + [Prisma 5](https://www.prisma.io/)|
+| **Language**        | [TypeScript](https://www.typescriptlang.org/)                           |
+| **Styling**         | [Tailwind CSS 3](https://tailwindcss.com/)                              |
+| **Database**        | [PostgreSQL](https://www.postgresql.org/)                               |
+| **Auth**            | [JOSE](https://github.com/panva/jose) (JWT)                             |
+| **File Upload**     | [Multer](https://github.com/expressjs/multer)                           |
+| **Fonts**           | Bebas Neue, Inter, IBM Plex Sans                                        |
+| **Icons**           | [Lucide React](https://lucide.dev/)                                     |
+| **UI Components**   | [React Select](https://react-select.com/)                               |
+| **Loader**          | [nextjs-toploader](https://github.com/TheDanniCraft/nextjs-toploader)   |
+| **Scrollbar**       | [tailwind-scrollbar](https://github.com/adoxography/tailwind-scrollbar) |
+
+---
+
+## Architecture
+
+```
+┌──────────────┐      HTTP/JSON      ┌──────────────┐      ┌──────────┐
+│   Frontend   │ ──────────────────→ │   Backend    │ ──→ │    DB    │
+│  Next.js 14  │ ←────────────────── │  Express API │ ←── │PostgreSQL│
+│  :3001       │      JWT (auth)     │  :3333       │      └──────────┘
+└──────────────┘                     └──────────────┘
+```
+
+The **frontend** (Next.js) handles SSR, UI rendering, and middleware auth. The **backend** (Express) handles all database operations, file uploads, and JWT authentication. Communication is done via REST API calls.
 
 ---
 
@@ -57,33 +78,37 @@ This project serves as a robust starting point for developers who want to build 
 
 ### Storefront
 
-- **Dynamic Home Page** — Hero slider, "Know Adrenalin" brand section, and curated "Best Products" sections organized by category
-- **Product Catalog** — Browse all products with search and pagination
-- **Category Browsing** — Explore products by category with dedicated category pages
+- **Dynamic Home Page** — Hero slider, category showcase, featured products, promotional banners, testimonials
+- **Product Catalog** — Browse all products with pagination (8 per page)
+- **Category Browsing** — Explore products by category with themed banners and descriptions
 - **Product Details** — Individual product pages with full descriptions, pricing, and images
-- **Search** — Multi-mode search system (primary, secondary, tertiary) for flexible product discovery
-- **Responsive Design** — Fully responsive layout from mobile (640px) to ultra-wide (2560px)
+- **Search** — Case-insensitive product search with pagination
+- **Team Members** — Browse team members with search
+- **Shopping Cart** — Client-side cart with modal sidebar and quantity controls
+- **Responsive Design** — Fully responsive from mobile (640px) to ultra-wide (2560px)
 
 ### Administration Panel
 
-- **Dashboard** — Overview page with administrative actions
-- **Product Management** — Full CRUD: create, read, update, and delete products
+- **Dashboard** — Overview page with quick links to management sections
+- **Product Management** — Full CRUD with image upload
 - **Category Management** — Full CRUD for product categories
 - **Member Management** — Full CRUD for team/organization members
-- **Image Upload** — Local image upload system for product photos
-
-### UI/UX
-
-- **Custom Typography** — Three Google Fonts for distinct branding (Koulen headings, Just Another Hand accents, IBM Plex Sans body)
-- **Smooth Transitions** — Page loading bar via NextTopLoader
-- **Custom Scrollbar** — Branded scrollbar styling with yellow accent (`#E3FC02`)
-- **Consistent Layout** — Reusable components: Header, Footer, Sidebar, Cards, Tables, Pagination
+- **JWT Authentication** — Secure login with token-based sessions
 
 ---
 
 ## Database Schema
 
 ```prisma
+model User {
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  password String
+  name     String
+  role     String   @default("admin")
+  createdAt DateTime @default(now())
+}
+
 model Product {
   id         Int        @id @default(autoincrement())
   title      String     @unique
@@ -109,10 +134,34 @@ model Member {
 }
 ```
 
-### Relationships
+---
 
-- **Product ⟷ Category** — Many-to-many relationship (a product can belong to multiple categories, a category can have multiple products)
-- **Member** — Standalone model for team/organization member management
+## API Endpoints
+
+| Method | Endpoint                 | Auth     | Description                      |
+| ------ | ------------------------ | -------- | -------------------------------- |
+| GET    | `/api/home/products`     | ❌       | Featured products for homepage   |
+| GET    | `/api/products`          | ❌       | Paginated published products     |
+| GET    | `/api/products/admin`    | ✅ JWT   | All products (admin)             |
+| GET    | `/api/products/:id`      | ❌       | Single product detail            |
+| GET    | `/api/products/category/:categoryId` | ❌ | Products by category     |
+| POST   | `/api/products`          | ✅ JWT   | Create product (multipart)       |
+| PUT    | `/api/products/:id`      | ✅ JWT   | Update product (multipart)       |
+| DELETE | `/api/products/:id`      | ✅ JWT   | Delete product                   |
+| GET    | `/api/categories`        | ❌       | Paginated categories             |
+| GET    | `/api/categories/:id`    | ❌       | Single category with products    |
+| POST   | `/api/categories`        | ✅ JWT   | Create category                  |
+| PUT    | `/api/categories/:id`    | ✅ JWT   | Update category                  |
+| DELETE | `/api/categories/:id`    | ✅ JWT   | Delete category                  |
+| GET    | `/api/members`           | ❌       | Paginated members with search    |
+| GET    | `/api/members/:id`       | ✅ JWT   | Single member                    |
+| POST   | `/api/members`           | ✅ JWT   | Create member                    |
+| PUT    | `/api/members/:id`       | ✅ JWT   | Update member                    |
+| DELETE | `/api/members/:id`       | ✅ JWT   | Delete member                    |
+| POST   | `/api/auth/login`        | ❌       | Login (returns JWT)              |
+| GET    | `/api/auth/me`           | ✅ JWT   | Get current user profile         |
+| GET    | `/api/search`            | ❌       | Search products by title         |
+| GET    | `/api/health`            | ❌       | Health check                     |
 
 ---
 
@@ -121,13 +170,14 @@ model Member {
 | Route                       | Description                               |
 | --------------------------- | ----------------------------------------- |
 | `/`                         | Home page with slider, highlights, brands |
-| `/allproducts`              | Full product catalog with search          |
+| `/allproducts`              | Full product catalog with pagination      |
 | `/categories`               | Category listing page                     |
 | `/categories/[id]`          | Products filtered by category             |
 | `/product/[id]`             | Individual product detail page            |
 | `/search`                   | Search results page                       |
+| `/cart`                     | Shopping cart page                        |
 | `/contact`                  | Contact page                              |
-| `/login`                    | Login page                                |
+| `/login`                    | Admin login page                          |
 | `/members`                  | Team members listing with search          |
 | `/admin`                    | Admin dashboard                           |
 | `/admin/manage/allproducts` | Manage products (table + CRUD)            |
@@ -140,88 +190,46 @@ model Member {
 
 ```
 adrenalin-ecommerce/
-├── actions/                    # Server Actions
-│   ├── admin/                  # Admin CRUD operations
-│   │   ├── allproducts/        #   Product server actions
-│   │   ├── categories/         #   Category server actions
-│   │   └── members/            #   Member server actions
-│   ├── allproducts/            # Public product queries
-│   ├── categories/             # Public category queries
-│   ├── home/                   # Home page data fetching
-│   ├── members/                # Public member queries
-│   ├── product-individual/     # Individual product queries
-│   ├── search/                 # Search functionality
-│   └── utils/                  # Shared utilities
+├── frontend/                   # Next.js 14 Frontend
+│   ├── app/                    # App Router pages
+│   │   ├── (home)/             #   Home route group
+│   │   ├── admin/              #   Admin panel
+│   │   ├── allproducts/        #   All products page
+│   │   ├── categories/         #   Categories pages
+│   │   ├── contact/            #   Contact page
+│   │   ├── login/              #   Login page
+│   │   ├── members/            #   Members page
+│   │   ├── layout.tsx          #   Root layout
+│   │   └── globals.css         #   Global styles
+│   ├── components/             # React components
+│   ├── lib/                    # Utilities
+│   │   ├── api/                #   REST API client
+│   │   └── auth.ts             #   JWT helpers
+│   ├── types/                  # TypeScript types
+│   ├── public/                 # Static assets
+│   ├── next.config.js
+│   ├── tailwind.config.ts
+│   └── package.json
 │
-├── app/                        # Next.js App Router
-│   ├── (home)/                 # Home route group
-│   │   ├── page.tsx            #   Home page
-│   │   ├── layout.tsx          #   Home layout (Header, Footer)
-│   │   ├── product/[id]/       #   Product detail page
-│   │   └── search/             #   Search results page
-│   ├── admin/                  # Admin panel
-│   │   ├── layout.tsx          #   Admin layout (Sidebar)
-│   │   ├── page.tsx            #   Dashboard page
-│   │   └── manage/             #   CRUD management
-│   │       ├── allproducts/    #     Product management
-│   │       ├── categories/     #     Category management
-│   │       └── members/        #     Member management
-│   ├── allproducts/            # All products page
-│   ├── categories/             # Categories pages
-│   ├── contact/                # Contact page
-│   ├── login/                  # Login page
-│   ├── members/                # Members page
-│   ├── layout.tsx              # Root layout
-│   └── globals.css             # Global styles
+├── backend/                    # Express REST API
+│   ├── src/                    # Source code
+│   │   ├── config/             #   App config + DB client
+│   │   ├── middlewares/        #   Auth, error, upload
+│   │   ├── repositories/       #   Data access layer
+│   │   ├── services/           #   Business logic
+│   │   ├── routes/             #   Route definitions
+│   │   ├── utils/              #   Helpers
+│   │   ├── app.ts              #   Express app setup
+│   │   └── server.ts           #   Entry point
+│   ├── prisma/                 # Database schema + seed
+│   ├── uploads/                # Uploaded images
+│   ├── Dockerfile
+│   ├── tsconfig.json
+│   └── package.json
 │
-├── components/                 # React Components
-│   ├── admin-sidebar/          # Admin navigation sidebar
-│   ├── best-products-section/  # Homepage product highlights
-│   │   ├── best-products(1)/
-│   │   ├── best-products-reverse(2)/
-│   │   └── best-products(3)/
-│   ├── categories-card/        # Category card component
-│   ├── categories-id-page/     # Category ID page component
-│   ├── categories-page/        # Categories listing component
-│   ├── crud/                   # CRUD form components
-│   │   ├── allproducts/        #   Product create/edit forms
-│   │   ├── categories/         #   Category create/edit forms
-│   │   └── members/            #   Member create/edit forms
-│   ├── dashboard/              # Admin dashboard components
-│   ├── footer/                 # Site footer
-│   ├── header/                 # Site header/navigation
-│   ├── hero-section/           # Hero section component
-│   ├── individual-product/     # Single product view
-│   ├── know-adrenalin/         # Brand section on homepage
-│   ├── members-page/           # Members listing components
-│   ├── pagination/             # Pagination component
-│   ├── product-card/           # Product card component
-│   ├── product-page/           # Product page layout
-│   ├── search/                 # Search bar component
-│   ├── search-page/            # Search results components
-│   ├── slider/                 # Homepage hero slider
-│   ├── table/                  # Admin table components
-│   ├── title/                  # Section title component
-│   └── wallpaper-division/     # Visual section divider
-│
-├── lib/                        # Library/Utilities
-│   └── db.ts                   # Prisma client singleton
-│
-├── types/                      # TypeScript type definitions
-│   └── data.ts                 # Product, Category, Member types
-│
-├── prisma/                     # Database
-│   ├── schema.prisma           # Database schema
-│   ├── seed.ts                 # Database seed script
-│   └── migrations/             # Migration files
-│
-├── public/                     # Static assets
-│
-├── next.config.js              # Next.js configuration
-├── tailwind.config.ts          # Tailwind CSS configuration
-├── tsconfig.json               # TypeScript configuration
-├── postcss.config.js           # PostCSS configuration
-└── package.json                # Dependencies & scripts
+├── docker-compose.yml          # 3 services (postgres, backend, frontend)
+├── .env                        # Environment variables
+└── README.md
 ```
 
 ---
@@ -231,63 +239,75 @@ adrenalin-ecommerce/
 ### Prerequisites
 
 - Node.js 18+
-- PostgreSQL database
-- npm / yarn / pnpm
+- PostgreSQL (or Docker)
+- npm
 
-### Installation
+### Local Development (without Docker)
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/your-username/adrenalin-ecommerce.git
-cd adrenalin-ecommerce
-
-# 2. Install dependencies
+# 1. Start the backend
+cd backend
+cp .env.example .env        # Edit DATABASE_URL
 npm install
-
-# 3. Configure environment variables
-# Create a .env file with your database URL:
-# DATABASE_URL="postgresql://user:password@host:port/database"
-
-# 4. Run database migrations
-npx prisma migrate dev
-
-# 5. (Optional) Seed the database
+npx prisma generate
+npx prisma db push
 npx prisma db seed
+npm run dev                  # Backend at http://localhost:3333
 
-# 6. Start the development server
-npm run dev
+# 2. Start the frontend (new terminal)
+cd ..
+cp .env.local.example .env.local  # Edit if needed
+npm install
+npm run dev                       # Frontend at http://localhost:3001
 ```
+
+### Docker (recommended)
+
+```bash
+# Build and start all services
+docker compose up --build
+
+# Services:
+#   - Frontend:  http://localhost:3001
+#   - Backend:   http://localhost:3333
+#   - Database:  localhost:5433 (host mapped)
+```
+
+Docker starts PostgreSQL, runs migrations and seed automatically, then launches both backend and frontend with health checks ensuring correct startup order.
 
 ### Available Scripts
 
-| Script               | Description              |
-| -------------------- | ------------------------ |
-| `npm run dev`        | Start development server |
-| `npm run build`      | Build for production     |
-| `npm run start`      | Start production server  |
-| `npm run lint`       | Run ESLint               |
-| `npx prisma db seed` | Seed the database        |
+#### Frontend
 
----
+| Script            | Description              |
+| ----------------- | ------------------------ |
+| `npm run dev`     | Start dev server         |
+| `npm run build`   | Build for production     |
+| `npm run start`   | Start production server  |
+| `npm run lint`    | Run ESLint               |
 
-### Docker
+#### Backend
 
-```bash
-# Full stack (app + PostgreSQL):
-docker compose up --build
+| Script                 | Description               |
+| ---------------------- | ------------------------- |
+| `npm run dev`          | Start dev server (tsx)    |
+| `npm run build`        | Compile TypeScript        |
+| `npm run start`        | Start production server   |
+| `npx prisma db push`   | Sync database schema      |
+| `npx prisma db seed`   | Seed the database         |
 
-# App only (with external database):
-docker build -t adrenalin-ecommerce .
-docker run -p 3000:3000 -e DATABASE_URL="postgresql://user:pass@host:5432/db" adrenalin-ecommerce
+### Default Credentials
+
 ```
-
-The `docker-compose.yml` starts a PostgreSQL container and runs migrations automatically on startup.
+Email:    admin@adrenalin.com
+Password: admin123
+```
 
 ---
 
 ## Administration Panel
 
-The admin panel is located at `/admin` and provides full management capabilities:
+Access the admin panel at `/admin` (login required).
 
 ### Dashboard (`/admin`)
 
@@ -299,12 +319,12 @@ Overview page with quick links to management sections.
 - Create new products (title, content, price, categories, image upload)
 - Edit existing products
 - Delete products
-- Images are uploaded locally to `/public/products/`
+- Images are uploaded to the backend via multer
 
 ### Categories (`/admin/manage/categories`)
 
 - View all categories in a table
-- Create new categories (name, image)
+- Create new categories (name, image URL)
 - Edit existing categories
 - Delete categories
 
@@ -319,43 +339,21 @@ Overview page with quick links to management sections.
 
 ## Environment Variables
 
-| Variable       | Description             | Required |
-| -------------- | ----------------------- | -------- |
-| `DATABASE_URL` | PostgreSQL database URL | ✅ Yes   |
+### Backend (`backend/.env`)
 
-Example:
+| Variable       | Description                      | Required |
+| -------------- | -------------------------------- | -------- |
+| `DATABASE_URL` | PostgreSQL connection string     | ✅ Yes   |
+| `JWT_SECRET`   | Secret key for JWT tokens        | ✅ Yes   |
+| `FRONTEND_URL` | Frontend origin for CORS         | ❌       |
+| `PORT`         | Backend port (default: 3333)     | ❌       |
 
-```
-DATABASE_URL="postgresql://postgres:password@localhost:5432/adrenalin"
-```
+### Frontend (`.env.local`)
 
----
-
-## Design System
-
-### Colors
-
-- **Primary Accent:** `#E3FC02` (neon yellow) — used in scrollbar, highlights
-- **Scrollbar Track:** `#1e293b` (slate-800)
-- **Background:** Dark theme with Tailwind slate/neutral palette
-
-### Typography
-
-| Font                  | Usage                     | Weight |
-| --------------------- | ------------------------- | ------ |
-| **Koulen**            | Headings, titles, UI text | 400    |
-| **Just Another Hand** | Accents, decorative text  | 400    |
-| **IBM Plex Sans**     | Body text, descriptions   | 400    |
-
-### Breakpoints
-
-| Breakpoint | Width  |
-| ---------- | ------ |
-| `sm`       | 640px  |
-| `md`       | 768px  |
-| `lg`       | 1024px |
-| `xl`       | 1280px |
-| `2xl`      | 1536px |
-| `3xl`      | 2560px |
+| Variable               | Description                           | Required |
+| ---------------------- | ------------------------------------- | -------- |
+| `NEXT_PUBLIC_API_URL`  | Public API URL for browser requests   | ✅ Yes   |
+| `API_URL`              | Internal API URL for server requests  | ✅ Yes   |
+| `JWT_SECRET`           | Secret for middleware JWT verification| ✅ Yes   |
 
 ---
