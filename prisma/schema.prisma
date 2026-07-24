@@ -20,6 +20,15 @@ model Product {
   price      Float
 }
 
+model User {
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  password String
+  name     String
+  role     String   @default("admin")
+  createdAt DateTime @default(now())
+}
+
 model Category {
   id       Int       @id @default(autoincrement())
   name     String    @unique

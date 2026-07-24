@@ -1,47 +1,71 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { IBM_Plex_Sans, Koulen } from 'next/font/google'
 import Link from 'next/link'
 import { MoveLeft } from 'lucide-react'
-
+import { login } from '@/actions/auth/login'
+import { useRouter } from 'next/navigation'
 
 const ibm = IBM_Plex_Sans({
     subsets: ['latin'],
     weight: "400"
 })
 
-
 const kl = Koulen({
     subsets: ['latin'],
     weight: "400"
 })
 
-
 export default function LoginPage() {
+    const [error, setError] = useState("")
+    const router = useRouter()
+
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
+        setError("")
+        const form = e.currentTarget
+        const formData = new FormData(form)
+        const result = await login(formData)
+        if (result?.error) {
+            setError(result.error)
+        }
+    }
+
     return (
         <div className={ibm.className}>
-
             <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
                 <div className={kl.className}>
                     <h1 className="text-center text-3xl mb-5 mt-24 text-black p-3 bg-[#E3FC02]">Adrenalin</h1>
                 </div>
 
                 <div className="bg-gray-200 shadow w-full rounded-lg divide-y divide-gray-200">
-
-                    <div className="px-5 py-7">
+                    <form onSubmit={handleSubmit} className="px-5 py-7">
+                        {error && (
+                            <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded text-sm text-center">
+                                {error}
+                            </div>
+                        )}
                         <label className="text-sm text-black pb-1 block">E-mail</label>
-                        <input type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+                        <input
+                            name="email"
+                            type="email"
+                            className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
+                            required
+                        />
                         <label className="text-sm text-black pb-1 block">Senha</label>
-                        <input type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
-                        <Link href={"/admin"}>
-                            <button type="button" className="transition duration-200 bg-[#E3FC02] hover:bg-green-400 focus:bg-green-300 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md text-center inline-block">
-                                <span className="inline-block mr-2 text-black">Login</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4 inline-block text-black">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg>
-                            </button>
-                        </Link>
-                    </div>
+                        <input
+                            name="password"
+                            type="password"
+                            className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
+                            required
+                        />
+                        <button type="submit" className="transition duration-200 bg-[#E3FC02] hover:bg-green-400 focus:bg-green-300 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md text-center inline-block">
+                            <span className="inline-block mr-2 text-black">Login</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4 inline-block text-black">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </button>
+                    </form>
 
                     <div className="p-5">
                         <div className="grid grid-cols-3 gap-1">

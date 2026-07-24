@@ -14,7 +14,9 @@
   },
   "dependencies": {
     "@prisma/client": "^5.7.1",
+    "bcryptjs": "^3.0.3",
     "clsx": "^2.1.0",
+    "jose": "^6.2.4",
     "lucide-react": "^0.311.0",
     "next": "^14.2.3",
     "nextjs-toploader": "^1.6.6",
@@ -23,6 +25,7 @@
     "react-select": "^5.8.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20.10.8",
     "@types/react": "^18",
     "@types/react-dom": "^18",
