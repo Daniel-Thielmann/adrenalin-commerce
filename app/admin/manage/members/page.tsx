@@ -1,4 +1,4 @@
-import { fetchMembers } from "@/actions/admin/members/actions"
+import { fetchAllMembersAdmin } from "@/lib/api"
 import DashboardTitle from "@/components/dashboard/dashboard-title"
 import ManageMembersTable from "@/components/table/manage-members"
 import { IBM_Plex_Sans } from 'next/font/google'
@@ -11,7 +11,7 @@ const ibmplex = IBM_Plex_Sans({
 })
 
 export default async function Page() {
-    const { members, count } = await fetchMembers()
+    const { members, count } = await fetchAllMembersAdmin()
 
 
     return (

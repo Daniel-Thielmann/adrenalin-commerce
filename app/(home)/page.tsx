@@ -1,5 +1,4 @@
-import { getBestProducts1, getBestProducts2, getBestProducts3 } from '@/actions/home/actions'
-import fetchCategories from '@/actions/categories/actions'
+import { fetchHomeProducts, fetchCategories } from '@/lib/api'
 import Hero from '@/components/hero'
 import CategoryShowcase from '@/components/categories'
 import FeaturedProducts from '@/components/products/featured'
@@ -9,11 +8,9 @@ import TestimonialSection from '@/components/testimonials'
 import NewsletterSection from '@/components/newsletter'
 
 export default async function Home() {
-  const products1 = await getBestProducts1()
-  const products2 = await getBestProducts2()
-  const products3 = await getBestProducts3()
+  const { bestProducts1, bestProducts2, bestProducts3 } = await fetchHomeProducts()
   const { categories } = await fetchCategories(1)
-  const allProducts = [...products1, ...products2, ...products3]
+  const allProducts = [...bestProducts1, ...bestProducts2, ...bestProducts3]
 
   return (
     <div>

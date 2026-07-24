@@ -1,5 +1,5 @@
 import React from 'react'
-import { Member } from '@prisma/client'
+import { Member } from '@/types/data'
 import Pagination from "../pagination";
 import TertiarySearch from './tertiary-search';
 import Link from 'next/link';

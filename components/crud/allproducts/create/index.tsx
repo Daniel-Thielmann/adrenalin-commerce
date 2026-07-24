@@ -1,7 +1,8 @@
 'use client'
-import { fetchAllCategories, createProduct } from "@/actions/admin/allproducts/actions";
+import { createProduct, fetchAllCategories } from "@/lib/api";
 import { useEffect, useState } from "react";
 import Select from "react-select";
+import { useRouter } from "next/navigation";
 
 type OptionType = { value: number; label: string };
 
@@ -9,11 +10,12 @@ type OptionType = { value: number; label: string };
 export default function CreateProduct() {
 
     const [categories, setCategories] = useState<OptionType[]>([]);
+    const router = useRouter()
 
     useEffect(() => {
         const getCategories = async () => {
             const categoriesFromDb = await fetchAllCategories();
-            setCategories(categoriesFromDb.map(category => ({ value: category.id, label: category.name })));
+            setCategories(categoriesFromDb.map((category: any) => ({ value: category.id, label: category.name })));
         };
 
         getCategories();
@@ -32,6 +34,7 @@ export default function CreateProduct() {
             formData.set('categories', selectedCategories.map(option => option.label).join(','));
         }
         await createProduct(formData);
+        router.push('/admin/manage/allproducts')
     };
 
     return (

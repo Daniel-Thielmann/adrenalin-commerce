@@ -1,5 +1,5 @@
 import React from 'react'
-import { Member } from '@prisma/client'
+import { Member } from '@/types/data'
 import { DeleteButtonMember, EditButtonMember } from '../buttons';
 import Link from 'next/link';
 

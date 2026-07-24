@@ -1,4 +1,4 @@
-import { fetchAllProducts } from "@/actions/admin/allproducts/actions";
+import { fetchAllProductsAdmin } from "@/lib/api";
 import DashboardTitle from "@/components/dashboard/dashboard-title";
 import ManageAllProductsTable from "@/components/table/manage-allProducts";
 import { IBM_Plex_Sans } from 'next/font/google'
@@ -11,7 +11,7 @@ const ibmplex = IBM_Plex_Sans({
 
 
 export default async function Page() {
-    const { products, count } = await fetchAllProducts()
+    const { products, count } = await fetchAllProductsAdmin()
 
     return (
         <div className="w-full space-y-12">

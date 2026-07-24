@@ -1,14 +1,15 @@
 'use client'
-import { fetchAllCategories, updateProduct } from "@/actions/admin/allproducts/actions";
+import { fetchAllCategories, updateProduct } from "@/lib/api";
 import { Product } from "@/types/data"
 import { useEffect, useState } from "react";
 import Select from "react-select";
+import { useRouter } from "next/navigation";
 
 type OptionType = { value: number; label: string };
 
 export default function EditProduct({ product }: { product: Product }) {
     const [categories, setCategories] = useState<OptionType[]>([]);
-    const updateProductWithId = updateProduct.bind(null, product?.id);
+    const router = useRouter()
 
     const selectedCategoriesInitial = product?.categories
         ? product.categories.map(category => ({ value: category.id || 0, label: category.name || "" }))
@@ -28,7 +29,8 @@ export default function EditProduct({ product }: { product: Product }) {
         if (selectedCategories) {
             formData.set('categories', selectedCategories.map(option => option.label).join(','));
         }
-        await updateProductWithId(formData);
+        await updateProduct(product.id, formData);
+        router.push('/admin/manage/allproducts')
     };
 
 
@@ -36,7 +38,7 @@ export default function EditProduct({ product }: { product: Product }) {
     useEffect(() => {
         const getCategories = async () => {
             const categoriesFromDb = await fetchAllCategories();
-            setCategories(categoriesFromDb.map(category => ({ value: category.id, label: category.name })));
+            setCategories(categoriesFromDb.map((category: any) => ({ value: category.id, label: category.name })));
         };
 
         getCategories();

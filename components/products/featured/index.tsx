@@ -1,10 +1,10 @@
-import { getBestProducts1 } from "@/actions/home/actions"
+import { fetchHomeProducts } from "@/lib/api"
 import ProductCard from "@/components/products/product-card"
 import SectionTitle from "@/components/ui/section-title"
 import Link from "next/link"
 
 export default async function FeaturedProducts() {
-  const products = await getBestProducts1()
+  const { bestProducts1 } = await fetchHomeProducts()
 
   return (
     <section className="section-spacing bg-adrenalin-dark/50">
@@ -15,7 +15,7 @@ export default async function FeaturedProducts() {
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-12">
-          {products.map((product, index) => (
+          {bestProducts1.map((product, index) => (
             <ProductCard key={product.id} product={product} index={index} />
           ))}
         </div>

@@ -1,8 +1,7 @@
 'use client'
-import { deleteProduct } from "@/actions/admin/allproducts/actions"
-import { deleteCategory } from "@/actions/admin/categories/actions"
-import { deleteMember } from "@/actions/admin/members/actions"
+import { deleteProduct, deleteCategory, deleteMember } from "@/lib/api"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 export function EditButton({ id }: { id: number | undefined }) {
     return (
@@ -15,16 +14,18 @@ export function EditButton({ id }: { id: number | undefined }) {
 }
 
 export function DeleteButton({ id }: { id: number | undefined }) {
+    const router = useRouter()
     return (
-        <button onClick={() => deleteCategory(id)} className="font-medium text-red-600 hover:underline">
+        <button onClick={async () => { await deleteCategory(id!); router.refresh() }} className="font-medium text-red-600 hover:underline">
             Deletar
         </button>
     )
 }
 
 export function DeleteButtonProduct({ id }: { id: number | undefined }) {
+    const router = useRouter()
     return (
-        <button onClick={() => deleteProduct(id)} className="font-medium text-red-600 hover:underline">
+        <button onClick={async () => { await deleteProduct(id!); router.refresh() }} className="font-medium text-red-600 hover:underline">
             Deletar
         </button>
     )
@@ -51,8 +52,9 @@ export function EditButtonMember({ id }: { id: number | undefined }) {
 }
 
 export function DeleteButtonMember({ id }: { id: number | undefined }) {
+    const router = useRouter()
     return (
-        <button onClick={() => deleteMember(id)} className="font-medium text-red-600 hover:underline">
+        <button onClick={async () => { await deleteMember(id!); router.refresh() }} className="font-medium text-red-600 hover:underline">
             Deletar
         </button>
     )

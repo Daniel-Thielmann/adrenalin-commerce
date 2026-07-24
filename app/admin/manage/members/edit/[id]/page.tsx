@@ -1,4 +1,4 @@
-import { fetchMemberById } from "@/actions/admin/members/actions";
+import { fetchMemberByIdAdmin } from "@/lib/api";
 import EditMember from "@/components/crud/members/edit";
 import DashboardTitle from "@/components/dashboard/dashboard-title";
 import { IBM_Plex_Sans } from 'next/font/google'
@@ -18,7 +18,7 @@ export default async function Page(
 ) {
 
     const id = parseInt(params.id, 10)
-    const member = await fetchMemberById(id);
+    const member = await fetchMemberByIdAdmin(id);
 
     if (!member) {
         return <div>Membro não encontrado</div>;

@@ -1,4 +1,4 @@
-import { Category } from "@prisma/client";
+import { Category } from "@/types/data";
 import CategoriesCard from "../categories-card";
 import Pagination from "../pagination";
 import Link from "next/link";

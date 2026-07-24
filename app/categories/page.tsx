@@ -1,4 +1,4 @@
-import fetchCategories from "@/actions/categories/actions";
+import { fetchCategories } from "@/lib/api";
 import CategoriesPage from "@/components/categories-page";
 
 

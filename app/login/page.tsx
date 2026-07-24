@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { MoveLeft, Mail, Lock } from 'lucide-react'
-import { login } from '@/actions/auth/login'
+import { login } from '@/lib/api'
 import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
@@ -14,9 +14,16 @@ export default function LoginPage() {
         setError("")
         const form = e.currentTarget
         const formData = new FormData(form)
-        const result = await login(formData)
-        if (result?.error) {
-            setError(result.error)
+        const email = formData.get('email') as string
+        const password = formData.get('password') as string
+
+        try {
+            const result = await login(email, password)
+            localStorage.setItem('token', result.token)
+            document.cookie = `session=${result.token}; path=/; max-age=${60 * 60 * 24 * 7}`
+            router.push('/admin')
+        } catch (err: any) {
+            setError(err.message || "Erro ao fazer login")
         }
     }
 

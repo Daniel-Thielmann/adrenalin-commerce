@@ -1,4 +1,4 @@
-import { fetchProductById } from "@/actions/admin/allproducts/actions";
+import { fetchProductByIdAdmin } from "@/lib/api";
 import EditProduct from "@/components/crud/allproducts/edit";
 import DashboardTitle from "@/components/dashboard/dashboard-title";
 import { IBM_Plex_Sans } from 'next/font/google'
@@ -18,7 +18,7 @@ export default async function Page(
 ) {
 
     const id = parseInt(params.id, 10)
-    const product = await fetchProductById(id);
+    const product = await fetchProductByIdAdmin(id);
 
     if (!product) {
         return <div>Produto não encontrado</div>;

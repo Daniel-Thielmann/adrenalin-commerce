@@ -1,4 +1,4 @@
-import { fetchProducts } from "@/actions/allproducts/actions";
+import { fetchAllProducts } from "@/lib/api";
 import ProductsPage from "@/components/product-page";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -11,7 +11,7 @@ export default async function Page({
     }
 }) {
     const currentPage = Number(searchParams?.page) || 1
-    const { products, totalPages } = await fetchProducts(currentPage)
+    const { products, totalPages } = await fetchAllProducts(currentPage)
 
     return (
         <div className="flex flex-col min-h-screen bg-adrenalin-black">

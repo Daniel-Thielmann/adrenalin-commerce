@@ -1,4 +1,4 @@
-import { fetchFilteredProducts } from "@/actions/search/actions";
+import { searchProducts } from "@/lib/api";
 import SearchPage from "@/components/search-page";
 
 export default async function Page({
@@ -11,7 +11,7 @@ export default async function Page({
 }) {
     const query = searchParams?.query || ''
     const currentPage = Number(searchParams?.page) || 1
-    const { products, count, totalPages } = await fetchFilteredProducts(query, currentPage)
+    const { products, count, totalPages } = await searchProducts(query, currentPage)
 
     return (
         <div className="container-premium py-section min-h-screen">

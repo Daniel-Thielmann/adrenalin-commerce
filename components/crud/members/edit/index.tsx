@@ -1,13 +1,26 @@
-import { updateMember } from "@/actions/admin/members/actions"
+'use client'
+import { updateMember } from "@/lib/api"
 import { Member } from "@/types/data"
+import { useRouter } from "next/navigation"
 
 export default function EditCategorie({ member }: { member: Member }) {
+    const router = useRouter()
 
-    const updateMemberWithId = updateMember.bind(null, member?.id)
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
+        const form = e.currentTarget
+        const data = {
+            name: (new FormData(form).get('name') as string) || member.name,
+            email: (new FormData(form).get('email') as string) || member.email,
+            role: (new FormData(form).get('role') as string) || member.role,
+        }
+        await updateMember(member.id, data)
+        router.push('/admin/manage/members')
+    }
 
     return (
         <div className="w-full lg:w-9/12 xl:w-7/12 2xl:w-5/12 p-4 border-2 rounded-md flex flex-col gap-6">
-            <form className="flex flex-col gap-4" autoComplete="off" action={updateMemberWithId}>
+            <form className="flex flex-col gap-4" autoComplete="off" onSubmit={handleSubmit}>
                 <div className="flex flex-col gap-1">
                     <label className="text-white">Nome do membro</label>
                     <input

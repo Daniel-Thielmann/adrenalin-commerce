@@ -19,8 +19,9 @@ export default function AdminSidebar() {
     const toggleAdminSidebar = () => setIsAdminSidebarOpen(!isAdminSideBarOpen)
 
     async function handleLogout() {
-        const { logout } = await import("@/actions/auth/login")
-        await logout()
+        localStorage.removeItem('token')
+        document.cookie = 'session=; path=/; max-age=0'
+        window.location.href = '/login'
     }
 
     return (

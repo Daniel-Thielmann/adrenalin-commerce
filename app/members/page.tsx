@@ -1,4 +1,4 @@
-import { searchMembers } from "@/actions/members/actions";
+import { fetchMembers } from "@/lib/api";
 import MemberPage from '@/components/members-page';
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -13,7 +13,7 @@ export default async function Page({
 }) {
     const currentPage = Number(searchParams?.page) || 1
     const query = searchParams?.query || '';
-    const { members, totalPages, count } = await searchMembers(query, currentPage)
+    const { members, totalPages, count } = await fetchMembers(currentPage, query)
 
     return (
         <div className="flex flex-col min-h-screen bg-adrenalin-black">

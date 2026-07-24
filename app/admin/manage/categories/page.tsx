@@ -1,4 +1,4 @@
-import { fetchCategories } from "@/actions/admin/categories/actions"
+import { fetchAllCategoriesAdmin } from "@/lib/api"
 import DashboardTitle from "@/components/dashboard/dashboard-title"
 import ManageCategoriesTable from "@/components/table/manage-categories"
 import { IBM_Plex_Sans } from 'next/font/google'
@@ -11,9 +11,7 @@ const ibmplex = IBM_Plex_Sans({
 })
 
 export default async function Page() {
-    const { categories, count } = await fetchCategories()
-    console.log(categories)
-
+    const { categories, count } = await fetchAllCategoriesAdmin()
 
     return (
         <div className="w-full space-y-12">
