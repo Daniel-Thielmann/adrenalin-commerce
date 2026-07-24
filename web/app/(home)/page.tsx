@@ -1,4 +1,5 @@
 import { fetchHomeProducts, fetchCategories } from '@/lib/api'
+import type { Product, Category } from '@/types/data'
 import Hero from '@/components/hero'
 import CategoryShowcase from '@/components/categories'
 import FeaturedProducts from '@/components/products/featured'
@@ -8,8 +9,22 @@ import TestimonialSection from '@/components/testimonials'
 import NewsletterSection from '@/components/newsletter'
 
 export default async function Home() {
-  const { bestProducts1, bestProducts2, bestProducts3 } = await fetchHomeProducts()
-  const { categories } = await fetchCategories(1)
+  let bestProducts1: Product[] = []
+  let bestProducts2: Product[] = []
+  let bestProducts3: Product[] = []
+  let categories: Category[] = []
+
+  try {
+    const homeData = await fetchHomeProducts()
+    bestProducts1 = homeData.bestProducts1
+    bestProducts2 = homeData.bestProducts2
+    bestProducts3 = homeData.bestProducts3
+    const catData = await fetchCategories(1)
+    categories = catData.categories
+  } catch (e) {
+    console.error("Erro ao carregar dados da home:", e)
+  }
+
   const allProducts = [...bestProducts1, ...bestProducts2, ...bestProducts3]
 
   return (
