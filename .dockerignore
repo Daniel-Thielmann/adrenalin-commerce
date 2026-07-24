@@ -1,11 +1,10 @@
 node_modules
 .next
 .git
-.gitignore
-*.md
 .env
-.env*.local
-Dockerfile
-.dockerignore
-.vscode
-.vercel
+.env.local
+*.md
+.gitignore
+dist
+backend
+prisma

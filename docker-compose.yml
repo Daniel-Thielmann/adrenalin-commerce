@@ -17,20 +17,38 @@ services:
       timeout: 5s
       retries: 5
 
-  app:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: adrenalin-backend
+    restart: unless-stopped
+    ports:
+      - "3333:3333"
+    environment:
+      DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/adrenalin?schema=public"
+      JWT_SECRET: "adrenalin-jwt-secret-2024-change-in-production"
+      FRONTEND_URL: "http://localhost:3001"
+      PORT: "3333"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: adrenalin-app
+    container_name: adrenalin-frontend
     restart: unless-stopped
     ports:
       - "3001:3000"
     environment:
-      DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/adrenalin?schema=public"
-      NODE_ENV: production
+      NEXT_PUBLIC_API_URL: "http://localhost:3333/api"
+      API_URL: "http://backend:3333/api"
+      JWT_SECRET: "adrenalin-jwt-secret-2024-change-in-production"
+      PORT: "3000"
     depends_on:
-      postgres:
-        condition: service_healthy
+      - backend
 
 volumes:
   postgres_data:

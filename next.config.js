@@ -1,9 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-
-    webpack(config){
-        return config;
-    },
     output:"standalone",
     images: {
         remotePatterns: [
@@ -69,7 +65,6 @@ const nextConfig = {
             },
         ]
     },
-
 }
 
 module.exports = nextConfig;
