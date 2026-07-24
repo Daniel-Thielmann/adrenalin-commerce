@@ -42,7 +42,7 @@ services:
 
   frontend:
     build:
-      context: ./web
+      context: ./frontend
       dockerfile: Dockerfile
     container_name: adrenalin-frontend
     restart: unless-stopped

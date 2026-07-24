@@ -1,4 +1,4 @@
 {
-  "rootDirectory": "web",
+  "rootDirectory": "frontend",
   "framework": "nextjs"
 }

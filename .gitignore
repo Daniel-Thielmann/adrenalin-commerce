@@ -12,10 +12,10 @@ backend/node_modules
 
 # next.js
 /.next/
-/web/.next/
-/web/out/
+/frontend/.next/
+/frontend/out/
 /out/
-/web/.vercel
+/frontend/.vercel
 
 # production
 /build
