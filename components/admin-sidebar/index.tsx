@@ -1,6 +1,6 @@
 'use client'
 
-import { Home, Layers, LayoutDashboard, Menu, ScrollText, X } from "lucide-react"
+import { Home, Layers, LayoutDashboard, LogOut, Menu, ScrollText, X } from "lucide-react"
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
@@ -17,6 +17,12 @@ export default function AdminSidebar() {
     const [isAdminSideBarOpen, setIsAdminSidebarOpen] = useState(false)
 
     const toggleAdminSidebar = () => setIsAdminSidebarOpen(!isAdminSideBarOpen)
+
+    async function handleLogout() {
+        const { logout } = await import("@/actions/auth/login")
+        await logout()
+    }
+
     return (
         <div>
             <div className="bg-green-600 sm:hidden flex flex-wrap items-center justify-between px-3 py-4">
@@ -69,6 +75,11 @@ export default function AdminSidebar() {
                             </li>
                         ))}
                     </ul>
+                    <div className="h-[1px] w-full bg-gray-300 my-4" />
+                    <button onClick={handleLogout} className="flex items-center w-full px-2 py-3 rounded-lg hover:bg-black/20">
+                        <LogOut className="w-6 h-6 text-gray-300" />
+                        <span className="ms-3 text-xl text-black">Sair</span>
+                    </button>
                 </div>
             </aside>
         </div >
