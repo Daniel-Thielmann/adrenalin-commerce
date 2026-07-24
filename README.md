@@ -270,6 +270,21 @@ npm run dev
 
 ---
 
+### Docker
+
+```bash
+# Full stack (app + PostgreSQL):
+docker compose up --build
+
+# App only (with external database):
+docker build -t adrenalin-ecommerce .
+docker run -p 3000:3000 -e DATABASE_URL="postgresql://user:pass@host:5432/db" adrenalin-ecommerce
+```
+
+The `docker-compose.yml` starts a PostgreSQL container and runs migrations automatically on startup.
+
+---
+
 ## Administration Panel
 
 The admin panel is located at `/admin` and provides full management capabilities:
