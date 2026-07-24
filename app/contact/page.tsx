@@ -5,6 +5,8 @@ import { IBM_Plex_Sans, Koulen } from 'next/font/google'
 import Link from 'next/link'
 import Image from 'next/image'
 
+export const dynamic = 'force-dynamic'
+
 const ibm = IBM_Plex_Sans({
   subsets: ['latin'],
   weight: "400"

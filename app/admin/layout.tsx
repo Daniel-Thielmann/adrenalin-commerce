@@ -1,6 +1,7 @@
 import AdminSidebar from '@/components/admin-sidebar'
 import NextTopLoader from 'nextjs-toploader'
 
+export const dynamic = 'force-dynamic'
 
 export default function AdminLayout({
     children,
