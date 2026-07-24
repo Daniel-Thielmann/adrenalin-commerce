@@ -34,7 +34,7 @@ const slides: Slide[] = [
     ctaLink: "/allproducts",
   },
   {
-    src: "/home/best-products-side-image/chama.jpg",
+    src: "/home/best-products-side-image/chama.png",
     title: "Explore o Impossível",
     subtitle: "Sua jornada começa com equipamentos que você pode confiar",
     cta: "Começar Agora",
