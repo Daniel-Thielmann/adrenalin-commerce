@@ -3,6 +3,7 @@ import { ShoppingBag } from "lucide-react";
 import type { Product } from "@/types/data";
 import Link from "next/link";
 import { formatCurrency } from "@/lib/formatters";
+import AddToCartButton from "@/components/add-to-cart-button";
 
 export default function IndividualProduct({ product }: { product: Product | null }) {
     if (!product) {
@@ -59,10 +60,7 @@ export default function IndividualProduct({ product }: { product: Product | null
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-white/5">
-                    <button className="btn-primary flex-1 justify-center" aria-label="Comprar agora">
-                        <ShoppingBag className="w-4 h-4" aria-hidden="true" />
-                        Comprar Agora
-                    </button>
+                    <AddToCartButton product={product} />
                     <Link href="/allproducts" className="btn-secondary flex-1 justify-center text-center">
                         Continuar Comprando
                     </Link>

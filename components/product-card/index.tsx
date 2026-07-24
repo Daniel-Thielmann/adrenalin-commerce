@@ -1,7 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { CircleDollarSign } from "lucide-react";
+import { CircleDollarSign, ShoppingCart } from "lucide-react";
 import { Product } from "@/types/data";
+import { formatCurrency } from "@/lib/formatters";
+import AddToCartButton from "@/components/add-to-cart-button";
 
 function truncate(str: string, num: number): string {
     if (str.length <= num) {
@@ -33,7 +35,7 @@ export default function ProductCard({ product }: { product: Product }) {
                             <div className="flex items-center gap-1 text-green-400">
                                 <CircleDollarSign className="h-5 w-5" />
                                 <span className="text-base 2xl:text-xl 3xl:text-2xl font-semibold">
-                                    {product?.price}
+                                    {formatCurrency(product?.price)}
                                 </span>
                             </div>
                         </div>
@@ -41,6 +43,9 @@ export default function ProductCard({ product }: { product: Product }) {
                     <p className="flex justify-center text-base 2xl:text-xl 3xl:text-2xl">
                         {product?.content ? truncate(product.content, 100) : ''}
                     </p>
+                    <div className="mt-2" onClick={(e) => e.preventDefault()}>
+                      <AddToCartButton product={product} />
+                    </div>
                     <div className="flex justify-center flex-wrap items-center gap-2">
                         {product?.categories?.map((category, index) => (
                             <span key={index} className="text-pink-500 text-sm 2xl:text-lg 3xl:text-xl font-semibold uppercase break-words">

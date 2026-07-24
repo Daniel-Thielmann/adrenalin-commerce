@@ -21,3 +21,11 @@ export type Member = {
   email: string;
   role: string;
 };
+
+export type CartItem = {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+  quantity: number;
+};
