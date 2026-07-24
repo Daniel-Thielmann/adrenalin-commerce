@@ -1,6 +1,6 @@
 <div align="center">
   <br/>
-  <img src="public/home/dash.png" alt="Adrenalin Ecommerce Dashboard" width="800" style="border-radius: 8px;"/>
+  <img src="frontend\public\home\dash.png" alt="Adrenalin Ecommerce Dashboard" width="800" style="border-radius: 8px;"/>
   <br/><br/>
   <h1>ADRENALIN ECOMMERCE</h1>
   <p><strong>Extreme Sports E-Commerce Platform</strong></p>
