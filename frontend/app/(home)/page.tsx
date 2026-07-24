@@ -8,6 +8,8 @@ import PromotionalBanner from '@/components/banner'
 import TestimonialSection from '@/components/testimonials'
 import NewsletterSection from '@/components/newsletter'
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   let bestProducts1: Product[] = []
   let bestProducts2: Product[] = []

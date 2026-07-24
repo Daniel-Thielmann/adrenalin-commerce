@@ -29,7 +29,7 @@ export async function apiFetch<T>(path: string, options: FetchOptions = {}): Pro
     ...(fetchOpts.headers as Record<string, string>),
   };
 
-  const res = await fetch(url, { ...fetchOpts, headers });
+  const res = await fetch(url, { ...fetchOpts, headers, cache: "no-store" });
 
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
