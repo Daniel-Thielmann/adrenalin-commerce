@@ -1,19 +1,25 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import Link from "next/link"
-import { X, Plus, Minus, Trash2, ShoppingBag } from "lucide-react"
-import { useCart } from "@/contexts/cart-context"
-import { formatCurrency } from "@/lib/formatters"
+import Image from "next/image";
+import Link from "next/link";
+import { X, Plus, Minus, Trash2, ShoppingBag } from "lucide-react";
+import { useCart } from "@/contexts/cart-context";
+import { formatCurrency } from "@/lib/formatters";
 
-export default function CartModal({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const { items, removeItem, updateQuantity, totalPrice } = useCart()
+export default function CartModal({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
+  const { items, removeItem, updateQuantity, totalPrice } = useCart();
 
   return (
     <>
       {open && (
         <div
-          className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm"
+          className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-sm"
           onClick={onClose}
         />
       )}
@@ -49,9 +55,15 @@ export default function CartModal({ open, onClose }: { open: boolean; onClose: (
           </div>
         ) : (
           <>
-            <div className="flex-1 overflow-y-auto p-4 space-y-3" style={{ height: "calc(100% - 180px)" }}>
+            <div
+              className="flex-1 overflow-y-auto p-4 space-y-3"
+              style={{ height: "calc(100% - 180px)" }}
+            >
               {items.map((item) => (
-                <div key={item.id} className="flex gap-3 bg-white/5 rounded-lg p-3">
+                <div
+                  key={item.id}
+                  className="flex gap-3 bg-white/5 rounded-lg p-3"
+                >
                   <div className="relative w-16 h-16 shrink-0 bg-adrenalin-gray rounded-md overflow-hidden">
                     <Image
                       src={item.image || "/home/placeholder/placeholder.jpg"}
@@ -77,7 +89,9 @@ export default function CartModal({ open, onClose }: { open: boolean; onClose: (
                     <div className="flex items-center gap-2 mt-2">
                       <div className="flex items-center border border-white/10 rounded">
                         <button
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity - 1)
+                          }
                           className="w-6 h-6 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/5 transition-colors"
                         >
                           <Minus className="w-2.5 h-2.5" />
@@ -86,7 +100,9 @@ export default function CartModal({ open, onClose }: { open: boolean; onClose: (
                           {item.quantity}
                         </span>
                         <button
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity + 1)
+                          }
                           className="w-6 h-6 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/5 transition-colors"
                         >
                           <Plus className="w-2.5 h-2.5" />
@@ -123,5 +139,5 @@ export default function CartModal({ open, onClose }: { open: boolean; onClose: (
         )}
       </div>
     </>
-  )
+  );
 }
