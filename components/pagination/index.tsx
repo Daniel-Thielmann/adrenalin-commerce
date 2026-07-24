@@ -1,5 +1,4 @@
 'use client'
-
 import clsx from "clsx"
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react"
 import Link from "next/link"
@@ -12,52 +11,43 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
 
     const createPageURL = (pageNumber: number | string) => {
         const params = new URLSearchParams(searchParams)
-        params.set('page', "1")
-        params.set("page", pageNumber.toString())
+        params.set('page', pageNumber.toString())
         return `${pathname}?${params.toString()}`
     }
 
     const allPages = generatePagination(currentPage, totalPages)
 
     return (
-        <div className="w-full flex items-center px-4 py-2 justify-center gap-6">
-            <div className="flex">
-                <div className="text-white hover:text-black ">
-                    <PaginationArrow
-                        direction="left"
-                        href={createPageURL(currentPage - 1)}
-                        isDisabled={currentPage <= 1}
-                    />
-                </div>
-                <div className="flex -space-x-px">
-                    {allPages.map((page, index) => {
-                        let position: 'first' | 'last' | 'single' | 'middle' | undefined;
+        <div className="w-full flex items-center justify-center gap-4">
+            <PaginationArrow
+                direction="left"
+                href={createPageURL(currentPage - 1)}
+                isDisabled={currentPage <= 1}
+            />
+            <div className="flex gap-1">
+                {allPages.map((page, index) => {
+                    let position: 'first' | 'last' | 'single' | 'middle' | undefined;
+                    if (index === 0) position = 'first';
+                    if (index === allPages.length - 1) position = 'last';
+                    if (allPages.length === 1) position = 'single';
+                    if (page === '...') position = 'middle';
 
-                        if (index === 0) position = 'first';
-                        if (index === allPages.length - 1) position = 'last';
-                        if (allPages.length === 1) position = 'single';
-                        if (page === '...') position = 'middle';
-
-                        return (
-                            <PaginationNumber
-                                key={page}
-                                href={createPageURL(page)}
-                                page={page}
-                                position={position}
-                                isActive={currentPage === page}
-                            />
-                        );
-                    })}
-                </div>
-
-                <div className="text-white hover:text-black ">
-                    <PaginationArrow
-                        direction="right"
-                        href={createPageURL(currentPage + 1)}
-                        isDisabled={currentPage >= totalPages}
-                    />
-                </div>
+                    return (
+                        <PaginationNumber
+                            key={page}
+                            href={createPageURL(page)}
+                            page={page}
+                            position={position}
+                            isActive={currentPage === page}
+                        />
+                    );
+                })}
             </div>
+            <PaginationArrow
+                direction="right"
+                href={createPageURL(currentPage + 1)}
+                isDisabled={currentPage >= totalPages}
+            />
         </div>
     )
 }
@@ -74,13 +64,11 @@ function PaginationNumber({
     isActive: boolean;
 }) {
     const className = clsx(
-        'flex h-10 w-10 items-center justify-center text-sm border',
+        'flex h-9 w-9 items-center justify-center font-body text-xs transition-all duration-300',
         {
-            'rounded-l-md bg-[#E3FC02] hover:bg-gray-200': position === 'first' || position === 'single',
-            'rounded-r-md bg-[#E3FC02]': position === 'last' || position === 'single',
-            'z-10 bg-[#E3FC02] text-black': isActive,
-            'hover:bg-gray-200 bg-[#E3FC02]': !isActive && position !== 'middle',
-            'text-black bg-[#E3FC02]': position === 'middle',
+            'bg-adrenalin-yellow text-adrenalin-black font-semibold': isActive,
+            'border border-white/10 text-adrenalin-light hover:border-white/30 hover:text-white': !isActive && position !== 'middle',
+            'text-adrenalin-light/30': position === 'middle',
         },
     );
 
@@ -103,21 +91,18 @@ function PaginationArrow({
     isDisabled?: boolean;
 }) {
     const className = clsx(
-        'flex h-10 w-10 items-center justify-center rounded-md border',
+        'flex h-9 w-9 items-center justify-center border transition-all duration-300',
         {
-            'pointer-events-none text-gray-300': isDisabled,
-            'hover:bg-gray-100': !isDisabled,
-            'mr-2 md:mr-4': direction === 'left',
-            'ml-2 md:ml-4': direction === 'right',
+            'pointer-events-none text-white/20 border-white/5': isDisabled,
+            'border-white/10 text-adrenalin-light hover:text-white hover:border-white/30': !isDisabled,
         },
     );
 
-    const icon =
-        direction === 'left' ? (
-            <ArrowLeftIcon className="w-4" />
-        ) : (
-            <ArrowRightIcon className="w-4" />
-        );
+    const icon = direction === 'left' ? (
+        <ArrowLeftIcon className="w-4" />
+    ) : (
+        <ArrowRightIcon className="w-4" />
+    );
 
     return isDisabled ? (
         <div className={className}>{icon}</div>
@@ -129,27 +114,15 @@ function PaginationArrow({
 }
 
 const generatePagination = (currentPage: number, totalPages: number) => {
-    // If the total number of pages is 7 or less,
-    // display all pages without any ellipsis.
     if (totalPages <= 7) {
         return Array.from({ length: totalPages }, (_, i) => i + 1);
     }
-
-    // If the current page is among the first 3 pages,
-    // show the first 3, an ellipsis, and the last 2 pages.
     if (currentPage <= 3) {
         return [1, 2, 3, '...', totalPages - 1, totalPages];
     }
-
-    // If the current page is among the last 3 pages,
-    // show the first 2, an ellipsis, and the last 3 pages.
     if (currentPage >= totalPages - 2) {
         return [1, 2, '...', totalPages - 2, totalPages - 1, totalPages];
     }
-
-    // If the current page is somewhere in the middle,
-    // show the first page, an ellipsis, the current page and its neighbors,
-    // another ellipsis, and the last page.
     return [
         1,
         '...',

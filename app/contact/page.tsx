@@ -1,147 +1,143 @@
-import Footer from '@/components/footer'
-import Header from '@/components/header'
 import React from 'react'
-import { IBM_Plex_Sans, Koulen } from 'next/font/google'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Phone, Mail, MapPin, ArrowRight, MessageCircle, Instagram } from 'lucide-react'
+import Header from '@/components/header'
+import Footer from '@/components/footer'
 
 export const dynamic = 'force-dynamic'
 
-const ibm = IBM_Plex_Sans({
-  subsets: ['latin'],
-  weight: "400"
-})
-
-
-const kl = Koulen({
-  subsets: ['latin'],
-  weight: "400"
-})
-
-
 function ContatoPage() {
   return (
-    <div className=''>
-
+    <div className="flex flex-col min-h-screen bg-adrenalin-black">
       <Header />
-
-      <div className='flex flex-items justify-center items-center'>
-        <h1 className="flex justify-center items-center text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl mb-12">
-          Fale Conosco</h1>
-      </div>
-
-      <div className={ibm.className}>
-        <form className='grid grid-cols-2 px-24'>
-          <input
-            id="Nome"
-            name="nome"
-            type="text"
-            className="border border-gray-600 px-8 py-5 text-white bg-zinc-900 hover:bg-zinc-800 caret-white transition-all duration-300"
-            placeholder="Nome"
-          />
-          <input
-            id="Celular"
-            name="Celular"
-            type="text"
-            className="border border-gray-600  px-8 py-5 text-white bg-zinc-900 hover:bg-zinc-800 caret-white transition-all duration-300"
-            placeholder="Celular"
-          />
-        </form>
-        <form className='px-24'>
-          <input
-            id="Email"
-            name="Email"
-            type="text"
-            className="border border-gray-600 px-8 py-5 w-full text-white bg-zinc-900 hover:bg-zinc-800 caret-white transition-all duration-300"
-            placeholder="Email"
-          />
-        </form>
-        <form className='px-24'>
-          <div className="relative">
-            <label
-              htmlFor="Descrição"
-              className="absolute left-8 top-4 text-gray-400 pointer-events-none transition-all duration-300"
-            >
-              Descrição
-            </label>
-            <textarea
-              id="Descrição"
-              name="Descrição"
-              className="border border-gray-600 px-8 py-5 w-full text-white bg-zinc-900 hover:bg-zinc-800 caret-white placeholder-left transition-all duration-300"
-              placeholder=" "
-              style={{ padding: '8rem' }}
-            />
-          </div>
-        </form>
-
-        <div className='flex flex-items justify-center items-center my-8'>
-          <button className="bg-[#E3FC02] p-4 rounded-lg w-1/2 hover:bg-green-500">
-            <Link href={'/'}>
-              Enviar
-            </Link>
-          </button>
-        </div>
-
-        <div className={kl.className}>
-          <div className='flex flex-col justify-center items-center'>
-            <h1 className="flex justify-center items-center text-gray-400 text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl mt-12">
-              Links Uteis</h1>
-            <h2 className="flex justify-center items-center text-gray-300 text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl mb-16">
-              Clique para Acessar</h2>
-
-            <Link href={'https://api.whatsapp.com/send?phone=5532991468218&text=Boa%20noite!%20Vim%20pela%20Adrenalin'} target='_blank'>
-              <h3 className="flex justify-center items-center text-gray-300 text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl mb-12">
-                Whatsapp</h3>
-            </Link>
-            <Link href={'https://api.whatsapp.com/send?phone=5532991468218&text=Boa%20noite!%20Vim%20pela%20Adrenalin'} target='_blank'>
-              <Image
-                src='/logo/zapzap.png'
-                alt="imagem em destaque"
-                width={250}
-                height={250}
-                className="cursor-pointer mb-16 text-white"
-              />
-            </Link>
-
-            <Link href={'https://www.instagram.com/daniel_thielmann/'} target='_blank'>
-              <h3 className="flex justify-center items-center text-gray-300 text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl mb-12">
-                Instagram</h3>
-            </Link>
-            <Link href={'https://www.instagram.com/daniel_thielmann/'} target='_blank'>
-              <Image
-                src='/logo/insta.png'
-                alt="imagem em destaque"
-                width={250}
-                height={250}
-                className="cursor-pointer"
-              />
-            </Link>
-            <div className={ibm.className}>
-              <div className='my-12 flex text-2xl flex-col p-12 text-white space-y-12 text-center'>
-                <p>
-                  Você é um aventureiro que busca emoções fortes e diversão sem limites? Então você veio ao lugar certo!
-                </p>
-                <p>
-                  Aqui você encontra tudo o que precisa para viver experiências incríveis e inesquecíveis no esporte radical.
-                </p>
-                <p>
-                  Entre em contato conosco e descubra as melhores opções de equipamentos, acessórios, roteiros e dicas para praticar downhill,
-                  motocross, UTVs, quadriciclos, wind surf, camping e muito mais. Não importa se você é um profissional ou um iniciante, nós temos o que
-                  você precisa para sentir a adrenalina correr nas suas veias!</p>
-                <p>
-                  Preencha o formulário acima, ou se preferir, fale conosco pelo whatsapp ou instagram. Estamos ansiosos para atender você!
-                </p>
-              </div>
+      <main className="flex-1">
+        <section className="section-spacing">
+          <div className="container-premium">
+            <div className="flex flex-col items-center text-center gap-2 mb-16">
+              <h1 className="font-heading text-display-sm md:text-display-md uppercase tracking-wide leading-none">
+                Fale Conosco
+              </h1>
+              <p className="font-body text-sm md:text-base text-adrenalin-light max-w-lg">
+                Estamos prontos para ajudar você na sua próxima aventura
+              </p>
             </div>
 
-          </div>
-          <Footer />
-        </div>
+            <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+              <div className="card-premium p-8 md:p-10">
+                <h2 className="font-heading text-3xl md:text-4xl uppercase tracking-wide text-white mb-8">
+                  Envie sua Mensagem
+                </h2>
+                <form className="space-y-5">
+                  <div className="grid grid-cols-2 gap-4">
+                    <input
+                      id="Nome"
+                      name="nome"
+                      type="text"
+                      className="w-full px-4 py-3 bg-adrenalin-black border border-white/10 text-white font-body text-sm
+                                 placeholder:text-adrenalin-light/30 focus:outline-none focus:border-adrenalin-yellow/50 transition-all duration-300"
+                      placeholder="Nome"
+                    />
+                    <input
+                      id="Celular"
+                      name="Celular"
+                      type="text"
+                      className="w-full px-4 py-3 bg-adrenalin-black border border-white/10 text-white font-body text-sm
+                                 placeholder:text-adrenalin-light/30 focus:outline-none focus:border-adrenalin-yellow/50 transition-all duration-300"
+                      placeholder="Celular"
+                    />
+                  </div>
+                  <input
+                    id="Email"
+                    name="Email"
+                    type="email"
+                    className="w-full px-4 py-3 bg-adrenalin-black border border-white/10 text-white font-body text-sm
+                               placeholder:text-adrenalin-light/30 focus:outline-none focus:border-adrenalin-yellow/50 transition-all duration-300"
+                    placeholder="Email"
+                  />
+                  <textarea
+                    id="Descrição"
+                    name="Descrição"
+                    rows={5}
+                    className="w-full px-4 py-3 bg-adrenalin-black border border-white/10 text-white font-body text-sm
+                               placeholder:text-adrenalin-light/30 focus:outline-none focus:border-adrenalin-yellow/50 transition-all duration-300 resize-none"
+                    placeholder="Sua mensagem"
+                  />
+                  <button type="submit" className="btn-primary w-full justify-center">
+                    Enviar Mensagem
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </form>
+              </div>
 
-      </div>
+              <div className="flex flex-col gap-6">
+                <h2 className="font-heading text-3xl md:text-4xl uppercase tracking-wide text-white">
+                  Informações de Contato
+                </h2>
+                <p className="font-body text-sm text-adrenalin-light leading-relaxed">
+                  Tem alguma dúvida sobre nossos produtos, prazos de entrega ou precisa de ajuda 
+                  para escolher o equipamento ideal? Estamos aqui para ajudar!
+                </p>
+
+                <div className="space-y-4 mt-4">
+                  <div className="flex items-center gap-4 p-4 card-premium">
+                    <div className="w-10 h-10 flex items-center justify-center bg-adrenalin-yellow/10 border border-adrenalin-yellow/20 shrink-0">
+                      <Phone className="w-5 h-5 text-adrenalin-yellow" />
+                    </div>
+                    <div>
+                      <h4 className="font-body font-semibold text-xs text-white/60 uppercase tracking-wider">WhatsApp</h4>
+                      <Link href="https://api.whatsapp.com/send?phone=5532991468218" target="_blank" className="font-body text-sm text-white hover:text-adrenalin-yellow transition-colors">
+                        (32) 99146-8218
+                      </Link>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4 p-4 card-premium">
+                    <div className="w-10 h-10 flex items-center justify-center bg-adrenalin-yellow/10 border border-adrenalin-yellow/20 shrink-0">
+                      <Mail className="w-5 h-5 text-adrenalin-yellow" />
+                    </div>
+                    <div>
+                      <h4 className="font-body font-semibold text-xs text-white/60 uppercase tracking-wider">Email</h4>
+                      <span className="font-body text-sm text-white">contato@adrenalin.com.br</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4 p-4 card-premium">
+                    <div className="w-10 h-10 flex items-center justify-center bg-adrenalin-yellow/10 border border-adrenalin-yellow/20 shrink-0">
+                      <MapPin className="w-5 h-5 text-adrenalin-yellow" />
+                    </div>
+                    <div>
+                      <h4 className="font-body font-semibold text-xs text-white/60 uppercase tracking-wider">Localização</h4>
+                      <span className="font-body text-sm text-white">Brasil</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 p-6 card-premium border border-adrenalin-yellow/10">
+                  <h3 className="font-heading text-2xl uppercase tracking-wide text-adrenalin-yellow mb-4">
+                    Redes Sociais
+                  </h3>
+                  <div className="flex gap-3">
+                    <Link href="https://api.whatsapp.com/send?phone=5532991468218" target="_blank"
+                      className="flex items-center gap-2 px-4 py-2.5 border border-white/10 text-white/70 hover:text-adrenalin-yellow hover:border-adrenalin-yellow/30 transition-all duration-300">
+                      <MessageCircle className="w-4 h-4" />
+                      <span className="font-body text-xs uppercase tracking-wider">WhatsApp</span>
+                    </Link>
+                    <Link href="https://www.instagram.com/daniel_thielmann/" target="_blank"
+                      className="flex items-center gap-2 px-4 py-2.5 border border-white/10 text-white/70 hover:text-adrenalin-yellow hover:border-adrenalin-yellow/30 transition-all duration-300">
+                      <Instagram className="w-4 h-4" />
+                      <span className="font-body text-xs uppercase tracking-wider">Instagram</span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
     </div>
   )
-
 }
 
 export default ContatoPage

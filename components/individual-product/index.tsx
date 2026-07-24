@@ -1,60 +1,71 @@
 import Image from "next/image";
-import { IBM_Plex_Sans } from 'next/font/google'
+import { ShoppingBag } from "lucide-react";
+import type { Product } from "@/types/data";
 import Link from "next/link";
-import { DollarSign } from "lucide-react";
-import { IndividualProduct } from "@/types/data";
-import React from "react";
+import { formatCurrency } from "@/lib/formatters";
 
-const ibm = IBM_Plex_Sans({
-    subsets: ['latin'],
-    weight: "400"
-})
-
-
-export default function IndividualProduct({ product }: { product: IndividualProduct }) {
-
-    console.log(product);
-
+export default function IndividualProduct({ product }: { product: Product | null }) {
+    if (!product) {
+        return (
+            <div className="flex flex-col items-center justify-center py-20 text-center">
+                <h1 className="font-heading text-4xl text-white/30 uppercase mb-4">Produto não encontrado</h1>
+                <Link href="/allproducts" className="btn-primary">
+                    Ver Todos os Produtos
+                </Link>
+            </div>
+        );
+    }
 
     return (
-        <div className="w-full flex flex-col lg:grid lg:grid-cols-8 gap-8">
-            <div className="lg:col-span-4">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
+            <div className="relative aspect-square overflow-hidden bg-adrenalin-gray">
                 <Image
-                    src={product?.image || '/home/placeholder/placeholder.jpg'}
-                    alt="Placeholder"
-                    width={1920}
-                    height={1080}
-                    className="lg:h-[400px] object-cover aspect-video w-full rounded-xl"
+                    src={product.image || '/home/placeholder/placeholder.jpg'}
+                    alt={product.title}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    priority
                 />
             </div>
-            <div className="lg:col-span-4 lg:max-h-[700px] 3xl:max-h-max lg:px-4 overflow-auto flex flex-col gap-8 lg:gap-4">
-                <div className="flex flex-wrap items-center gap-4 justify-between font-semibold text-gray-300">
-                    <h1 className="text-2xl md:text-3xl 2xl:text-4xl 3xl:text-5xl line-clamp-2">
-                        {product?.title}
-                    </h1>
-                    <div className="flex flex-items justify-center items-center gap-1 text-green-400">
-                        <DollarSign /> {product?.price}
-                    </div>
-                </div>
-                <p className="text-base 2xl:text-lg 3xl:text-xl text-justify text-gray-300">
-                    {product?.categories?.map((category, index) => (
-                        <React.Fragment key={index}>
-                            <span>{category.name}</span>
-                            <br />
-                        </React.Fragment>
-                    ))}
-                </p>
-                <div className={ibm.className}>
-                    <div className="flex flex-wrap justify-center items-center">
-                        <p className="text-base 2xl:text-lg 3xl:text-xl text-justify text-gray-300 mb-8">
-                            {product?.content}
-                        </p>
-                        <button className="bg-[#E3FC02] p-4 rounded-lg flex flex-items justify-center items-center w-4/5 hover:bg-green-500">
-                            <Link href={'/'}>
-                                Comprar
+
+            <div className="flex flex-col gap-6">
+                <div>
+                    <div className="flex flex-wrap gap-2 mb-3">
+                        {product.categories?.map((category) => (
+                            <Link
+                                key={category.id}
+                                href={`/categories/${category.id}`}
+                                className="font-body text-xs text-adrenalin-light uppercase tracking-wider hover:text-adrenalin-yellow transition-colors border border-white/10 px-3 py-1"
+                            >
+                                {category.name}
                             </Link>
-                        </button>
+                        ))}
                     </div>
+
+                    <h1 className="font-heading text-display-xs md:text-display-sm text-white uppercase leading-none tracking-wide mb-4">
+                        {product.title}
+                    </h1>
+                </div>
+
+                <div className="flex items-baseline gap-3">
+                    <span className="font-heading text-4xl md:text-5xl text-adrenalin-yellow leading-none">
+                        {formatCurrency(product.price)}
+                    </span>
+                </div>
+
+                <p className="font-body text-sm text-white/60 leading-relaxed">
+                    {product.content}
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-white/5">
+                    <button className="btn-primary flex-1 justify-center" aria-label="Comprar agora">
+                        <ShoppingBag className="w-4 h-4" aria-hidden="true" />
+                        Comprar Agora
+                    </button>
+                    <Link href="/allproducts" className="btn-secondary flex-1 justify-center text-center">
+                        Continuar Comprando
+                    </Link>
                 </div>
             </div>
         </div>
