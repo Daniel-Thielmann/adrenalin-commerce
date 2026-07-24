@@ -1,81 +1,58 @@
 import React from 'react'
 import { Member } from '@prisma/client'
 import Pagination from "../pagination";
-import { IBM_Plex_Sans } from 'next/font/google'
 import TertiarySearch from './tertiary-search';
 import Link from 'next/link';
 
-const ibm = IBM_Plex_Sans({
-    subsets: ['latin'],
-    weight: "400"
-})
-
 export default function MemberPage({ members, count, totalPages, query }: { members: Member[], count: number, totalPages: number, query: string }) {
     return (
-        <div className={ibm.className}>
-            <div className="">
-                <TertiarySearch count={count} query={query} />
-                {count === 0 ? (
-                    <div className="w-full flex flex-col">
-                        <span className="text-2xl text-white/70">
-                            Nenhum membro encontrado.
-                        </span>
-                        <span className="text-xl text-white/70">
-                            Tente procurar por outro membro, ou veja mais <Link href={'/members'}>membros</Link>
+        <div>
+            <TertiarySearch count={count} query={query} />
+            {count === 0 ? (
+                <div className="flex flex-col items-center py-16">
+                    <span className="font-body text-lg text-white/50 mb-2">
+                        Nenhum membro encontrado.
+                    </span>
+                    <Link href="/members" className="font-body text-sm text-adrenalin-yellow hover:underline">
+                        Ver todos os membros
+                    </Link>
+                </div>
+            ) : (
+                <div className="card-premium overflow-hidden">
+                    <div className="p-4 border-b border-white/5 flex items-center justify-between">
+                        <span className="font-body text-sm text-adrenalin-light">
+                            {count} membros encontrados
                         </span>
                     </div>
-                ) : (
-                    <div className="w-full p-4 border-2 rounded-md flex flex-col gap-4">
-                        <div className="flex flex-wrap items-center w-full justify-between">
-                            <span className="text-base self-end text-gray-100">
-                                {count} membros encontrados...
-                            </span>
-                        </div>
-                        <div className='flex flex-col justify-center items-center'>
-                            <table className="text-base text-left w-4/5">
-                                <thead className="uppercase bg-gray-50">
-                                    <tr>
-                                        <th scope="col" className="px-6 py-3">
-                                            ID
-                                        </th>
-                                        <th scope="col" className="px-6 py-3">
-                                            Nome
-                                        </th>
-                                        <th scope="col" className="px-6 py-3">
-                                            Email
-                                        </th>
-                                        <th scope="col" className="px-6 py-3">
-                                            Cargo
-                                        </th>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left">
+                            <thead>
+                                <tr className="border-b border-white/5 bg-adrenalin-black/50">
+                                    <th className="font-body text-xs uppercase tracking-wider text-adrenalin-light/60 px-6 py-4">ID</th>
+                                    <th className="font-body text-xs uppercase tracking-wider text-adrenalin-light/60 px-6 py-4">Nome</th>
+                                    <th className="font-body text-xs uppercase tracking-wider text-adrenalin-light/60 px-6 py-4">Email</th>
+                                    <th className="font-body text-xs uppercase tracking-wider text-adrenalin-light/60 px-6 py-4">Cargo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {members.map((member: Member, index: number) => (
+                                    <tr key={index} className="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                                        <td className="font-body text-sm text-white/70 px-6 py-4">{member?.id}</td>
+                                        <td className="font-body text-sm text-white px-6 py-4">{member?.name}</td>
+                                        <td className="font-body text-sm text-white/70 px-6 py-4">{member?.email}</td>
+                                        <td className="font-body text-sm text-white/70 px-6 py-4">{member?.role}</td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    {members.map((member: Member, index: number) => (
-                                        <tr key={index} className="bg-white border-b hover:bg-gray-50">
-                                            <th className="px-6 py-6 font-medium">
-                                                {member?.id}
-                                            </th>
-                                            <th className="px-6 py-6 font-medium">
-                                                {member?.name}
-                                            </th>
-                                            <th className="px-6 py-6 font-medium">
-                                                {member?.email}
-                                            </th>
-                                            <th className="px-6 py-6 font-medium">
-                                                {member?.role}
-                                            </th>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
-                )}
-                {totalPages > 1 && (
+                </div>
+            )}
+            {totalPages > 1 && (
+                <div className="mt-8">
                     <Pagination totalPages={totalPages} />
-                )}
-            </div>
+                </div>
+            )}
         </div>
     )
 }
-

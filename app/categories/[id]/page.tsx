@@ -3,11 +3,17 @@ import Footer from "@/components/footer"
 
 export default function CategoryPage() {
     return (
-        <div>
+        <div className="flex flex-col min-h-screen bg-adrenalin-black">
             <Header />
-            <h1 className="text-white flex justify-center items-center text-4xl">work in progress....</h1>
+            <main className="flex-1 container-premium py-section">
+                <h1 className="font-heading text-display-md text-white uppercase tracking-wide leading-none text-center">
+                    Categoria
+                </h1>
+                <p className="font-body text-sm text-adrenalin-light text-center mt-4 max-w-lg mx-auto">
+                    Em breve - Produtos desta categoria
+                </p>
+            </main>
             <Footer />
         </div>
     )
 }
-

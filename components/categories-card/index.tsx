@@ -1,33 +1,21 @@
 import Link from "next/link";
-import Image from "next/image";
-import { Category } from "@prisma/client";
 
-export default function CategoriesCard({ category }: { category: Category }) {
+export default function CategoriesCard({ category }: { category: { id?: number; name?: string; image?: string } }) {
     return (
-        <div className="my-8">
-            <Link href={`/categories/${category.id}`} className="lg:col-span-3 relative group">
-                <div className="relative overflow-hidden">
-                    <Image
-                        src={category?.image || '/home/placeholder/placeholder.jpg'} alt="imagem em destaque"
-                        width={500}
-                        height={500}
-                        className="cursor-pointer"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
+        <Link href={`/categories/${category.id}`} className="group block relative h-[300px] md:h-[380px] overflow-hidden">
+            <div
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+                style={{ backgroundImage: `url(${category.image || '/home/placeholder/placeholder.jpg'})` }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <div className='absolute inset-0 flex items-center justify-center text-center bottom-0 p-6 text-white opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300'>
-                    <div className='flex flex-col gap-4'>
-                        <div className='flex items-center justify-center lg:bg-white/70 lg:rounded-lg lg:text-black py-2 px-4'>
-                            <h3 className='text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl uppercase 
-                            text-white lg:text-black'>
-                                {category?.name}
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-
-            </Link>
-        </div>
+            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                <h3 className="font-heading text-3xl md:text-4xl lg:text-5xl text-white uppercase leading-none tracking-wide">
+                    {category.name}
+                </h3>
+                <div className="h-0.5 w-0 bg-adrenalin-yellow mt-3 transition-all duration-500 group-hover:w-full" />
+            </div>
+        </Link>
     );
 }
