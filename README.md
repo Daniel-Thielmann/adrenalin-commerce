@@ -1,6 +1,6 @@
 <div align="center">
   <br/>
-  <img src="/home/dash.png" alt="Adrenalin Ecommerce Dashboard" width="800" style="border-radius: 8px;"/>
+  <img src="public/home/dash.png" alt="Adrenalin Ecommerce Dashboard" width="800" style="border-radius: 8px;"/>
   <br/><br/>
   <h1>ADRENALIN ECOMMERCE</h1>
   <p><strong>Extreme Sports E-Commerce Platform</strong></p>
@@ -43,20 +43,20 @@ The platform showcases products across various extreme sports categories includi
 
 ## Tech Stack
 
-| Category            | Technology                                                              |
-| ------------------- | ----------------------------------------------------------------------- |
-| **Frontend**        | [Next.js 14](https://nextjs.org/) (App Router)                          |
-| **Backend**         | [Express 4](https://expressjs.com/) + [Prisma 5](https://www.prisma.io/)|
-| **Language**        | [TypeScript](https://www.typescriptlang.org/)                           |
-| **Styling**         | [Tailwind CSS 3](https://tailwindcss.com/)                              |
-| **Database**        | [PostgreSQL](https://www.postgresql.org/)                               |
-| **Auth**            | [JOSE](https://github.com/panva/jose) (JWT)                             |
-| **File Upload**     | [Multer](https://github.com/expressjs/multer)                           |
-| **Fonts**           | Bebas Neue, Inter, IBM Plex Sans                                        |
-| **Icons**           | [Lucide React](https://lucide.dev/)                                     |
-| **UI Components**   | [React Select](https://react-select.com/)                               |
-| **Loader**          | [nextjs-toploader](https://github.com/TheDanniCraft/nextjs-toploader)   |
-| **Scrollbar**       | [tailwind-scrollbar](https://github.com/adoxography/tailwind-scrollbar) |
+| Category          | Technology                                                               |
+| ----------------- | ------------------------------------------------------------------------ |
+| **Frontend**      | [Next.js 14](https://nextjs.org/) (App Router)                           |
+| **Backend**       | [Express 4](https://expressjs.com/) + [Prisma 5](https://www.prisma.io/) |
+| **Language**      | [TypeScript](https://www.typescriptlang.org/)                            |
+| **Styling**       | [Tailwind CSS 3](https://tailwindcss.com/)                               |
+| **Database**      | [PostgreSQL](https://www.postgresql.org/)                                |
+| **Auth**          | [JOSE](https://github.com/panva/jose) (JWT)                              |
+| **File Upload**   | [Multer](https://github.com/expressjs/multer)                            |
+| **Fonts**         | Bebas Neue, Inter, IBM Plex Sans                                         |
+| **Icons**         | [Lucide React](https://lucide.dev/)                                      |
+| **UI Components** | [React Select](https://react-select.com/)                                |
+| **Loader**        | [nextjs-toploader](https://github.com/TheDanniCraft/nextjs-toploader)    |
+| **Scrollbar**     | [tailwind-scrollbar](https://github.com/adoxography/tailwind-scrollbar)  |
 
 ---
 
@@ -138,30 +138,30 @@ model Member {
 
 ## API Endpoints
 
-| Method | Endpoint                 | Auth     | Description                      |
-| ------ | ------------------------ | -------- | -------------------------------- |
-| GET    | `/api/home/products`     | ❌       | Featured products for homepage   |
-| GET    | `/api/products`          | ❌       | Paginated published products     |
-| GET    | `/api/products/admin`    | ✅ JWT   | All products (admin)             |
-| GET    | `/api/products/:id`      | ❌       | Single product detail            |
-| GET    | `/api/products/category/:categoryId` | ❌ | Products by category     |
-| POST   | `/api/products`          | ✅ JWT   | Create product (multipart)       |
-| PUT    | `/api/products/:id`      | ✅ JWT   | Update product (multipart)       |
-| DELETE | `/api/products/:id`      | ✅ JWT   | Delete product                   |
-| GET    | `/api/categories`        | ❌       | Paginated categories             |
-| GET    | `/api/categories/:id`    | ❌       | Single category with products    |
-| POST   | `/api/categories`        | ✅ JWT   | Create category                  |
-| PUT    | `/api/categories/:id`    | ✅ JWT   | Update category                  |
-| DELETE | `/api/categories/:id`    | ✅ JWT   | Delete category                  |
-| GET    | `/api/members`           | ❌       | Paginated members with search    |
-| GET    | `/api/members/:id`       | ✅ JWT   | Single member                    |
-| POST   | `/api/members`           | ✅ JWT   | Create member                    |
-| PUT    | `/api/members/:id`       | ✅ JWT   | Update member                    |
-| DELETE | `/api/members/:id`       | ✅ JWT   | Delete member                    |
-| POST   | `/api/auth/login`        | ❌       | Login (returns JWT)              |
-| GET    | `/api/auth/me`           | ✅ JWT   | Get current user profile         |
-| GET    | `/api/search`            | ❌       | Search products by title         |
-| GET    | `/api/health`            | ❌       | Health check                     |
+| Method | Endpoint                             | Auth   | Description                    |
+| ------ | ------------------------------------ | ------ | ------------------------------ |
+| GET    | `/api/home/products`                 | ❌     | Featured products for homepage |
+| GET    | `/api/products`                      | ❌     | Paginated published products   |
+| GET    | `/api/products/admin`                | ✅ JWT | All products (admin)           |
+| GET    | `/api/products/:id`                  | ❌     | Single product detail          |
+| GET    | `/api/products/category/:categoryId` | ❌     | Products by category           |
+| POST   | `/api/products`                      | ✅ JWT | Create product (multipart)     |
+| PUT    | `/api/products/:id`                  | ✅ JWT | Update product (multipart)     |
+| DELETE | `/api/products/:id`                  | ✅ JWT | Delete product                 |
+| GET    | `/api/categories`                    | ❌     | Paginated categories           |
+| GET    | `/api/categories/:id`                | ❌     | Single category with products  |
+| POST   | `/api/categories`                    | ✅ JWT | Create category                |
+| PUT    | `/api/categories/:id`                | ✅ JWT | Update category                |
+| DELETE | `/api/categories/:id`                | ✅ JWT | Delete category                |
+| GET    | `/api/members`                       | ❌     | Paginated members with search  |
+| GET    | `/api/members/:id`                   | ✅ JWT | Single member                  |
+| POST   | `/api/members`                       | ✅ JWT | Create member                  |
+| PUT    | `/api/members/:id`                   | ✅ JWT | Update member                  |
+| DELETE | `/api/members/:id`                   | ✅ JWT | Delete member                  |
+| POST   | `/api/auth/login`                    | ❌     | Login (returns JWT)            |
+| GET    | `/api/auth/me`                       | ✅ JWT | Get current user profile       |
+| GET    | `/api/search`                        | ❌     | Search products by title       |
+| GET    | `/api/health`                        | ❌     | Health check                   |
 
 ---
 
@@ -279,22 +279,22 @@ Docker starts PostgreSQL, runs migrations and seed automatically, then launches 
 
 #### Frontend
 
-| Script            | Description              |
-| ----------------- | ------------------------ |
-| `npm run dev`     | Start dev server         |
-| `npm run build`   | Build for production     |
-| `npm run start`   | Start production server  |
-| `npm run lint`    | Run ESLint               |
+| Script          | Description             |
+| --------------- | ----------------------- |
+| `npm run dev`   | Start dev server        |
+| `npm run build` | Build for production    |
+| `npm run start` | Start production server |
+| `npm run lint`  | Run ESLint              |
 
 #### Backend
 
-| Script                 | Description               |
-| ---------------------- | ------------------------- |
-| `npm run dev`          | Start dev server (tsx)    |
-| `npm run build`        | Compile TypeScript        |
-| `npm run start`        | Start production server   |
-| `npx prisma db push`   | Sync database schema      |
-| `npx prisma db seed`   | Seed the database         |
+| Script               | Description             |
+| -------------------- | ----------------------- |
+| `npm run dev`        | Start dev server (tsx)  |
+| `npm run build`      | Compile TypeScript      |
+| `npm run start`      | Start production server |
+| `npx prisma db push` | Sync database schema    |
+| `npx prisma db seed` | Seed the database       |
 
 ### Default Credentials
 
@@ -341,19 +341,19 @@ Overview page with quick links to management sections.
 
 ### Backend (`backend/.env`)
 
-| Variable       | Description                      | Required |
-| -------------- | -------------------------------- | -------- |
-| `DATABASE_URL` | PostgreSQL connection string     | ✅ Yes   |
-| `JWT_SECRET`   | Secret key for JWT tokens        | ✅ Yes   |
-| `FRONTEND_URL` | Frontend origin for CORS         | ❌       |
-| `PORT`         | Backend port (default: 3333)     | ❌       |
+| Variable       | Description                  | Required |
+| -------------- | ---------------------------- | -------- |
+| `DATABASE_URL` | PostgreSQL connection string | ✅ Yes   |
+| `JWT_SECRET`   | Secret key for JWT tokens    | ✅ Yes   |
+| `FRONTEND_URL` | Frontend origin for CORS     | ❌       |
+| `PORT`         | Backend port (default: 3333) | ❌       |
 
 ### Frontend (`.env.local`)
 
-| Variable               | Description                           | Required |
-| ---------------------- | ------------------------------------- | -------- |
-| `NEXT_PUBLIC_API_URL`  | Public API URL for browser requests   | ✅ Yes   |
-| `API_URL`              | Internal API URL for server requests  | ✅ Yes   |
-| `JWT_SECRET`           | Secret for middleware JWT verification| ✅ Yes   |
+| Variable              | Description                            | Required |
+| --------------------- | -------------------------------------- | -------- |
+| `NEXT_PUBLIC_API_URL` | Public API URL for browser requests    | ✅ Yes   |
+| `API_URL`             | Internal API URL for server requests   | ✅ Yes   |
+| `JWT_SECRET`          | Secret for middleware JWT verification | ✅ Yes   |
 
 ---
