@@ -1,6 +1,6 @@
-import Link from "next/link"
-import Image from "next/image"
-import { Instagram, Facebook, Twitter, Send, Mail, MapPin } from "lucide-react"
+import Link from "next/link";
+import Image from "next/image";
+import { Instagram, Facebook, Twitter, Send, Mail, MapPin } from "lucide-react";
 
 const footerLinks = {
   categorias: [
@@ -22,7 +22,7 @@ const footerLinks = {
     { href: "/", label: "Termos de Uso" },
     { href: "/", label: "FAQ" },
   ],
-}
+};
 
 export default function Footer() {
   return (
@@ -38,11 +38,13 @@ export default function Footer() {
                 height={48}
                 className="w-10 h-10 object-contain"
               />
-              <span className="font-heading text-3xl text-white tracking-wider">ADRENALIN</span>
+              <span className="font-heading text-3xl text-white tracking-wider">
+                ADRENALIN
+              </span>
             </Link>
             <p className="font-body text-sm text-adrenalin-light leading-relaxed max-w-sm mb-6">
-              Sua loja premium de equipamentos para esportes radicais. 
-              Bike, motocross, surf, camping e muito mais.
+              Sua loja premium de equipamentos para esportes radicais. Bike,
+              motocross, surf, camping e muito mais.
             </p>
             <div className="flex items-center gap-3">
               {[
@@ -125,7 +127,9 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-3 text-adrenalin-light">
                 <Mail className="w-4 h-4 shrink-0" />
-                <span className="font-body text-sm">contato@adrenalin.com.br</span>
+                <span className="font-body text-sm">
+                  contato@adrenalin.com.br
+                </span>
               </li>
               <li className="flex items-center gap-3 text-adrenalin-light">
                 <MapPin className="w-4 h-4 shrink-0" />
@@ -139,7 +143,7 @@ export default function Footer() {
       <div className="border-t border-white/5 py-6">
         <div className="container-premium flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-body text-xs text-adrenalin-light/60">
-            2024 Adrenalin. Todos os direitos reservados.
+            2024 Adrenalin. Todos os direitos reservados........
           </p>
           <p className="font-body text-xs text-adrenalin-light/60">
             Desenvolvido por Daniel Thielmann
@@ -147,5 +151,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
