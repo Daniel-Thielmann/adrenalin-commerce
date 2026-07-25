@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { Suspense, useState, useEffect } from 'react'
 import Link from 'next/link'
 import { MoveLeft, Mail, Lock } from 'lucide-react'
 import { login } from '@/lib/api'
@@ -7,7 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3333/api"
 
-export default function LoginPage() {
+function LoginForm() {
     const [error, setError] = useState("")
     const router = useRouter()
     const searchParams = useSearchParams()
@@ -119,5 +119,13 @@ export default function LoginPage() {
                 </div>
             </div>
         </div>
+    )
+}
+
+export default function LoginPage() {
+    return (
+        <Suspense fallback={null}>
+            <LoginForm />
+        </Suspense>
     )
 }
