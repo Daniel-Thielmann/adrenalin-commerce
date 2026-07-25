@@ -6,7 +6,7 @@
     "seed": "node dist/prisma/seed.js"
   },
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "tsx watch --ignore '**/node_modules/**' --ignore '**/.prisma/**' src/server.ts",
     "build": "tsc",
     "start": "npx prisma db push --skip-generate && node dist/prisma/seed.js && node dist/server.js",
     "lint": "tsc --noEmit",
