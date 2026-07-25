@@ -1,13 +1,29 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { MoveLeft, Mail, Lock } from 'lucide-react'
 import { login } from '@/lib/api'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3333/api"
 
 export default function LoginPage() {
     const [error, setError] = useState("")
     const router = useRouter()
+    const searchParams = useSearchParams()
+
+    useEffect(() => {
+        const token = searchParams.get('token')
+        if (token) {
+            localStorage.setItem('token', token)
+            document.cookie = `session=${token}; path=/; max-age=${60 * 60 * 24 * 7}`
+            router.push('/admin')
+        }
+        const errorParam = searchParams.get('error')
+        if (errorParam === 'google_auth_failed') {
+            setError("Falha na autenticação com Google")
+        }
+    }, [searchParams, router])
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -84,17 +100,12 @@ export default function LoginPage() {
                     </form>
 
                     <div className="mt-8 pt-6 border-t border-white/5">
-                        <div className="grid grid-cols-3 gap-3">
-                            <button type="button" className="py-2.5 border border-white/10 text-adrenalin-light hover:text-white hover:border-white/30 font-body text-xs uppercase tracking-wider transition-all duration-300">
-                                Facebook
-                            </button>
-                            <button type="button" className="py-2.5 border border-white/10 text-adrenalin-light hover:text-white hover:border-white/30 font-body text-xs uppercase tracking-wider transition-all duration-300">
-                                Google
-                            </button>
-                            <button type="button" className="py-2.5 border border-white/10 text-adrenalin-light hover:text-white hover:border-white/30 font-body text-xs uppercase tracking-wider transition-all duration-300">
-                                Github
-                            </button>
-                        </div>
+                        <a
+                            href={`${API_URL}/auth/google`}
+                            className="flex items-center justify-center gap-2 py-2.5 border border-white/10 text-adrenalin-light hover:text-white hover:border-white/30 font-body text-xs uppercase tracking-wider transition-all duration-300"
+                        >
+                            Google
+                        </a>
                     </div>
 
                     <div className="mt-6 flex justify-between">

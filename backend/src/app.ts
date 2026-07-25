@@ -1,8 +1,10 @@
 import express from "express";
 import cors from "cors";
+import passport from "passport";
 import { config } from "./config";
 import { errorHandler } from "./middlewares/errorHandler";
 import { authRoutes } from "./routes/auth";
+import { googleAuthRoutes } from "./routes/googleAuth";
 import { productRoutes } from "./routes/products";
 import { categoryRoutes } from "./routes/categories";
 import { memberRoutes } from "./routes/members";
@@ -19,10 +21,12 @@ export function createApp() {
   }));
 
   app.use(express.json());
+  app.use(passport.initialize());
 
   app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
 
   app.use("/api/auth", authRoutes);
+  app.use("/api/auth", googleAuthRoutes);
   app.use("/api/products", productRoutes);
   app.use("/api/categories", categoryRoutes);
   app.use("/api/members", memberRoutes);

@@ -23,7 +23,7 @@ authRoutes.get(
   "/me",
   authMiddleware,
   asyncHandler(async (req, res) => {
-    const profile = await getProfile(req.user!.id);
+    const profile = await getProfile(req.authUser!.id);
     res.json(profile);
   })
 );

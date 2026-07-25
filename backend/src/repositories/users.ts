@@ -7,3 +7,15 @@ export function findByEmail(email: string) {
 export function findById(id: number) {
   return prisma.user.findUnique({ where: { id } });
 }
+
+export function findByGoogleId(googleId: string) {
+  return prisma.user.findUnique({ where: { googleId } });
+}
+
+export function create(data: { email: string; name: string; googleId: string }) {
+  return prisma.user.create({ data });
+}
+
+export function updateGoogleId(id: number, googleId: string) {
+  return prisma.user.update({ where: { id }, data: { googleId } });
+}

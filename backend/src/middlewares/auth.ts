@@ -13,7 +13,7 @@ export interface AuthPayload {
 declare global {
   namespace Express {
     interface Request {
-      user?: AuthPayload;
+      authUser?: AuthPayload;
     }
   }
 }
@@ -27,7 +27,7 @@ export async function authMiddleware(req: Request, res: Response, next: NextFunc
   const token = authHeader.split(" ")[1];
   try {
     const { payload } = await jwtVerify(token, secret);
-    req.user = payload as unknown as AuthPayload;
+    req.authUser = payload as unknown as AuthPayload;
     next();
   } catch {
     return res.status(401).json({ error: "Token inválido ou expirado" });
