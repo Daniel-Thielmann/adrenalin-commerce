@@ -17,7 +17,7 @@ function LoginForm() {
         if (token) {
             localStorage.setItem('token', token)
             document.cookie = `session=${token}; path=/; max-age=${60 * 60 * 24 * 7}`
-            router.push('/admin')
+            router.push('/')
         }
         const errorParam = searchParams.get('error')
         if (errorParam === 'google_auth_failed') {
