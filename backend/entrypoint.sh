@@ -64,8 +64,32 @@ done
 
 echo "Database ready."
 
+export DIRECT_URL="${DIRECT_URL:-$DATABASE_URL}"
+
 echo "Applying Prisma migrations..."
-npx prisma migrate deploy
+set +e
+MIGRATE_OUTPUT=$(npx prisma migrate deploy 2>&1)
+MIGRATE_EXIT=$?
+set -e
+
+if [ $MIGRATE_EXIT -ne 0 ]; then
+  if echo "$MIGRATE_OUTPUT" | grep -q "P3005"; then
+    echo "Database has existing tables without migration history."
+    echo "Syncing database schema..."
+    npx prisma db push --skip-generate --accept-data-loss 2>&1
+    echo "Baselining all migrations..."
+    for dir in prisma/migrations/*/; do
+      name=$(basename "$dir")
+      [ "$name" = "*" ] && continue
+      npx prisma migrate resolve --applied "$name" 2>&1
+    done
+    echo "Verifying migrations..."
+    npx prisma migrate deploy 2>&1
+  else
+    echo "$MIGRATE_OUTPUT"
+    exit $MIGRATE_EXIT
+  fi
+fi
 
 if [ "${RUN_DATABASE_SEED:-false}" = "true" ]; then
   echo "Running database seed..."
