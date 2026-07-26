@@ -25,7 +25,27 @@ done
 echo "Database ready!"
 
 echo "Running migrations..."
-npx prisma migrate deploy 2>&1
+set +e
+MIGRATE_OUTPUT=$(npx prisma migrate deploy 2>&1)
+MIGRATE_EXIT=$?
+set -e
+
+if [ $MIGRATE_EXIT -eq 0 ]; then
+  echo "$MIGRATE_OUTPUT"
+elif echo "$MIGRATE_OUTPUT" | grep -q "P3005"; then
+  echo "Database has existing tables without migration history. Baselining..."
+  for dir in prisma/migrations/*/; do
+    name=$(basename "$dir")
+    [ "$name" = "*" ] && continue
+    echo "  Resolving: $name"
+    npx prisma migrate resolve --applied "$name" 2>&1
+  done
+  echo "Retrying migrate deploy..."
+  npx prisma migrate deploy 2>&1
+else
+  echo "$MIGRATE_OUTPUT"
+  exit $MIGRATE_EXIT
+fi
 
 echo "Running seed..."
 npx prisma db seed 2>&1 || echo "Seed already applied or not needed"
