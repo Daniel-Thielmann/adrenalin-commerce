@@ -64,7 +64,7 @@ done
 
 echo "Database ready."
 
-export DIRECT_URL="${DIRECT_URL:-$DATABASE_URL}"
+export DIRECT_URL="${DIRECT_URL:-$(echo "$DATABASE_URL" | sed 's/-pooler//')}"
 
 echo "Applying Prisma migrations..."
 set +e
