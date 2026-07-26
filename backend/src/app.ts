@@ -15,8 +15,20 @@ import path from "path";
 export function createApp() {
   const app = express();
 
+  const allowedOrigins = [
+    config.frontendUrl,
+    "https://adrenalin-alpha.vercel.app",
+    ...(process.env.CORS_ORIGINS || "").split(",").filter(Boolean),
+  ];
+
   app.use(cors({
-    origin: config.frontendUrl,
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.some((o) => origin.startsWith(o))) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   }));
 
