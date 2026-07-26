@@ -52,7 +52,7 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
     },
     (req, res) => {
       const result = req.user as { token: string; user: { id: number; email: string; name: string; role: string } };
-      res.redirect(`${config.frontendUrl}/login?token=${result.token}`);
+      res.redirect(`${config.frontendUrl}/?token=${result.token}`);
     }
   );
 }
