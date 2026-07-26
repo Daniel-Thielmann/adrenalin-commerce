@@ -1,57 +1,91 @@
 #!/bin/sh
-set -e
+set -eu
 
-echo "Waiting for database..."
-MAX_RETRIES=30
-COUNT=0
-until node -e "
-  const url = process.env.DATABASE_URL;
-  if (!url) { console.error('DATABASE_URL not set'); process.exit(1); }
-  const u = new URL(url);
-  const port = parseInt(u.port || '5432');
-  const s = require('net').createConnection(port, u.hostname);
-  s.setTimeout(5000, () => process.exit(1));
-  s.on('connect', () => process.exit(0));
-  s.on('error', (e) => { console.error(e.message); process.exit(1); });
-" 2>&1; do
-  COUNT=$((COUNT + 1))
-  if [ $COUNT -ge $MAX_RETRIES ]; then
-    echo "ERROR: Database not ready after $MAX_RETRIES attempts, exiting."
-    exit 1
-  fi
-  echo "Database not ready yet (attempt $COUNT/$MAX_RETRIES), retrying in 2s..."
-  sleep 2
-done
-echo "Database ready!"
+echo "Validating environment variables..."
 
-echo "Running migrations..."
-set +e
-MIGRATE_OUTPUT=$(npx prisma migrate deploy 2>&1)
-MIGRATE_EXIT=$?
-set -e
-
-if [ $MIGRATE_EXIT -eq 0 ]; then
-  echo "$MIGRATE_OUTPUT"
-elif echo "$MIGRATE_OUTPUT" | grep -q "P3005"; then
-  echo "Database has existing tables without migration history. Baselining..."
-  for dir in prisma/migrations/*/; do
-    name=$(basename "$dir")
-    [ "$name" = "*" ] && continue
-    echo "  Resolving: $name"
-    npx prisma migrate resolve --applied "$name" 2>&1
-  done
-  echo "Retrying migrate deploy..."
-  npx prisma migrate deploy 2>&1
-else
-  echo "$MIGRATE_OUTPUT"
-  exit $MIGRATE_EXIT
+if [ -z "${DATABASE_URL:-}" ]; then
+  echo "ERROR: DATABASE_URL is not configured."
+  exit 1
 fi
 
-echo "Syncing schema drift..."
-npx prisma db push --skip-generate 2>&1
+echo "Waiting for database..."
 
-echo "Running seed..."
-npx prisma db seed 2>&1 || echo "Seed already applied or not needed"
+MAX_RETRIES="${DB_MAX_RETRIES:-30}"
+RETRY_DELAY="${DB_RETRY_DELAY:-2}"
+COUNT=0
 
-echo "Starting server..."
-exec node dist/server.js
+until node <<'NODE'
+const net = require("net");
+
+const databaseUrl = process.env.DATABASE_URL;
+
+try {
+  const url = new URL(databaseUrl);
+  const port = Number(url.port || 5432);
+
+  const socket = net.createConnection({
+    host: url.hostname,
+    port,
+  });
+
+  socket.setTimeout(5000);
+
+  socket.once("connect", () => {
+    socket.destroy();
+    process.exit(0);
+  });
+
+  socket.once("timeout", () => {
+    console.error("Database connection timed out.");
+    socket.destroy();
+    process.exit(1);
+  });
+
+  socket.once("error", (error) => {
+    console.error(`Database connection failed: ${error.message}`);
+    process.exit(1);
+  });
+} catch (error) {
+  console.error(`Invalid DATABASE_URL: ${error.message}`);
+  process.exit(1);
+}
+NODE
+do
+  COUNT=$((COUNT + 1))
+
+  if [ "$COUNT" -ge "$MAX_RETRIES" ]; then
+    echo "ERROR: Database unavailable after $MAX_RETRIES attempts."
+    exit 1
+  fi
+
+  echo "Database unavailable ($COUNT/$MAX_RETRIES). Retrying in ${RETRY_DELAY}s..."
+  sleep "$RETRY_DELAY"
+done
+
+echo "Database ready."
+
+echo "Applying Prisma migrations..."
+npx prisma migrate deploy
+
+if [ "${RUN_DATABASE_SEED:-false}" = "true" ]; then
+  echo "Running database seed..."
+  npx prisma db seed
+else
+  echo "Skipping database seed."
+fi
+
+echo "Locating compiled server..."
+
+if [ -f "dist/server.js" ]; then
+  SERVER_FILE="dist/server.js"
+elif [ -f "dist/src/server.js" ]; then
+  SERVER_FILE="dist/src/server.js"
+else
+  echo "ERROR: Compiled server was not found."
+  echo "Expected dist/server.js or dist/src/server.js."
+  echo "Check the TypeScript build configuration."
+  exit 1
+fi
+
+echo "Starting server from $SERVER_FILE..."
+exec node "$SERVER_FILE"
