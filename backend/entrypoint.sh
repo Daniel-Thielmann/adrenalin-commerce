@@ -47,6 +47,9 @@ else
   exit $MIGRATE_EXIT
 fi
 
+echo "Syncing schema drift..."
+npx prisma db push --skip-generate 2>&1
+
 echo "Running seed..."
 npx prisma db seed 2>&1 || echo "Seed already applied or not needed"
 

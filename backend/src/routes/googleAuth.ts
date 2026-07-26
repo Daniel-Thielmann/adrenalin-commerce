@@ -4,6 +4,10 @@ import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { config } from "../config";
 import { findOrCreateUser } from "../services/googleAuth";
 
+if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
+  console.error("Missing GOOGLE_CLIENT_ID or GOOGLE_CLIENT_SECRET");
+}
+
 passport.use(
   new GoogleStrategy(
     {
@@ -34,7 +38,19 @@ googleAuthRoutes.get(
 
 googleAuthRoutes.get(
   "/google/callback",
-  passport.authenticate("google", { session: false, failureRedirect: config.frontendUrl + "/login?error=google_auth_failed" }),
+  (req, res, next) => {
+    passport.authenticate("google", { session: false }, (err, user) => {
+      if (err) {
+        console.error("Google auth error:", err);
+        return res.redirect(`${config.frontendUrl}/login?error=${encodeURIComponent(err.message || "google_auth_failed")}`);
+      }
+      if (!user) {
+        return res.redirect(`${config.frontendUrl}/login?error=google_auth_failed`);
+      }
+      req.user = user;
+      next();
+    })(req, res, next);
+  },
   (req, res) => {
     const result = req.user as { token: string; user: { id: number; email: string; name: string; role: string } };
     res.redirect(`${config.frontendUrl}/login?token=${result.token}`);
