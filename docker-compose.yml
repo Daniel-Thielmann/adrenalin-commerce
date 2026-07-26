@@ -28,8 +28,11 @@ services:
     environment:
       DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/adrenalin?schema=public"
       JWT_SECRET: "adrenalin-jwt-secret-2024-change-in-production"
+      BACKEND_URL: "http://localhost:3333"
       FRONTEND_URL: "http://localhost:3001"
       PORT: "3333"
+      GOOGLE_CLIENT_ID: "${GOOGLE_CLIENT_ID}"
+      GOOGLE_CLIENT_SECRET: "${GOOGLE_CLIENT_SECRET}"
     depends_on:
       postgres:
         condition: service_healthy
@@ -51,7 +54,6 @@ services:
     environment:
       NEXT_PUBLIC_API_URL: "http://localhost:3333/api"
       API_URL: "http://backend:3333/api"
-      JWT_SECRET: "adrenalin-jwt-secret-2024-change-in-production"
       PORT: "3000"
     depends_on:
       backend:
