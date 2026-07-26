@@ -1,79 +1,90 @@
-"use client"
-import { Menu, X, ShoppingCart, Search, User, LogOut } from "lucide-react"
-import { useEffect, useState, Suspense } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { usePathname, useSearchParams } from "next/navigation"
-import SearchComponent from "../search"
-import { useCart } from "@/contexts/cart-context"
+"use client";
+import { Menu, X, ShoppingCart, Search, User, LogOut } from "lucide-react";
+import { GitHubRepositoryButton } from "@/components/ui/GitHubRepositoryButton";
+import { useEffect, useState, Suspense } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname, useSearchParams } from "next/navigation";
+import SearchComponent from "../search";
+import { useCart } from "@/contexts/cart-context";
 
 const mainLinks = [
   { href: "/", label: "Início" },
   { href: "/categories", label: "Categorias" },
   { href: "/allproducts", label: "Produtos" },
   { href: "/contact", label: "Contato" },
-]
+];
 
 export default function Header() {
   return (
     <Suspense fallback={null}>
       <HeaderContent />
     </Suspense>
-  )
+  );
 }
 
 function HeaderContent() {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [searchOpen, setSearchOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const [user, setUser] = useState<{ name: string; email: string; role: string } | null>(null)
-  const [menuUserOpen, setMenuUserOpen] = useState(false)
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const { totalItems, openCart } = useCart()
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [user, setUser] = useState<{
+    name: string;
+    email: string;
+    role: string;
+  } | null>(null);
+  const [menuUserOpen, setMenuUserOpen] = useState(false);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const { totalItems, openCart } = useCart();
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (!token) return
-    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333/api'}/auth/me`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((res) => res.ok ? res.json() : null)
+    const token = localStorage.getItem("token");
+    if (!token) return;
+    fetch(
+      `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:3333/api"}/auth/me`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      },
+    )
+      .then((res) => (res.ok ? res.json() : null))
       .then((data) => setUser(data))
-      .catch(() => {})
-  }, [])
+      .catch(() => {});
+  }, []);
 
   function handleLogout() {
-    localStorage.removeItem('token')
-    document.cookie = 'session=; path=/; max-age=0'
-    window.location.href = '/'
+    localStorage.removeItem("token");
+    document.cookie = "session=; path=/; max-age=0";
+    window.location.href = "/";
   }
 
   useEffect(() => {
-    setSearchOpen(false)
-    setMenuOpen(false)
-    setMenuUserOpen(false)
-  }, [pathname, searchParams])
+    setSearchOpen(false);
+    setMenuOpen(false);
+    setMenuUserOpen(false);
+  }, [pathname, searchParams]);
 
   useEffect(() => {
-    if (!menuUserOpen) return
+    if (!menuUserOpen) return;
     function handleClick(e: MouseEvent) {
-      const target = e.target as HTMLElement
-      if (!target.closest('[aria-label="Usuário"]') && !target.closest('.user-menu')) {
-        setMenuUserOpen(false)
+      const target = e.target as HTMLElement;
+      if (
+        !target.closest('[aria-label="Usuário"]') &&
+        !target.closest(".user-menu")
+      ) {
+        setMenuUserOpen(false);
       }
     }
-    document.addEventListener('click', handleClick)
-    return () => document.removeEventListener('click', handleClick)
-  }, [menuUserOpen])
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+  }, [menuUserOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
-    }
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
@@ -97,7 +108,11 @@ function HeaderContent() {
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Abrir menu"
             >
-              {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {menuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
 
             <Link href="/" className="flex items-center gap-3 shrink-0">
@@ -151,8 +166,12 @@ function HeaderContent() {
                   {menuUserOpen && (
                     <div className="user-menu absolute right-0 mt-2 w-48 bg-adrenalin-black border border-white/10 rounded-lg shadow-xl z-50">
                       <div className="px-4 py-3 border-b border-white/10">
-                        <p className="text-sm text-white font-medium truncate">{user.name}</p>
-                        <p className="text-xs text-white/50 truncate">{user.email}</p>
+                        <p className="text-sm text-white font-medium truncate">
+                          {user.name}
+                        </p>
+                        <p className="text-xs text-white/50 truncate">
+                          {user.email}
+                        </p>
                       </div>
                       {user.role === "admin" && (
                         <Link
@@ -182,7 +201,11 @@ function HeaderContent() {
                 </Link>
               )}
 
-              <button onClick={openCart} className="relative w-10 h-10 flex items-center justify-center text-white/70 hover:text-adrenalin-yellow transition-colors" aria-label="Carrinho">
+              <button
+                onClick={openCart}
+                className="relative w-10 h-10 flex items-center justify-center text-white/70 hover:text-adrenalin-yellow transition-colors"
+                aria-label="Carrinho"
+              >
                 <ShoppingCart className="w-5 h-5" />
                 {totalItems > 0 && (
                   <span className="absolute -top-0.5 -right-0.5 min-w-[16px] h-4 px-1 flex items-center justify-center bg-adrenalin-yellow text-adrenalin-black text-[9px] font-bold rounded-full">
@@ -190,6 +213,14 @@ function HeaderContent() {
                   </span>
                 )}
               </button>
+              <GitHubRepositoryButton
+                repositoryUrl="https://github.com/Daniel-Thielmann/adrenalin-eccomerce"
+                variant="ghost"
+                size="md"
+                showLabel={false}
+                showArrow={false}
+                iconSize={20}
+              />
             </div>
           </div>
         </div>
@@ -247,8 +278,7 @@ function HeaderContent() {
             </nav>
           </div>
         )}
-
-        </header>
+      </header>
     </>
-  )
+  );
 }
