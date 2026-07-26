@@ -1,5 +1,5 @@
 "use client"
-import { Menu, X, ShoppingCart, Search, User } from "lucide-react"
+import { Menu, X, ShoppingCart, Search, User, LogOut } from "lucide-react"
 import { useEffect, useState, Suspense } from "react"
 import Link from "next/link"
 import Image from "next/image"
@@ -26,14 +26,46 @@ function HeaderContent() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [user, setUser] = useState<{ name: string; email: string; role: string } | null>(null)
+  const [menuUserOpen, setMenuUserOpen] = useState(false)
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const { totalItems, openCart } = useCart()
 
   useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (!token) return
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333/api'}/auth/me`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => res.ok ? res.json() : null)
+      .then((data) => setUser(data))
+      .catch(() => {})
+  }, [])
+
+  function handleLogout() {
+    localStorage.removeItem('token')
+    document.cookie = 'session=; path=/; max-age=0'
+    window.location.href = '/'
+  }
+
+  useEffect(() => {
     setSearchOpen(false)
     setMenuOpen(false)
+    setMenuUserOpen(false)
   }, [pathname, searchParams])
+
+  useEffect(() => {
+    if (!menuUserOpen) return
+    function handleClick(e: MouseEvent) {
+      const target = e.target as HTMLElement
+      if (!target.closest('[aria-label="Usuário"]') && !target.closest('.user-menu')) {
+        setMenuUserOpen(false)
+      }
+    }
+    document.addEventListener('click', handleClick)
+    return () => document.removeEventListener('click', handleClick)
+  }, [menuUserOpen])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -107,13 +139,46 @@ function HeaderContent() {
                 <Search className="w-5 h-5" />
               </button>
 
-              <Link
-                href="/login"
-                className="hidden md:flex w-10 h-10 items-center justify-center text-white/70 hover:text-adrenalin-yellow transition-colors"
-                aria-label="Login"
-              >
-                <User className="w-5 h-5" />
-              </Link>
+              {user ? (
+                <div className="relative hidden md:block">
+                  <button
+                    onClick={() => setMenuUserOpen(!menuUserOpen)}
+                    className="w-10 h-10 flex items-center justify-center text-white/70 hover:text-adrenalin-yellow transition-colors"
+                    aria-label="Usuário"
+                  >
+                    <User className="w-5 h-5" />
+                  </button>
+                  {menuUserOpen && (
+                    <div className="user-menu absolute right-0 mt-2 w-48 bg-adrenalin-black border border-white/10 rounded-lg shadow-xl z-50">
+                      <div className="px-4 py-3 border-b border-white/10">
+                        <p className="text-sm text-white font-medium truncate">{user.name}</p>
+                        <p className="text-xs text-white/50 truncate">{user.email}</p>
+                      </div>
+                      <Link
+                        href="/admin"
+                        className="block px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors"
+                      >
+                        Admin
+                      </Link>
+                      <button
+                        onClick={handleLogout}
+                        className="flex items-center gap-2 w-full px-4 py-2 text-sm text-red-400 hover:bg-white/5 transition-colors"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        Sair
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  href="/login"
+                  className="hidden md:flex w-10 h-10 items-center justify-center text-white/70 hover:text-adrenalin-yellow transition-colors"
+                  aria-label="Login"
+                >
+                  <User className="w-5 h-5" />
+                </Link>
+              )}
 
               <button onClick={openCart} className="relative w-10 h-10 flex items-center justify-center text-white/70 hover:text-adrenalin-yellow transition-colors" aria-label="Carrinho">
                 <ShoppingCart className="w-5 h-5" />
@@ -152,12 +217,29 @@ function HeaderContent() {
                   {link.label}
                 </Link>
               ))}
-              <Link
-                href="/login"
-                className="font-body text-sm uppercase tracking-[0.15em] py-3 px-4 text-white/70 hover:text-white hover:bg-white/5 transition-all"
-              >
-                Login
-              </Link>
+              {user ? (
+                <>
+                  <Link
+                    href="/admin"
+                    className="font-body text-sm uppercase tracking-[0.15em] py-3 px-4 text-white/70 hover:text-white hover:bg-white/5 transition-all"
+                  >
+                    Admin
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="font-body text-sm uppercase tracking-[0.15em] py-3 px-4 text-red-400 hover:text-red-300 hover:bg-white/5 transition-all text-left"
+                  >
+                    Sair
+                  </button>
+                </>
+              ) : (
+                <Link
+                  href="/login"
+                  className="font-body text-sm uppercase tracking-[0.15em] py-3 px-4 text-white/70 hover:text-white hover:bg-white/5 transition-all"
+                >
+                  Login
+                </Link>
+              )}
             </nav>
           </div>
         )}

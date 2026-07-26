@@ -75,9 +75,16 @@ function ContatoPage() {
                   Informações de Contato
                 </h2>
                 <p className="font-body text-sm text-adrenalin-light leading-relaxed">
-                  Tem alguma dúvida sobre nossos produtos, prazos de entrega ou precisa de ajuda 
-                  para escolher o equipamento ideal? Estamos aqui para ajudar!
+                  Site desenvolvido por Daniel Thielmann
                 </p>
+                <div>
+                  <Image 
+                    src={'/categorieslogo/gap.png'} 
+                    alt={'Daniel Thielmann'} 
+                    width={400} 
+                    height={400} 
+                  />                  
+                </div>
 
                 <div className="space-y-4 mt-4">
                   <div className="flex items-center gap-4 p-4 card-premium">
@@ -98,7 +105,7 @@ function ContatoPage() {
                     </div>
                     <div>
                       <h4 className="font-body font-semibold text-xs text-white/60 uppercase tracking-wider">Email</h4>
-                      <span className="font-body text-sm text-white">contato@adrenalin.com.br</span>
+                      <span className="font-body text-sm text-white">thielmanndan@gmail.com</span>
                     </div>
                   </div>
 

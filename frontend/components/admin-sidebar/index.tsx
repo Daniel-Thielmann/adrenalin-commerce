@@ -1,7 +1,7 @@
 'use client'
 
-import { Home, Layers, LayoutDashboard, LogOut, Menu, ScrollText, X } from "lucide-react"
-import { useState } from "react"
+import { Home, Layers, LayoutDashboard, LogOut, Menu, ScrollText, X, User } from "lucide-react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -15,6 +15,18 @@ const LinksSidebar = [
 
 export default function AdminSidebar() {
     const [isAdminSideBarOpen, setIsAdminSidebarOpen] = useState(false)
+    const [user, setUser] = useState<{ name: string; email: string; role: string } | null>(null)
+
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+        if (!token) return
+        fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333/api'}/auth/me`, {
+            headers: { Authorization: `Bearer ${token}` },
+        })
+            .then((res) => res.ok ? res.json() : null)
+            .then((data) => setUser(data))
+            .catch(() => {})
+    }, [])
 
     const toggleAdminSidebar = () => setIsAdminSidebarOpen(!isAdminSideBarOpen)
 
@@ -66,6 +78,18 @@ export default function AdminSidebar() {
                         />
                     </div>
                     <div className="h-[1px] w-full bg-gray-300 my-4" />
+                    {user && (
+                        <div className="px-2 py-3 mb-4 bg-black/10 rounded-lg">
+                            <div className="flex items-center gap-2">
+                                <User className="w-5 h-5 text-gray-300" />
+                                <div className="min-w-0">
+                                    <p className="text-sm font-medium text-black truncate">{user.name}</p>
+                                    <p className="text-xs text-gray-600 truncate">{user.email}</p>
+                                    <p className="text-[10px] text-gray-500 uppercase">{user.role}</p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                     <ul className="space-y-8">
                         {LinksSidebar.map(({ href, label, icon: Icon }, index) => (
                             <li key={index}>
