@@ -5,11 +5,14 @@ echo "Waiting for database..."
 MAX_RETRIES=30
 COUNT=0
 until node -e "
-  const u = new URL(process.env.DATABASE_URL);
-  const s = require('net').createConnection(u.port, u.hostname);
+  const url = process.env.DATABASE_URL;
+  if (!url) { console.error('DATABASE_URL not set'); process.exit(1); }
+  const u = new URL(url);
+  const port = parseInt(u.port || '5432');
+  const s = require('net').createConnection(port, u.hostname);
   s.setTimeout(5000, () => process.exit(1));
   s.on('connect', () => process.exit(0));
-  s.on('error', () => process.exit(1));
+  s.on('error', (e) => { console.error(e.message); process.exit(1); });
 " 2>&1; do
   COUNT=$((COUNT + 1))
   if [ $COUNT -ge $MAX_RETRIES ]; then
