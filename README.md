@@ -1,8 +1,8 @@
 <div align="center">
   <br/>
-  <img src="frontend\public\home\dash.png" alt="Adrenalin Ecommerce Dashboard" width="800" style="border-radius: 8px;"/>
+  <img src="frontend/public/home/dash.png" alt="Adrenalin Ecommerce Dashboard" width="800" style="border-radius: 8px;"/>
   <br/><br/>
-  <h1>ADRENALIN ECOMMERCE</h1>
+  <h1>Adrenalin Ecommerce</h1>
   <p><strong>Extreme Sports E-Commerce Platform</strong></p>
   <p>
     <img src="https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js" alt="Next.js 14"/>
@@ -41,6 +41,29 @@ The platform showcases products across various extreme sports categories includi
 
 ---
 
+## Features
+
+### Storefront
+
+- **Dynamic Home Page** — Hero slider, category showcase, featured products, promotional banners, testimonials
+- **Product Catalog** — Browse all products with pagination (8 per page)
+- **Category Browsing** — Explore products by category with themed banners and descriptions
+- **Product Details** — Individual product pages with full descriptions, pricing, and images
+- **Search** — Case-insensitive product search with pagination
+- **Team Members** — Browse team members with search
+- **Shopping Cart** — Client-side cart with modal sidebar and quantity controls
+- **Responsive Design** — Fully responsive from mobile (640px) to ultra-wide (2560px)
+
+### Administration Panel
+
+- **Dashboard** — Overview page with quick links to management sections
+- **Product Management** — Full CRUD with image upload
+- **Category Management** — Full CRUD for product categories
+- **Member Management** — Full CRUD for team/organization members
+- **JWT Authentication** — Secure login with token-based sessions
+
+---
+
 ## Tech Stack
 
 | Category          | Technology                                                               |
@@ -64,36 +87,13 @@ The platform showcases products across various extreme sports categories includi
 
 ```
 ┌──────────────┐      HTTP/JSON      ┌──────────────┐      ┌──────────┐
-│   Frontend   │ ──────────────────→ │   Backend    │ ──→ │    DB    │
-│  Next.js 14  │ ←────────────────── │  Express API │ ←── │PostgreSQL│
+│   Frontend   │ ──────────────────→ │   Backend    │ ──→  │    DB    │
+│  Next.js 14  │ ←────────────────── │  Express API │ ←──  │PostgreSQL│
 │  :3001       │      JWT (auth)     │  :3333       │      └──────────┘
 └──────────────┘                     └──────────────┘
 ```
 
 The **frontend** (Next.js) handles SSR, UI rendering, and middleware auth. The **backend** (Express) handles all database operations, file uploads, and JWT authentication. Communication is done via REST API calls.
-
----
-
-## Features
-
-### Storefront
-
-- **Dynamic Home Page** — Hero slider, category showcase, featured products, promotional banners, testimonials
-- **Product Catalog** — Browse all products with pagination (8 per page)
-- **Category Browsing** — Explore products by category with themed banners and descriptions
-- **Product Details** — Individual product pages with full descriptions, pricing, and images
-- **Search** — Case-insensitive product search with pagination
-- **Team Members** — Browse team members with search
-- **Shopping Cart** — Client-side cart with modal sidebar and quantity controls
-- **Responsive Design** — Fully responsive from mobile (640px) to ultra-wide (2560px)
-
-### Administration Panel
-
-- **Dashboard** — Overview page with quick links to management sections
-- **Product Management** — Full CRUD with image upload
-- **Category Management** — Full CRUD for product categories
-- **Member Management** — Full CRUD for team/organization members
-- **JWT Authentication** — Secure login with token-based sessions
 
 ---
 
