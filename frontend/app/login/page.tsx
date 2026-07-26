@@ -2,13 +2,15 @@
 import React, { Suspense, useState, useEffect } from 'react'
 import Link from 'next/link'
 import { MoveLeft, Mail, Lock } from 'lucide-react'
-import { login } from '@/lib/api'
+import { login, getProfile } from '@/lib/api'
 import { useRouter, useSearchParams } from 'next/navigation'
+import WelcomeModal from '@/components/welcome-modal'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3333/api"
 
 function LoginForm() {
     const [error, setError] = useState("")
+    const [welcomeUser, setWelcomeUser] = useState<{ name: string; email: string; role: string } | null>(null)
     const router = useRouter()
     const searchParams = useSearchParams()
 
@@ -17,7 +19,9 @@ function LoginForm() {
         if (token) {
             localStorage.setItem('token', token)
             document.cookie = `session=${token}; path=/; max-age=${60 * 60 * 24 * 7}`
-            router.push('/')
+            getProfile(token)
+                .then((user) => setWelcomeUser(user))
+                .catch(() => router.push('/'))
         }
         const errorParam = searchParams.get('error')
         if (errorParam === 'google_auth_failed') {
@@ -41,6 +45,10 @@ function LoginForm() {
         } catch (err: any) {
             setError(err.message || "Erro ao fazer login")
         }
+    }
+
+    if (welcomeUser) {
+        return <WelcomeModal user={welcomeUser} onClose={() => setWelcomeUser(null)} />
     }
 
     return (

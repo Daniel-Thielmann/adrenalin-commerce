@@ -12,7 +12,7 @@ export function findByGoogleId(googleId: string) {
   return prisma.user.findUnique({ where: { googleId } });
 }
 
-export function create(data: { email: string; name: string; googleId: string }) {
+export function create(data: { email: string; name: string; googleId: string; role?: string }) {
   return prisma.user.create({ data });
 }
 

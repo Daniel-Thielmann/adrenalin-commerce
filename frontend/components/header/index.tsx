@@ -154,12 +154,14 @@ function HeaderContent() {
                         <p className="text-sm text-white font-medium truncate">{user.name}</p>
                         <p className="text-xs text-white/50 truncate">{user.email}</p>
                       </div>
-                      <Link
-                        href="/admin"
-                        className="block px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors"
-                      >
-                        Admin
-                      </Link>
+                      {user.role === "admin" && (
+                        <Link
+                          href="/admin"
+                          className="block px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors"
+                        >
+                          Admin
+                        </Link>
+                      )}
                       <button
                         onClick={handleLogout}
                         className="flex items-center gap-2 w-full px-4 py-2 text-sm text-red-400 hover:bg-white/5 transition-colors"
@@ -219,12 +221,14 @@ function HeaderContent() {
               ))}
               {user ? (
                 <>
-                  <Link
-                    href="/admin"
-                    className="font-body text-sm uppercase tracking-[0.15em] py-3 px-4 text-white/70 hover:text-white hover:bg-white/5 transition-all"
-                  >
-                    Admin
-                  </Link>
+                  {user.role === "admin" && (
+                    <Link
+                      href="/admin"
+                      className="font-body text-sm uppercase tracking-[0.15em] py-3 px-4 text-white/70 hover:text-white hover:bg-white/5 transition-all"
+                    >
+                      Admin
+                    </Link>
+                  )}
                   <button
                     onClick={handleLogout}
                     className="font-body text-sm uppercase tracking-[0.15em] py-3 px-4 text-red-400 hover:text-red-300 hover:bg-white/5 transition-all text-left"
