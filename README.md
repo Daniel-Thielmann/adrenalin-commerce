@@ -75,22 +75,22 @@ The platform showcases products across various extreme sports categories includi
 
 ## Tech Stack
 
-| Category | Technology |
-| --- | --- |
-| **Frontend** | Next.js 14 (App Router), React 18 |
-| **Backend** | Express 4, Prisma 5 ORM |
-| **Language** | TypeScript 5.3 |
-| **Styling** | Tailwind CSS 3, PostCSS, Autoprefixer |
-| **Database** | PostgreSQL 16 |
-| **Authentication** | JOSE (JWT), Passport.js (Google OAuth), bcryptjs |
-| **File Upload** | Multer |
-| **Animations** | Framer Motion |
-| **Icons** | Lucide React |
-| **UI Components** | React Select, nextjs-toploader, clsx, class-variance-authority |
-| **Scrollbar** | tailwind-scrollbar |
-| **Fonts** | Bebas Neue, Inter, IBM Plex Sans |
-| **Containerization** | Docker, Docker Compose |
-| **Deployment** | Vercel (frontend), Neon (PostgreSQL) |
+| Category             | Technology                                                     |
+| -------------------- | -------------------------------------------------------------- |
+| **Frontend**         | Next.js 14 (App Router), React 18                              |
+| **Backend**          | Express 4, Prisma 5 ORM                                        |
+| **Language**         | TypeScript 5.3                                                 |
+| **Styling**          | Tailwind CSS 3, PostCSS, Autoprefixer                          |
+| **Database**         | PostgreSQL 16                                                  |
+| **Authentication**   | JOSE (JWT), Passport.js (Google OAuth), bcryptjs               |
+| **File Upload**      | Multer                                                         |
+| **Animations**       | Framer Motion                                                  |
+| **Icons**            | Lucide React                                                   |
+| **UI Components**    | React Select, nextjs-toploader, clsx, class-variance-authority |
+| **Scrollbar**        | tailwind-scrollbar                                             |
+| **Fonts**            | Bebas Neue, Inter, IBM Plex Sans                               |
+| **Containerization** | Docker, Docker Compose                                         |
+| **Deployment**       | Vercel (frontend), Neon (PostgreSQL)                           |
 
 ---
 
@@ -242,24 +242,25 @@ Docker starts PostgreSQL, runs migrations and seed automatically, then launches 
 
 ### Storefront Routes
 
-| Route | Description |
-| --- | --- |
-| `/` | Home page with hero slider, category showcase, featured products, testimonials |
-| `/allproducts` | Full product catalog with pagination (8 per page) |
-| `/product/[id]` | Individual product detail page |
-| `/categories` | Category listing page |
-| `/categories/[id]` | Products filtered by category |
-| `/search` | Search results page (case-insensitive by title) |
-| `/cart` | Shopping cart page (persisted to localStorage) |
-| `/contact` | Contact page |
-| `/members` | Team members listing with search |
-| `/login` | Admin login page |
+| Route              | Description                                                                    |
+| ------------------ | ------------------------------------------------------------------------------ |
+| `/`                | Home page with hero slider, category showcase, featured products, testimonials |
+| `/allproducts`     | Full product catalog with pagination (8 per page)                              |
+| `/product/[id]`    | Individual product detail page                                                 |
+| `/categories`      | Category listing page                                                          |
+| `/categories/[id]` | Products filtered by category                                                  |
+| `/search`          | Search results page (case-insensitive by title)                                |
+| `/cart`            | Shopping cart page (persisted to localStorage)                                 |
+| `/contact`         | Contact page                                                                   |
+| `/members`         | Team members listing with search                                               |
+| `/login`           | Admin login page                                                               |
 
 ### Administration Panel
 
 Access the admin panel at `/admin` (login required).
 
 **Default Credentials:**
+
 ```
 Email:    admin@adrenalin.com
 Password: admin123
@@ -268,46 +269,49 @@ Password: admin123
 **Dashboard** (`/admin`) — Overview page with quick links to management sections.
 
 **Products** (`/admin/manage/allproducts`)
+
 - View all products in a table with CRUD actions
 - Create new products (title, content, price, categories, image upload via Multer)
 - Edit and delete existing products
 
 **Categories** (`/admin/manage/categories`)
+
 - View all categories in a table with CRUD actions
 - Create, edit, and delete categories (name, image URL)
 
 **Members** (`/admin/manage/members`)
+
 - View all team members in a table with CRUD actions
 - Create, edit, and delete members (name, role, email)
 
 ### API Endpoints
 
-| Method | Endpoint | Auth | Description |
-| --- | --- | --- | --- |
-| GET | `/api/health` | ❌ | Health check |
-| GET | `/api/home/products` | ❌ | Featured products for homepage |
-| GET | `/api/products` | ❌ | Paginated published products |
-| GET | `/api/products/admin` | ✅ JWT | All products (admin) |
-| GET | `/api/products/:id` | ❌ | Single product detail |
-| GET | `/api/products/category/:categoryId` | ❌ | Products by category |
-| POST | `/api/products` | ✅ JWT | Create product (multipart) |
-| PUT | `/api/products/:id` | ✅ JWT | Update product (multipart) |
-| DELETE | `/api/products/:id` | ✅ JWT | Delete product |
-| GET | `/api/categories` | ❌ | Paginated categories |
-| GET | `/api/categories/:id` | ❌ | Single category with products |
-| POST | `/api/categories` | ✅ JWT | Create category |
-| PUT | `/api/categories/:id` | ✅ JWT | Update category |
-| DELETE | `/api/categories/:id` | ✅ JWT | Delete category |
-| GET | `/api/members` | ❌ | Paginated members with search |
-| GET | `/api/members/:id` | ✅ JWT | Single member |
-| POST | `/api/members` | ✅ JWT | Create member |
-| PUT | `/api/members/:id` | ✅ JWT | Update member |
-| DELETE | `/api/members/:id` | ✅ JWT | Delete member |
-| POST | `/api/auth/login` | ❌ | Login (returns JWT + user) |
-| GET | `/api/auth/me` | ✅ JWT | Get current user profile |
-| GET | `/api/auth/google` | ❌ | Google OAuth initiation |
-| GET | `/api/auth/google/callback` | ❌ | Google OAuth callback |
-| GET | `/api/search` | ❌ | Search products by title |
+| Method | Endpoint                             | Auth   | Description                    |
+| ------ | ------------------------------------ | ------ | ------------------------------ |
+| GET    | `/api/health`                        | ❌     | Health check                   |
+| GET    | `/api/home/products`                 | ❌     | Featured products for homepage |
+| GET    | `/api/products`                      | ❌     | Paginated published products   |
+| GET    | `/api/products/admin`                | ✅ JWT | All products (admin)           |
+| GET    | `/api/products/:id`                  | ❌     | Single product detail          |
+| GET    | `/api/products/category/:categoryId` | ❌     | Products by category           |
+| POST   | `/api/products`                      | ✅ JWT | Create product (multipart)     |
+| PUT    | `/api/products/:id`                  | ✅ JWT | Update product (multipart)     |
+| DELETE | `/api/products/:id`                  | ✅ JWT | Delete product                 |
+| GET    | `/api/categories`                    | ❌     | Paginated categories           |
+| GET    | `/api/categories/:id`                | ❌     | Single category with products  |
+| POST   | `/api/categories`                    | ✅ JWT | Create category                |
+| PUT    | `/api/categories/:id`                | ✅ JWT | Update category                |
+| DELETE | `/api/categories/:id`                | ✅ JWT | Delete category                |
+| GET    | `/api/members`                       | ❌     | Paginated members with search  |
+| GET    | `/api/members/:id`                   | ✅ JWT | Single member                  |
+| POST   | `/api/members`                       | ✅ JWT | Create member                  |
+| PUT    | `/api/members/:id`                   | ✅ JWT | Update member                  |
+| DELETE | `/api/members/:id`                   | ✅ JWT | Delete member                  |
+| POST   | `/api/auth/login`                    | ❌     | Login (returns JWT + user)     |
+| GET    | `/api/auth/me`                       | ✅ JWT | Get current user profile       |
+| GET    | `/api/auth/google`                   | ❌     | Google OAuth initiation        |
+| GET    | `/api/auth/google/callback`          | ❌     | Google OAuth callback          |
+| GET    | `/api/search`                        | ❌     | Search products by title       |
 
 ### Database Schema
 
@@ -352,45 +356,45 @@ Products and Categories have a **many-to-many** relationship via an implicit `_C
 
 **Backend** (`backend/.env`)
 
-| Variable | Description | Required |
-| --- | --- | --- |
-| `DATABASE_URL` | PostgreSQL connection string | ✅ Yes |
-| `JWT_SECRET` | Secret key for JWT token signing | ✅ Yes |
-| `FRONTEND_URL` | Frontend origin for CORS | ❌ |
-| `PORT` | Backend port (default: 3333) | ❌ |
-| `GOOGLE_CLIENT_ID` | Google OAuth client ID | ❌ |
-| `GOOGLE_CLIENT_SECRET` | Google OAuth client secret | ❌ |
+| Variable               | Description                      | Required |
+| ---------------------- | -------------------------------- | -------- |
+| `DATABASE_URL`         | PostgreSQL connection string     | ✅ Yes   |
+| `JWT_SECRET`           | Secret key for JWT token signing | ✅ Yes   |
+| `FRONTEND_URL`         | Frontend origin for CORS         | ❌       |
+| `PORT`                 | Backend port (default: 3333)     | ❌       |
+| `GOOGLE_CLIENT_ID`     | Google OAuth client ID           | ❌       |
+| `GOOGLE_CLIENT_SECRET` | Google OAuth client secret       | ❌       |
 
 **Frontend** (`.env.local`)
 
-| Variable | Description | Required |
-| --- | --- | --- |
-| `NEXT_PUBLIC_API_URL` | Public API URL for browser requests | ✅ Yes |
-| `API_URL` | Internal API URL for server-side requests | ✅ Yes |
-| `JWT_SECRET` | Secret for middleware JWT verification | ✅ Yes |
+| Variable              | Description                               | Required |
+| --------------------- | ----------------------------------------- | -------- |
+| `NEXT_PUBLIC_API_URL` | Public API URL for browser requests       | ✅ Yes   |
+| `API_URL`             | Internal API URL for server-side requests | ✅ Yes   |
+| `JWT_SECRET`          | Secret for middleware JWT verification    | ✅ Yes   |
 
 ### Available Scripts
 
 **Frontend**
 
-| Script | Description |
-| --- | --- |
-| `npm run dev` | Start Next.js dev server (port 3001) |
-| `npm run build` | Build for production |
-| `npm run start` | Start production server |
-| `npm run lint` | Run ESLint |
+| Script          | Description                          |
+| --------------- | ------------------------------------ |
+| `npm run dev`   | Start Next.js dev server (port 3001) |
+| `npm run build` | Build for production                 |
+| `npm run start` | Start production server              |
+| `npm run lint`  | Run ESLint                           |
 
 **Backend**
 
-| Script | Description |
-| --- | --- |
-| `npm run dev` | Start dev server with tsx watch (hot reload) |
-| `npm run build` | Compile TypeScript to `dist/` |
-| `npm run start` | Run migrations + seed + start production server |
-| `npm run lint` | TypeScript type-check (`tsc --noEmit`) |
-| `npx prisma generate` | Generate Prisma client |
-| `npx prisma db push` | Sync database schema |
-| `npx prisma db seed` | Seed database with sample data |
+| Script                | Description                                     |
+| --------------------- | ----------------------------------------------- |
+| `npm run dev`         | Start dev server with tsx watch (hot reload)    |
+| `npm run build`       | Compile TypeScript to `dist/`                   |
+| `npm run start`       | Run migrations + seed + start production server |
+| `npm run lint`        | TypeScript type-check (`tsc --noEmit`)          |
+| `npx prisma generate` | Generate Prisma client                          |
+| `npx prisma db push`  | Sync database schema                            |
+| `npx prisma db seed`  | Seed database with sample data                  |
 
 ---
 
@@ -410,6 +414,10 @@ Please ensure your code follows the existing patterns and conventions, and passe
 
 ## License
 
-Distributed under the **MIT License**. See [LICENSE](LICENSE) for more information.
+This project is licensed under the MIT License.
 
-Copyright (c) 2026 Daniel Thielmann
+---
+
+<p align="center">
+Developed by Daniel Thielmann
+</p>
