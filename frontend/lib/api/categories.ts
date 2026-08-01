@@ -1,8 +1,9 @@
-import { apiFetch, apiFetchWithAuth } from "./client";
+import { apiFetch, apiFetchWithAuth, type FetchOptions } from "./client";
 import type { Category } from "@/types/data";
 
-export async function fetchCategories(page: number = 1) {
+export async function fetchCategories(page: number = 1, options: FetchOptions = {}) {
   return apiFetch<{ categories: Category[]; totalPages: number }>("/categories", {
+    ...options,
     params: { page: String(page) },
   });
 }

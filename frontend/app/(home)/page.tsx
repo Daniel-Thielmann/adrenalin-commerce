@@ -8,7 +8,7 @@ import PromotionalBanner from '@/components/banner'
 import TestimonialSection from '@/components/testimonials'
 import NewsletterSection from '@/components/newsletter'
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60
 
 export default async function Home() {
   let bestProducts1: Product[] = []
@@ -16,25 +16,32 @@ export default async function Home() {
   let bestProducts3: Product[] = []
   let categories: Category[] = []
 
-  try {
-    const homeData = await fetchHomeProducts()
+  const [homeResult, categoriesResult] = await Promise.allSettled([
+    fetchHomeProducts({ next: { revalidate } }),
+    fetchCategories(1, { next: { revalidate } }),
+  ])
+
+  if (homeResult.status === "fulfilled") {
+    const homeData = homeResult.value
     bestProducts1 = homeData.bestProducts1
     bestProducts2 = homeData.bestProducts2
     bestProducts3 = homeData.bestProducts3
-    const catData = await fetchCategories(1)
-    categories = catData.categories
-  } catch (e) {
-    console.error("Erro ao carregar dados da home:", e)
+  } else {
+    console.error("Erro ao carregar produtos da home:", homeResult.reason)
   }
 
-  const allProducts = [...bestProducts1, ...bestProducts2, ...bestProducts3]
+  if (categoriesResult.status === "fulfilled") {
+    categories = categoriesResult.value.categories
+  } else {
+    console.error("Erro ao carregar categorias da home:", categoriesResult.reason)
+  }
 
   return (
     <div>
       <Hero />
       <CategoryShowcase categories={categories} />
 
-      <FeaturedProducts />
+      <FeaturedProducts products={bestProducts1} />
 
       <PromotionalBanner
         image="/home/best-products-side-image/quad.jpg"

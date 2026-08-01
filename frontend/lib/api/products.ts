@@ -1,12 +1,12 @@
-import { apiFetch } from "./client";
+import { apiFetch, type FetchOptions } from "./client";
 import type { Product } from "@/types/data";
 
-export async function fetchHomeProducts() {
+export async function fetchHomeProducts(options: FetchOptions = {}) {
   return apiFetch<{
     bestProducts1: Product[];
     bestProducts2: Product[];
     bestProducts3: Product[];
-  }>("/home/products");
+  }>("/home/products", options);
 }
 
 export async function fetchAllProducts(page: number = 1) {

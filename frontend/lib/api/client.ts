@@ -1,9 +1,16 @@
 const PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3333/api";
 const SERVER_API_URL = process.env.API_URL || "http://backend:3333/api";
 
-interface FetchOptions extends RequestInit {
+export interface FetchOptions extends RequestInit {
   params?: Record<string, string | number | undefined>;
+  timeoutMs?: number;
+  next?: {
+    revalidate?: number | false;
+    tags?: string[];
+  };
 }
+
+const DEFAULT_TIMEOUT_MS = 8_000;
 
 function getApiUrl(): string {
   if (typeof window !== "undefined") return PUBLIC_API_URL;
@@ -21,7 +28,7 @@ function buildUrl(path: string, params?: Record<string, string | number | undefi
 }
 
 export async function apiFetch<T>(path: string, options: FetchOptions = {}): Promise<T> {
-  const { params, ...fetchOpts } = options;
+  const { params, timeoutMs = DEFAULT_TIMEOUT_MS, ...fetchOpts } = options;
   const url = buildUrl(path, params);
 
   const headers: Record<string, string> = {
@@ -29,7 +36,29 @@ export async function apiFetch<T>(path: string, options: FetchOptions = {}): Pro
     ...(fetchOpts.headers as Record<string, string>),
   };
 
-  const res = await fetch(url, { ...fetchOpts, headers, cache: "no-store" });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+
+  if (fetchOpts.signal) {
+    if (fetchOpts.signal.aborted) {
+      controller.abort();
+    } else {
+      fetchOpts.signal.addEventListener("abort", () => controller.abort(), { once: true });
+    }
+  }
+
+  let res: Response;
+  try {
+    const cache = fetchOpts.cache ?? (fetchOpts.next ? undefined : "no-store");
+    res = await fetch(url, {
+      ...fetchOpts,
+      headers,
+      signal: controller.signal,
+      ...(cache ? { cache } : {}),
+    });
+  } finally {
+    clearTimeout(timeout);
+  }
 
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
