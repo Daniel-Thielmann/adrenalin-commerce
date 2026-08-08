@@ -178,7 +178,7 @@ export default function KenevoExperience() {
             <br />
             Control for the descent.
           </p>
-          <Link href="/allproducts" className={styles.cta}>
+          <Link href="/product/17" className={styles.cta}>
             Explore Kenevo <b>↗</b>
           </Link>
         </div>
