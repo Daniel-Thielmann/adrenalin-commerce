@@ -7,9 +7,10 @@ import type { Category } from "@/types/data"
 type CategoryCardProps = {
   category: Category
   index: number
+  className?: string
 }
 
-export default function CategoryCard({ category, index }: CategoryCardProps) {
+export default function CategoryCard({ category, index, className = "" }: CategoryCardProps) {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -26,18 +27,18 @@ export default function CategoryCard({ category, index }: CategoryCardProps) {
   return (
     <div
       ref={ref}
-      className="scroll-reveal group relative h-[320px] md:h-[400px] overflow-hidden cursor-pointer"
+      className={`scroll-reveal group relative min-h-[280px] overflow-hidden cursor-pointer lg:min-h-0 ${className}`}
       style={{ transitionDelay: `${index * 0.1}s` }}
     >
       <Link href={`/categories/${category.id}`} className="block w-full h-full">
         <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           style={{ backgroundImage: `url(${category.image || "/home/placeholder/placeholder.jpg"})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent transition-opacity duration-500 group-hover:opacity-90" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+        <div className="absolute bottom-0 left-0 right-0 p-6 transition-transform duration-500 group-hover:-translate-y-1 md:p-8">
           <div className="flex items-center justify-between">
             <h3 className="font-heading text-3xl md:text-4xl lg:text-5xl text-white uppercase leading-none tracking-wide">
               {category.name}

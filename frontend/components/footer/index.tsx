@@ -27,7 +27,7 @@ const footerLinks = {
 export default function Footer() {
   return (
     <footer className="bg-adrenalin-black border-t border-white/5">
-      <div className="container-premium py-16 md:py-20">
+      <div className="container-premium py-14 md:py-16">
         <div className="grid grid-cols-2 md:grid-cols-6 lg:grid-cols-12 gap-8 md:gap-12">
           <div className="col-span-2 md:col-span-6 lg:col-span-4">
             <Link href="/" className="flex items-center gap-3 mb-6">
@@ -141,9 +141,9 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/5 py-6">
-        <div className="container-premium flex flex-col md:flex-row items-center justify-between gap-4 text-lg">
+        <div className="container-premium flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
           <p className="font-body text-adrenalin-light/60">
-            2024 Adrenalin. Todos os direitos reservados.
+            2026 Adrenalin. Todos os direitos reservados.
           </p>
           <p className="font-body text-adrenalin-light/60">
             Desenvolvido por Daniel Thielmann

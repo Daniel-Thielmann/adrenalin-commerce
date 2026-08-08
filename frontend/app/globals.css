@@ -40,11 +40,12 @@
 
 @layer components {
   .container-premium {
-    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply w-full mx-auto px-4 sm:px-6 lg:px-10;
+    max-width: 1440px;
   }
 
   .section-spacing {
-    @apply py-section lg:py-section-lg;
+    @apply py-20 lg:py-28;
   }
 
   .text-gradient-yellow {

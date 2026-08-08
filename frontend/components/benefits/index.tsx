@@ -1,115 +1,28 @@
-"use client"
-import { useEffect, useRef } from "react"
-import { Truck, ShieldCheck, RotateCcw, Medal, Headphones, Package } from "lucide-react"
+import { Truck, ShieldCheck, RotateCcw, Medal, Headphones } from "lucide-react"
 
 const benefits = [
-  {
-    icon: Truck,
-    title: "Entrega para Todo Brasil",
-    description: "Frete grátis em compras acima de R$ 299",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Pagamento Seguro",
-    description: "Dados protegidos com criptografia SSL",
-  },
-  {
-    icon: RotateCcw,
-    title: "Troca Facilitada",
-    description: "30 dias para solicitar troca ou devolução",
-  },
-  {
-    icon: Medal,
-    title: "Produtos Originais",
-    description: "Garantia e procedência de fábrica",
-  },
-  {
-    icon: Headphones,
-    title: "Suporte Especializado",
-    description: "Equipe pronta para ajudar você",
-  },
-  {
-    icon: Package,
-    title: "Embalagem Premium",
-    description: "Seu produto chega em perfeito estado",
-  },
+  { icon: Truck, title: "Entrega nacional", text: "Envios para todo o Brasil." },
+  { icon: ShieldCheck, title: "Pagamento seguro", text: "Dados protegidos em cada compra." },
+  { icon: RotateCcw, title: "Troca facilitada", text: "Processo simples e transparente." },
+  { icon: Medal, title: "Produtos originais", text: "Procedência e garantia de fábrica." },
+  { icon: Headphones, title: "Suporte especializado", text: "Atendimento de quem entende." },
 ]
 
 export default function BenefitsSection() {
-  const ref = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) entry.target.classList.add("revealed")
-      },
-      { threshold: 0.1 }
-    )
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <section className="section-spacing">
+    <section className="border-y border-white/10 bg-[#090909] py-16 md:py-24">
       <div className="container-premium">
-        <div
-          ref={ref}
-          className="scroll-reveal flex flex-col items-center text-center gap-2 mb-12"
-        >
-          <h2 className="font-heading text-display-sm md:text-display-md uppercase tracking-wide leading-none">
-            Por que escolher a Adrenalin?
-          </h2>
-          <p className="font-body text-sm md:text-base text-adrenalin-light max-w-lg">
-            Qualidade e confiança em cada detalhe
-          </p>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
-          {benefits.map((item, index) => (
-            <BenefitCard key={index} icon={item.icon} title={item.title} description={item.description} index={index} />
+        <div className="grid gap-x-2 gap-y-12 sm:grid-cols-2 lg:grid-cols-5">
+          {benefits.map(({ icon: Icon, title, text }, index) => (
+            <article key={title} className="relative px-0 sm:px-6 lg:border-l lg:border-white/10 lg:first:border-l-0">
+              <span className="mb-9 block font-mono text-[9px] text-white/25">0{index + 1}</span>
+              <Icon className="mb-6 h-6 w-6 text-adrenalin-yellow" strokeWidth={1.5} />
+              <h3 className="text-base font-semibold text-white">{title}</h3>
+              <p className="mt-3 max-w-[210px] text-sm leading-relaxed text-white/45">{text}</p>
+            </article>
           ))}
         </div>
       </div>
     </section>
-  )
-}
-
-function BenefitCard({
-  icon: Icon,
-  title,
-  description,
-  index,
-}: {
-  icon: React.ElementType
-  title: string
-  description: string
-  index: number
-}) {
-  const cardRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) entry.target.classList.add("revealed")
-      },
-      { threshold: 0.1 }
-    )
-    if (cardRef.current) observer.observe(cardRef.current)
-    return () => observer.disconnect()
-  }, [])
-
-  return (
-    <div
-      ref={cardRef}
-      className="scroll-reveal group flex flex-col items-center text-center p-6 card-premium"
-      style={{ transitionDelay: `${index * 0.08}s` }}
-    >
-      <div className="w-12 h-12 flex items-center justify-center border border-adrenalin-yellow/30 bg-adrenalin-yellow/5
-                      group-hover:bg-adrenalin-yellow/20 transition-all duration-500 mb-4">
-        <Icon className="w-6 h-6 text-adrenalin-yellow transition-transform duration-500 group-hover:scale-110" />
-      </div>
-      <h3 className="font-body font-semibold text-sm text-white mb-2">{title}</h3>
-      <p className="font-body text-xs text-adrenalin-light leading-relaxed">{description}</p>
-    </div>
   )
 }

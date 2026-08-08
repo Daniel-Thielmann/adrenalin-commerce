@@ -1,6 +1,5 @@
 "use client";
 import { Menu, X, ShoppingCart, Search, User, LogOut } from "lucide-react";
-import { GitHubRepositoryButton } from "@/components/ui/GitHubRepositoryButton";
 import { useEffect, useState, Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -97,12 +96,12 @@ function HeaderContent() {
       <header
         className={`sticky top-0 z-50 w-full transition-all duration-500 ${
           scrolled
-            ? "bg-adrenalin-black/95 backdrop-blur-xl shadow-lg shadow-black/20"
-            : "bg-adrenalin-black/80 backdrop-blur-sm"
+            ? "bg-adrenalin-black/95 backdrop-blur-xl"
+            : "bg-adrenalin-black/75 backdrop-blur-sm"
         }`}
       >
         <div className="container-premium">
-          <div className="flex items-center justify-between h-16 md:h-20">
+          <div className={`flex items-center justify-between transition-[height] duration-300 ${scrolled ? "h-14 md:h-16" : "h-16 md:h-[72px]"}`}>
             <button
               className="lg:hidden w-10 h-10 flex items-center justify-center text-white hover:text-adrenalin-yellow transition-colors"
               onClick={() => setMenuOpen(!menuOpen)}
@@ -121,9 +120,9 @@ function HeaderContent() {
                 alt="Adrenalin"
                 width={40}
                 height={40}
-                className="w-8 h-8 md:w-10 md:h-10 object-contain"
+                className="h-8 w-8 object-contain md:h-9 md:w-9"
               />
-              <span className="font-heading text-2xl md:text-3xl text-white leading-none tracking-wider">
+              <span className="font-heading text-2xl text-white leading-none tracking-wider md:text-[28px]">
                 ADRENALIN
               </span>
             </Link>
@@ -213,14 +212,6 @@ function HeaderContent() {
                   </span>
                 )}
               </button>
-              <GitHubRepositoryButton
-                repositoryUrl="https://github.com/Daniel-Thielmann/adrenalin-eccomerce"
-                variant="ghost"
-                size="md"
-                showLabel={false}
-                showArrow={false}
-                iconSize={20}
-              />
             </div>
           </div>
         </div>

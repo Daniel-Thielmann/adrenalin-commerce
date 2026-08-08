@@ -1,77 +1,31 @@
 "use client"
-import { useEffect, useRef, useState } from "react"
-import { Send, Check } from "lucide-react"
+
+import { useState } from "react"
+import { ArrowRight, Check } from "lucide-react"
 
 export default function NewsletterSection() {
-  const ref = useRef<HTMLDivElement>(null)
   const [email, setEmail] = useState("")
   const [submitted, setSubmitted] = useState(false)
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) entry.target.classList.add("revealed")
-      },
-      { threshold: 0.1 }
-    )
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [])
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (email) {
-      setSubmitted(true)
-      setEmail("")
-    }
+  function submit(event: React.FormEvent) {
+    event.preventDefault()
+    if (!email) return
+    setSubmitted(true)
+    setEmail("")
   }
 
   return (
-    <section className="section-spacing">
-      <div className="container-premium">
-        <div
-          ref={ref}
-          className="scroll-reveal relative overflow-hidden bg-adrenalin-dark border border-white/5 p-8 md:p-16"
-        >
-          <div className="absolute top-0 right-0 w-64 h-64 bg-adrenalin-yellow/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-adrenalin-yellow/5 rounded-full blur-3xl" />
-
-          <div className="relative flex flex-col items-center text-center max-w-2xl mx-auto">
-            <h2 className="font-heading text-display-xs md:text-display-sm uppercase tracking-wide leading-none mb-3">
-              Fique por Dentro
-            </h2>
-            <p className="font-body text-sm md:text-base text-adrenalin-light mb-8 max-w-md leading-relaxed">
-              Receba novidades, ofertas exclusivas e dicas de aventura direto no seu email
-            </p>
-
-            {submitted ? (
-              <div className="flex items-center gap-3 text-adrenalin-yellow animate-fade-in">
-                <Check className="w-5 h-5" />
-                <span className="font-body text-sm">Inscrição realizada com sucesso!</span>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex w-full max-w-md gap-2">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Seu melhor email"
-                  required
-                  className="flex-1 px-4 py-3 bg-adrenalin-black border border-white/10 text-white font-body text-sm
-                             placeholder:text-adrenalin-light/50 focus:outline-none focus:border-adrenalin-yellow/50
-                             transition-all duration-300"
-                />
-                <button
-                  type="submit"
-                  className="px-6 py-3 bg-adrenalin-yellow text-adrenalin-black font-body font-semibold text-sm uppercase tracking-wider
-                             hover:bg-white transition-all duration-300 active:scale-95 flex items-center gap-2"
-                >
-                  <Send className="w-4 h-4" />
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
+    <section className="relative overflow-hidden bg-adrenalin-yellow py-20 text-adrenalin-black md:py-28">
+      <div className="absolute -right-10 top-1/2 -translate-y-1/2 font-heading text-[32vw] leading-none text-black/[0.045]" aria-hidden="true">LINE</div>
+      <div className="container-premium relative grid items-end gap-10 lg:grid-cols-[1fr_480px]">
+        <div><span className="text-[10px] font-bold uppercase tracking-[0.25em]">Adrenalin dispatch</span><h2 className="mt-3 font-heading text-[clamp(4rem,8vw,8rem)] uppercase leading-[0.8]">Stay in<br />the line.</h2><p className="mt-5 max-w-md text-sm leading-relaxed text-black/65">Receba novidades, lançamentos e equipamentos selecionados.</p></div>
+        {submitted ? <div className="flex items-center gap-3 border-b border-black/30 py-5 text-sm font-semibold"><Check className="h-5 w-5" /> Inscrição realizada com sucesso.</div> : (
+          <form onSubmit={submit} className="flex border-b-2 border-black">
+            <label htmlFor="newsletter-email" className="sr-only">Seu melhor email</label>
+            <input id="newsletter-email" type="email" required value={email} onChange={(event) => setEmail(event.target.value)} placeholder="SEU MELHOR EMAIL" className="min-w-0 flex-1 bg-transparent px-0 py-5 text-xs font-semibold tracking-[0.1em] placeholder:text-black/45 focus:outline-none" />
+            <button type="submit" className="flex items-center gap-3 px-4 text-xs font-bold uppercase tracking-[0.15em] transition-transform hover:translate-x-1">Inscrever <ArrowRight className="h-4 w-4" /></button>
+          </form>
+        )}
       </div>
     </section>
   )
